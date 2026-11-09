@@ -7,7 +7,7 @@ import { DEFAULT_REMOTE_RELAY_URL } from './src/shared/remote-config';
 
 export default defineConfig({
   main: { define: { 'process.env.TINYGPT_REMOTE_RELAY_URL': JSON.stringify(process.env.TINYGPT_REMOTE_RELAY_URL || DEFAULT_REMOTE_RELAY_URL) }, plugins: [externalizeDepsPlugin({ exclude: ['@fontsource/inter', '@fontsource-variable/figtree', 'remark-gfm'] })], build: { rollupOptions: { input: { index: resolve('src/main/index.ts'), 'chat-worker': resolve('src/main/chat-worker.ts'), 'embedding-worker': resolve('src/main/embedding-worker.ts'), 'file-worker': resolve('src/main/file-worker.ts'), 'moonshine-worker': resolve('src/main/moonshine-worker.ts') } } } },
-  preload: { plugins: [externalizeDepsPlugin()], build: {rollupOptions:{input:{index:resolve('src/preload/index.ts'),passwords:resolve('src/preload/passwords.ts')}}} },
+  preload: { plugins: [externalizeDepsPlugin()], build: {rollupOptions:{input:{index:resolve('src/preload/index.ts'),passwords:resolve('src/preload/passwords.ts'),'model-setup':resolve('src/preload/model-setup.ts')}}} },
   renderer: {
     root: resolve('src/renderer'),
     resolve: { alias: { '@': resolve('src/renderer') } },

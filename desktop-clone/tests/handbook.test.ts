@@ -39,6 +39,7 @@ it.each([
   ['Does 100% local memory storage mean cloud models never receive relevant memories?', 'overview'],
   ['Does free forever include paid OpenRouter usage or only the included on-device model?', 'overview'],
   ['Does first launch download local model data once, verify its SHA-256, and keep those models across app updates?', 'updates'],
+  ['How do I Stop installation in the frameless Installing TinyGPT window, and will reopening resume downloaded parts?', 'updates'],
   ['Does the welcome starter send a message automatically or enable microphone and computer access?', 'overview'],
   ['Does the current Mac pre-beta offer automatic updating?', 'updates'],
   ['Where is Update available above my sidebar profile, and do I choose Download update and Restart to update?', 'updates'],

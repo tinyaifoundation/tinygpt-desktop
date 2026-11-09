@@ -119,6 +119,7 @@ if (process.platform === 'win32') app.commandLine.appendSwitch('disable-lcd-text
 let store: SettingsStore;
 let onboarding: OnboardingStore;
 let window: BrowserWindow | null = null;
+let startingUp = true;
 let hideBrowserWorkspace = () => {};
 let history: HistoryStore;
 let chat: ChatService;
@@ -1041,6 +1042,7 @@ else {
     handle('tinygpt:browser-resume', input => { browser.resume(idSchema.parse(input)); });
     handle('tinygpt:browser-cancel', input => { broker.cancelManual(idSchema.parse(input)); });
     createWindow();
+    startingUp = false;
     void (async () => {
       const saved = store.getSettings(), active = store.activeConnectionId();
       const selectedBuiltIn = saved.route === 'local' && builtInModelId(saved.local.model);
@@ -1056,13 +1058,16 @@ else {
       revealWindow(window!, screen.getAllDisplays().map(display => display.workArea));
     });
   }).catch(error => {
+    startingUp = false;
     if (error?.code === 'MODEL_SETUP_CANCELED') { app.quit(); return; }
     if (error?.code === 'MODEL_SETUP_FAILED') { dialog.showErrorBox('TinyGPT setup', error.message); app.quit(); return; }
     dialog.showErrorBox('TinyGPT could not start', 'Saved settings, credentials, or the conversation library could not be loaded. Your files have been preserved.');
     app.quit();
   });
 }
-app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit(); });
+// First-run setup closes before the main window is constructed. Its successful
+// handoff must not be mistaken for the user quitting the application.
+app.on('window-all-closed', () => { if (process.platform !== 'darwin' && !startingUp) app.quit(); });
 app.on('before-quit', event => {
   if (quitting || !chat) return;
   event.preventDefault(); quitting = true;
