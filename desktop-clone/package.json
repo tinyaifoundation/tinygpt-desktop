@@ -1,6 +1,6 @@
 {
   "name": "tinygpt-voice-clone",
-  "version": "0.1.0-prebeta.4",
+  "version": "0.1.0-prebeta.5",
   "private": true,
   "description": "TinyGPT private desktop AI companion with included local intelligence and voice",
   "main": "out/main/index.js",

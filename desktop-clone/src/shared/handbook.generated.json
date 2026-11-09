@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.1.0-prebeta.4",
+  "version": "0.1.0-prebeta.5",
   "sources": {
     "../tools/tool-icon-auditor/audit-source.cjs": "167ea5ed0c4ffd1600d71427c51467278246778a927d4be1f073808bc80a3b1c",
     "../tools/tool-icon-auditor/index.html": "d0ab2ac833652764208eb7d57e61f0294480498446b47a9cf0ebaa55142f95c7",

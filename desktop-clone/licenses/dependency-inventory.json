@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "packageLockSHA256": "a3ab46c8cc62d7c862eb93f292d6edf95b6ce4596f26027a977bdb03153656b9",
+  "packageLockSHA256": "aff426ad8e3cacd73dab6921104635792d09b83759bcf98541b7158736935abb",
   "scope": "Production npm dependency declarations, including optional platform packages. Native runtimes, model assets and their notices are documented separately in THIRD_PARTY_NOTICES.md.",
   "dependencies": [
     {
