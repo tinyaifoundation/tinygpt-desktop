@@ -70,6 +70,12 @@ Both releases were built from public source by the Windows release workflow, ver
 
 This download test used an isolated app adapter and cache and did not run the Windows installer. Native restart, preservation of an existing user's conversations/settings, migration from pre-beta 2, and live model answers to help questions still require manual acceptance. Differential transfer sizes vary with each release and the available cache; this measurement is not a fixed update-size promise.
 
+### Published pre-beta 4 → 5 check — November 9, 2026
+
+Pre-beta 5 passed all 1,478 automated tests and the Windows artifact verification before feed promotion. The live updater rejected altered metadata, downloaded 3,424,117 bytes from the actual published pre-beta 4 cache, reconstructed the 1,216,148,570-byte package, and verified its SHA-512 checksum (99.72% less transfer for this update). The real Electron client also detected pre-beta 5 through the authenticated feed, with automatic download and installation on quit disabled.
+
+The exact published package was extracted and inspected for the branded setup, dedicated stop preload, and bundled font. It launched successfully to the first welcome screen in a fresh isolated profile seeded with 24 matching model objects from pre-beta 4; the app verified and reused those objects. The new Stop installation control was exercised in the real native setup window using an isolated preparation fixture. These checks do not exercise the NSIS installer restart, an existing user's profile migration, or live model answers to help questions; those manual acceptance items remain outstanding.
+
 ## Local preparation and recovery
 
 From `desktop-clone/`, set `TINYGPT_RELEASE_SIGNING_MODE=unsigned` or `windows` in the environment. `npm run release:preflight` checks the configuration, pinned public key and versioned notes without building or publishing. `npm run release:win` builds and verifies; `npm run release:publish` rechecks the actual files and publishes with the private update key. Local Windows signing also needs an authenticated identity with access to the certificate profile. CI uses the federated identity above. Local builds do not need the private update key until publishing.
