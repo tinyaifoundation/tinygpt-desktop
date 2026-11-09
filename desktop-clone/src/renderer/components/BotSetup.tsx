@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Loader2 } from '../icons';
 import { BotWelcome } from './BotWelcome';
 import { Button } from './ui/button';
@@ -13,14 +13,15 @@ import { BotPluginPermissions } from './BotPluginPermissions';
 import { SettingRow, Switch } from './AppearanceSettings';
 import { SettingsSelect } from './ui/settings-select';
 
-export function BotSetup({ design, changeDesign, status, bridge, snapshot, updateSnapshot, library, openSettings, complete, close }: {
+export function BotSetup({ design, changeDesign, status, bridge, snapshot, updateSnapshot, library, openSettings, complete, close, busyChanged }: {
   design: BotDesign; changeDesign: (value: BotDesign) => void; status: BotSnapshot; bridge: DesktopBridge;
-  snapshot: AppSnapshot; updateSnapshot: (value: AppSnapshot) => void; library: LibrarySnapshot; openSettings: () => void; complete: (setup: Setup) => Promise<void>; close?: () => void;
+  snapshot: AppSnapshot; updateSnapshot: (value: AppSnapshot) => void; library: LibrarySnapshot; openSettings: () => void; complete: (setup: Setup) => Promise<void>; close?: () => void; busyChanged?: (busy: boolean) => void;
 }) {
   const [originalDesign] = useState(design);
   const [step, setStep] = useState(status.conversationId && !status.configured ? 'connection' : 'appearance');
   const [configuration, setConfiguration] = useState(status.configured ? status.configuration ?? defaultBotConfiguration : { ...defaultBotConfiguration, background: true, browser: true, heartbeat: '1h' as const });
   const [starting, setStarting] = useState(false);
+  useEffect(() => { busyChanged?.(starting); }, [starting, busyChanged]);
   const [error, setError] = useState('');
   const [editorTab,setEditorTab] = useState<'appearance' | 'permissions' | 'behavior'>('appearance');
   const working = library.activeRuns.some(run => run.conversationId === status.conversationId);

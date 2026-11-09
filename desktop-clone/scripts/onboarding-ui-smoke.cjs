@@ -19,18 +19,21 @@ async function main() {
   };
   try {
     let page = await launch();
-    const shot = async name => { await page.locator('.welcome-showcase-artwork').evaluate(image => image.decode()); await page.waitForTimeout(450); await page.screenshot({ path: join(artifacts, name + '.png') }); };
+    const shot = async name => { await page.locator('.welcome-showcase-artwork .welcome-preview-card').waitFor(); await page.waitForTimeout(450); await page.screenshot({ path: join(artifacts, name + '.png') }); };
     assert.equal(await page.locator('.onboarding-step-number,.welcome-showcase-footnote,.welcome-showcase-brand span').count(), 0);
     assert.ok((await page.locator('main.onboarding').evaluate(element => getComputedStyle(element).backgroundImage)).includes('linear-gradient'));
     await shot('01-welcome');
     await page.getByRole('button', { name: 'Get started', exact: true }).click();
     await page.getByRole('heading', { name: 'Ask anything, anytime.' }).waitFor(); await shot('02-your-model');
-    await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.getByRole('button', { name: 'Add later', exact: true }).click();
     await page.getByRole('heading', { name: 'Tailored to you', exact: true }).waitFor(); await shot('03-your-space');
     const empty = await page.evaluate(() => window.tinygpt.memorySnapshot()); assert.ok(empty.ok);
     assert.equal(empty.value.memories.some(memory => memory.title === 'Your name'), false);
     await page.getByRole('textbox', { name: 'Your first name (optional)', exact: true }).fill('Alex');
     await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.getByRole('heading', { name: 'Meet your Bot', exact: true }).waitFor();
+    await shot('04-your-bot');
+    await page.getByRole('button', { name: 'Add later', exact: true }).click();
     await page.getByRole('heading', { name: 'More than just text', exact: true }).waitFor();
     const named = await page.evaluate(() => window.tinygpt.memorySnapshot()); assert.ok(named.ok);
     assert.ok(named.value.memories.some(memory => memory.title === 'Your name' && memory.text === "The user's name is Alex."));
@@ -59,23 +62,28 @@ async function main() {
     await page.getByRole('button', { name: 'Open welcome', exact: true }).click();
     await page.getByRole('heading', { name: 'Your private AI companion for every idea', exact: true }).waitFor();
     await page.getByRole('button', { name: 'Get started', exact: true }).click();
-    await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.getByRole('button', { name: 'Add later', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your first name (optional)', exact: true }).waitFor();
     assert.equal(await page.getByRole('textbox', { name: 'Your first name (optional)', exact: true }).inputValue(), 'Alex');
     const optedOut = await page.evaluate(() => window.tinygpt.personalMemory(false)); assert.ok(optedOut.ok);
     await page.getByRole('textbox', { name: 'Your first name (optional)', exact: true }).fill('Sam');
     await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.getByRole('heading', { name: 'Meet your Bot', exact: true }).waitFor();
+    await page.getByRole('button', { name: 'Add later', exact: true }).click();
     await page.getByRole('heading', { name: 'More than just text', exact: true }).waitFor();
     const renamed = await page.evaluate(() => window.tinygpt.memorySnapshot()); assert.ok(renamed.ok); assert.equal(renamed.value.includePersonal, false);
     await page.getByRole('button', { name: 'Back', exact: true }).click();
+    await page.getByRole('button', { name: 'Back', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your first name (optional)', exact: true }).fill('');
-    await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.getByRole('button', { name: 'Add later', exact: true }).click();
+    await page.getByRole('heading', { name: 'Meet your Bot', exact: true }).waitFor();
+    await page.getByRole('button', { name: 'Add later', exact: true }).click();
     await page.getByRole('heading', { name: 'More than just text', exact: true }).waitFor();
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('tinygpt-profile-v4')).firstName), 'Sam');
     await page.getByRole('button', { name: 'Set up later', exact: true }).click();
     assert.equal(JSON.parse(readFileSync(join(profile, 'onboarding.json'), 'utf8')).status, 'skipped');
     assert.deepEqual(errors, []);
-    writeFileSync(join(artifacts, 'verification.json'), JSON.stringify({ passed: true, checks: ['four generated gradient artworks loaded', 'removed counts footnotes and brand dots', 'four rendered onboarding screens', 'compact desktop', 'optional profile name and memory saved', 'existing memory-sharing opt-out preserved', 'blank optional name preserves existing profile', 'voice preference saved', 'permissions preserved', 'resume after restart', 'starter draft without sending', 'Settings replay', 'skip persisted'], profile }, null, 2));
+    writeFileSync(join(artifacts, 'verification.json'), JSON.stringify({ passed: true, checks: ['five gradient UI mockups rendered', 'removed counts footnotes and brand dots', 'five rendered onboarding screens', 'compact desktop', 'optional profile name and memory saved', 'existing memory-sharing opt-out preserved', 'blank optional name preserves existing profile', 'voice preference saved', 'permissions preserved', 'resume after restart', 'starter draft without sending', 'Settings replay', 'skip persisted'], profile }, null, 2));
     console.log('Onboarding screenshots and end-to-end checks passed: ' + artifacts);
   } finally { if (app) await app.close(); }
 }

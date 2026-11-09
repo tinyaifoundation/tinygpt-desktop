@@ -8,6 +8,7 @@ import { costTierLabels } from '../../shared/openrouter-routers';
 import { InferenceProviderIcon } from './InferenceProviderIcon';
 import { builtInModels, builtInModelId, builtInAvailability, type BuiltInHardware, type BuiltInModelId, type ManagedLocalStatus } from '../../shared/managed-local';
 import { ConfigurationMonitor } from './ConfigurationMonitor';
+import { startWelcomePro } from '../lib/onboarding-models';
 import { SettingRow, Switch } from './AppearanceSettings';
 import { SettingsButton as Button } from './ui/settings-button';
 import { SettingsSelect } from './ui/settings-select';
@@ -124,7 +125,7 @@ function LocalModelModal({ snapshot, bridge, update, close }: ModalProps) {
 }
 
 
-function BuiltInModal({ id, status, snapshot, bridge, update, close }: ModalProps & { id: BuiltInModelId; status?: ManagedLocalStatus }) {
+export function BuiltInModal({ id, status, snapshot, bridge, update, close, restoreIncludedOnFailure = false }: ModalProps & { id: BuiltInModelId; status?: ManagedLocalStatus; restoreIncludedOnFailure?: boolean }) {
   const { busy, error, act } = useAction();
   const [stopError, setStopError] = useState('');
   const model = builtInModels[id];
@@ -136,7 +137,10 @@ function BuiltInModal({ id, status, snapshot, bridge, update, close }: ModalProp
     {settingUp ? <ConnectionButton onClick={() => void cancel()}>Cancel setup</ConnectionButton> : <>
       {running && <ConnectionButton className="inference-disconnect" onClick={() => void cancel()}>Stop</ConnectionButton>}
       <ConnectionButton onClick={close}>Done</ConnectionButton>
-      <ConnectionButton primary onClick={() => void act(async () => { update(unwrap(await bridge.startBuiltInModel(id))); })}>{running ? 'Use model' : status?.installed ? 'Start model' : 'Download & set up'}</ConnectionButton>
+      <ConnectionButton primary onClick={() => void act(async () => {
+        if (restoreIncludedOnFailure && id === 'pro') await startWelcomePro(bridge, update);
+        else update(unwrap(await bridge.startBuiltInModel(id)));
+      })}>{running ? 'Use model' : status?.installed ? 'Start model' : 'Download & set up'}</ConnectionButton>
     </>}
   </>}>
     <div className="built-in-setup-summary"><span>Setup size</span><strong>{((model.downloadBytes + (id === 'pro' && snapshot.settings.builtIn?.proMtp !== false ? builtInModels.pro.predictionBytes : 0)) / 1e9).toFixed(1)} GB</strong></div>

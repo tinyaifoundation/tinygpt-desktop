@@ -41,7 +41,7 @@ export function GeneralSettings(props: { snapshot: AppSnapshot; bridge: DesktopB
     <section className="settings-content-group"><h2>TinyGPT</h2><div className="settings-card">
       <SettingRow title="Welcome to TinyGPT" description="Revisit models, your optional profile name and memories, voice, and your first conversation."><button type="button" className="settings-value underline underline-offset-4" disabled={welcomeBusy} onClick={() => {
         setWelcomeBusy(true); setWelcomeError('');
-        void bridge.saveOnboarding({ version: 1, step: 0, status: 'in-progress' }).then(result => { if (result.ok) props.update(result.value); else setWelcomeError(result.error); }, () => setWelcomeError('The welcome experience could not be opened.')).finally(() => setWelcomeBusy(false));
+        void bridge.saveOnboarding({ version: 2, step: 0, status: 'in-progress' }).then(result => { if (result.ok) props.update(result.value); else setWelcomeError(result.error); }, () => setWelcomeError('The welcome experience could not be opened.')).finally(() => setWelcomeBusy(false));
       }}>Open welcome</button></SettingRow>
       <SettingRow title="Version"><span className="settings-value">{snapshot.version}</span></SettingRow>
       <SettingRow title="Updates"><AppUpdate bridge={bridge} settings /></SettingRow>

@@ -31,6 +31,10 @@ it('covers every settings-search entry and uses unique stable citation IDs', () 
 
 it.each([
   ['How do I skip first-launch onboarding and reopen Welcome to TinyGPT in General settings?', 'overview'],
+  ['Can I choose Light or Dark immediately on the first welcome screen?', 'overview'],
+  ['Can I use Add later for optional TinyGPT Pro and OpenRouter without selecting the included local model?', 'overview'],
+  ['Does Meet your Bot let me skip Bot setup without enabling proactive checks or changing permissions?', 'overview'],
+  ['Does onboarding offer TinyGPT Pro downloads only after checking device compatibility?', 'overview'],
   ['Does leaving my optional first name blank in Tailored to you erase my existing name or enable memory sharing?', 'overview'],
   ['Does 100% local memory storage mean cloud models never receive relevant memories?', 'overview'],
   ['Does free forever include paid OpenRouter usage or only the included on-device model?', 'overview'],
@@ -95,6 +99,12 @@ it.each([
   ['Do explicit per-tool browser icon mappings take precedence over family defaults in the Tool Icon Auditor?', 'icon-auditor'],
 ])('retrieves useful help for %s', (query, id) => {
   expect(searchHandbook(query, 8).map(hit => hit.articleId)).toContain(id);
+});
+
+it('explains optional welcome setup without retaining the removed included-model selection instructions', () => {
+  const text = readHandbook('overview')[0].text;
+  for (const term of ['five-step', 'Light', 'Dark', 'no included-model selection card', 'only when the actual device check confirms Pro compatibility', 'Add later does not prepare or configure a Bot', 'Skip this step']) expect(text).toContain(term);
+  expect(text).not.toContain('Select its card to start it.');
 });
 
 it('explains saved-password isolation, native-auth requirements and security limits',()=>{

@@ -35,6 +35,13 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: desktop-clone/package-lock.json
+      - name: Check signing and publishing configuration
+        run: node scripts/release-preflight.cjs --ci
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          R2_RELEASE_BUCKET: ${{ vars.R2_RELEASE_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       - run: npm ci
       - name: Use the physical temporary directory
         run: |
@@ -48,10 +55,6 @@ jobs:
           key: ${{ runner.os }}-test-runtimes-${{ hashFiles('desktop-clone/src/shared/work-runtimes.json', 'desktop-clone/scripts/work-tools.json', 'desktop-clone/src/shared/rag-models.json') }}
       - run: npm run runtime:work
       - run: npm run runtime:rag
-      - name: Check release configuration
-        run: |
-          node -e "require('./scripts/release-builder.cjs')"
-          if (-not $env:AZURE_CLIENT_ID -or -not $env:AZURE_TENANT_ID -or -not $env:AZURE_SUBSCRIPTION_ID) { throw 'Configure the protected signing environment first.' }
       - run: npm run handbook:check
       - run: npm run typecheck
       - run: npm test -- --maxWorkers=2

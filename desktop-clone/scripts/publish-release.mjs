@@ -3,10 +3,11 @@ import { createReadStream } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { resolve, join } from 'node:path';
-import { S3Client, HeadObjectCommand, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, HeadObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';
 import { parse, stringify } from 'yaml';
 import { updateFeed } from './release-metadata.mjs';
+import { verifyStoredObject } from './release-storage.mjs';
 const root = resolve(import.meta.dirname, '..');
 function required(name) { const value = process.env[name]; if (!value) throw Error(`Set ${name} before publishing.`); return value; }
 // Recheck the actual files and signatures immediately before publication.
@@ -24,13 +25,16 @@ async function checksum(path) { const hash = createHash('sha256'); for await (co
 async function immutable(path, Key, expected) {
   const sha256 = await checksum(path); if (expected && expected !== sha256) throw Error('A release artifact changed after verification.');
   let existing; try { existing = await client.send(new HeadObjectCommand({ Bucket, Key })); } catch (error) { if (error.$metadata?.httpStatusCode !== 404) throw error; }
-  if (existing) { if (existing.Metadata?.sha256 !== sha256) throw Error('Refusing to replace an existing release object.'); console.log('Already uploaded: ' + Key); return; }
+  if (existing) {
+    if (existing.Metadata?.sha256 !== sha256) throw Error('Refusing to replace an existing release object.');
+    await verifyStoredObject(client, Bucket, Key, sha256);
+    console.log('Already uploaded and verified: ' + Key); return;
+  }
   const upload = new Upload({ client, params: { Bucket, Key, Body: createReadStream(path), Metadata: { sha256 }, ContentType: /\.(txt|md)$/.test(Key) ? 'text/plain; charset=utf-8' : 'application/octet-stream', CacheControl: 'public, max-age=31536000, immutable' }, queueSize: 2, partSize: 32 * 1024 * 1024, leavePartsOnError: false });
   await upload.done();
   const result = await client.send(new HeadObjectCommand({ Bucket, Key })); if (result.Metadata?.sha256 !== sha256) throw Error('Upload metadata verification failed.');
   // Stream the stored object back: this checks the bytes, not just caller-supplied metadata.
-  const downloaded = await client.send(new GetObjectCommand({ Bucket, Key })); const hash = createHash('sha256'); for await (const chunk of downloaded.Body) hash.update(chunk);
-  if (hash.digest('hex') !== sha256) throw Error('Uploaded bytes differ from the verified release.');
+  await verifyStoredObject(client, Bucket, Key, sha256);
   console.log('Uploaded and verified: ' + Key);
 }
 for (const asset of new Map(assets.map(asset => [asset.key, asset])).values()) await immutable(asset.source, asset.key, asset.sha256);

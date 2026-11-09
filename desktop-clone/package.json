@@ -47,7 +47,8 @@
     "runtime:passwords": "node scripts/prepare-password-runtime.mjs",
     "models:catalog": "node scripts/prepare-model-assets.mjs",
     "release:check": "node scripts/verify-release.mjs",
-    "release:win": "npm run runtime:dictation && npm run build && npm run models:catalog && electron-builder --win --config scripts/release-builder.cjs --publish never && npm run release:check",
+    "release:preflight": "node scripts/release-preflight.cjs",
+    "release:win": "npm run release:preflight && npm run runtime:dictation && npm run build && npm run models:catalog && electron-builder --win --config scripts/release-builder.cjs --publish never && npm run release:check",
     "release:publish": "node scripts/publish-release.mjs",
     "source:audit": "node scripts/audit-public-source.mjs",
     "secrets:check": "node scripts/check-secrets.mjs"

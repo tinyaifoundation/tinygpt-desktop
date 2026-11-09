@@ -1,5 +1,6 @@
 import { RemoteChatControl } from './components/RemoteChatDialog';
 import { Onboarding } from './components/Onboarding';
+import { BotSetup as WelcomeBotSetup } from './components/BotSetup';
 import { REMOTE_APPEARANCE_KEYS } from '../shared/remote';
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { subscribeChatUpdates } from './lib/chat-updates';
@@ -338,7 +339,7 @@ export function App() {
   const newChatActive = panel === 'chat' && snapshot.settings.mode !== 'bot' && !conversation;
   if (snapshot.onboarding?.status === 'in-progress') return <div className="desktop-shell" data-platform={snapshot.platform} data-maximized={windowState.maximized || windowState.fullScreen}>
     <WindowChrome bridge={bridge} platform={snapshot.platform} changed={setWindowState} reportError={setError} />
-    <Onboarding snapshot={snapshot} bridge={bridge} update={setSnapshot} profile={profile} changeProfile={setProfile} done={prompt => {
+    <Onboarding snapshot={snapshot} bridge={bridge} update={setSnapshot} profile={profile} changeProfile={setProfile} appearance={appearance} changeAppearance={setAppearance} bot={bot} botConfigured={botStatus.configured} renderBotSetup={({ close, complete, busyChanged }) => <><button type="button" className="onboarding-bot-back" onClick={close}>Back to welcome</button><WelcomeBotSetup design={bot} changeDesign={setBot} status={botStatus} bridge={bridge} snapshot={snapshot} updateSnapshot={setSnapshot} library={library} openSettings={() => {}} busyChanged={busyChanged} complete={async setup => { await completeBot(setup); complete(); }} /></>} done={prompt => {
       if (prompt) { sessionStorage.setItem('tinygpt-plugin-prompt', prompt); newChat(); }
       else setPanel('chat');
     }} />
