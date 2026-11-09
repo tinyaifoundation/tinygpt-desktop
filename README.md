@@ -88,7 +88,9 @@ Read the [privacy and permissions guide](desktop-clone/knowledge/privacy.md), [m
 
 Use **Search settings** to find a control. The [product handbook](desktop-clone/knowledge/) is also bundled into the app and explains its current features, permissions, and limits.
 
-The published **0.1.0-prebeta.2** Windows build is unsigned and does not have an in-app updater. The next pre-beta pipeline includes an update indicator above the sidebar profile and model reuse to reduce repeated downloads. Windows publisher signing is pending Azure account setup; unsigned pre-beta updates instead require metadata authenticated by TinyGPT's pinned Ed25519 release key, plus matching file checksums. This does not remove Windows publisher warnings. Packaged upgrades still need acceptance testing before being described as verified. See [releases and signing](docs/RELEASING.md).
+The current Windows release is **0.1.0-prebeta.4**. It checks for updates on startup and every fifteen minutes while open. An update indicator appears above the sidebar profile; you choose when to download and restart. Compatible cached packages allow smaller downloads, and matching model data is reused. Testers on **0.1.0-prebeta.2** need to install a current build manually once.
+
+Windows publisher signing is pending Azure account setup, so these pre-beta builds are **unsigned** and Windows may show a warning. Updates still require metadata authenticated by TinyGPT's pinned Ed25519 release key and matching file checksums. The published pre-beta 3 → 4 download transferred **3.39 MB** for a **1.22 GB** app package in an isolated updater test. Native installer restart and profile migration remain unverified. See [releases, signing, and acceptance results](docs/RELEASING.md).
 
 ## Help improve TinyGPT
 

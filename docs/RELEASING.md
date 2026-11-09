@@ -51,11 +51,24 @@ The installer uses `differentialPackage: store-asar`. This trades a larger initi
 
 Twenty-four pinned model data files currently total approximately 2.48 GB. They are excluded from the app package and kept by checksum in the local profile. A first installation downloads missing model objects. The installer migration helper can reuse matching files from an older installation before it is removed. Each app version uses its own resource view with current small configuration/native runtime files and shared verified model data. Interrupted model downloads resume; changed or corrupt data is verified again. Existing profiles remain in the same directory.
 
-## Acceptance before the first updater release
+## Acceptance
 
 Verify release-key authenticity, a fresh-profile initial model download, migration from 0.1.0-prebeta.2, offline launch after setup, and a version-to-version update. Measure the app delta. Exercise interrupted downloads, altered proofs and invalid checksums, low disk space, restarting with active tasks, preserved conversations/settings, and a missing updater cache. In Windows-signed mode also verify individual signing, trusted timestamps, the exact publisher shown by Windows, and rejection of an incorrect publisher. Retain old artifacts so existing block maps remain available.
 
 Code signing establishes a publisher identity; SmartScreen reputation can still take time for a new publisher. Never disable signature verification to suppress an update error.
+
+### Published pre-beta 3 → 4 check — November 9, 2026
+
+Both releases were built from public source by the Windows release workflow, verified, and published through the authenticated feed. Pre-beta 4 passed all 1,474 automated tests. Against the live feed, the updater rejected altered metadata before downloading an artifact, required an explicit download action, reconstructed the new package from the actual published pre-beta 3 cache, and verified its SHA-512 checksum. The real Electron update client also detected pre-beta 4, with automatic downloads and installation on quit disabled.
+
+| Measurement | Result |
+| --- | --- |
+| Complete pre-beta 4 app package | 1,216,121,489 bytes |
+| Pre-beta 3 → 4 updater transfer, including setup/block-map requests | 3,388,259 bytes |
+| Reduction for this update | 99.72% |
+| Missing-cache fallback transfer, including setup/block-map requests | 1,218,782,093 bytes; checksum verified |
+
+This download test used an isolated app adapter and cache and did not run the Windows installer. Native restart, preservation of an existing user's conversations/settings, migration from pre-beta 2, and live model answers to help questions still require manual acceptance. Differential transfer sizes vary with each release and the available cache; this measurement is not a fixed update-size promise.
 
 ## Local preparation and recovery
 
