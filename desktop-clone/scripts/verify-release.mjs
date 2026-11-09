@@ -30,7 +30,7 @@ if (JSON.parse(extractFile(archive, 'package.json').toString('utf8')).version !=
 if (!extractFile(archive, 'licenses/dependency-inventory.json').equals(await readFile(join(root, 'licenses/dependency-inventory.json')))) throw Error('The packaged dependency license inventory is stale.');
 if (!extractFile(archive, 'licenses/buffers-MIT.txt').length) throw Error('The recovered dependency notice is missing.');
 const key = JSON.parse(await readFile(join(root, 'src/shared/update-key.json'), 'utf8'));
-if (!listPackage(archive).filter(name => /^\/out\/main\/.*\.js$/.test(name)).some(name => extractFile(archive, name.slice(1)).includes(Buffer.from(key.publicKey)))) throw Error('The packaged updater does not contain the pinned release key.');
+if (!listPackage(archive).filter(name => /^\/out\/main\/.*\.js$/.test(name.replaceAll('\\', '/'))).some(name => extractFile(archive, name.slice(1)).includes(Buffer.from(key.publicKey)))) throw Error('The packaged updater does not contain the pinned release key.');
 const catalog = await readFile(join(root, 'release/win-unpacked/resources/model-assets.json'));
 if (!catalog.equals(await readFile(join(root, 'build/model-assets.json')))) throw Error('The packaged model catalog is stale.');
 await writeFile(join(directory, 'SHA256SUMS.txt'), files.map(file => `${file.sha256}  ${file.name}`).join('\n') + '\n');

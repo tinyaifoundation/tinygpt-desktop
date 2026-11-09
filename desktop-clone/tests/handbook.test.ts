@@ -46,6 +46,7 @@ it.each([
   ['Can a missing updater cache require the complete app package without downloading unchanged models again?', 'updates'],
   ['Does an unsigned build accept updates without a configured publisher signature?', 'updates'],
   ['How does the Ed25519 release key protect unsigned pre-beta updates?', 'updates'],
+  ['Will a pending update notification refresh when a newer pre-beta build ships?', 'updates'],
   ['Does a TinyGPT release-key signature remove the Windows unverified publisher warning?', 'updates'],
   ['Does Forget in Personalization clear the local model weights or only personal memories?', 'updates'],
   ['Where is Remote Control on the website downloads page, and can its mobile web app run without my paired desktop?', 'remote'],

@@ -42,3 +42,15 @@ it('does not offer an unsigned development build an update engine', async () => 
   const updates = new AppUpdates(undefined, '3', vi.fn(), () => false, vi.fn()); updates.start(1);
   await updates.action('install'); expect(updates.snapshot().phase).toBe('unavailable'); updates.close();
 });
+it('refreshes a pending notification to the newest release without starting a download', async () => {
+  vi.useFakeTimers();
+  const { engine, updates, release } = setup();
+  try {
+    updates.start(1000); await updates.action('check'); release();
+    engine.checkForUpdates.mockImplementation(async () => { engine.emit('update-available', { version: '0.1.0-prebeta.5', files: [{ url: 'https://downloads.tinygpt.org/releases/0.1.0-prebeta.5/setup.exe' }] }); });
+    await vi.advanceTimersByTimeAsync(1000);
+    expect(updates.snapshot().version).toBe('0.1.0-prebeta.5');
+    expect(updates.snapshot().phase).toBe('available');
+    expect(engine.downloadUpdate).not.toHaveBeenCalled();
+  } finally { updates.close(); vi.useRealTimers(); }
+});

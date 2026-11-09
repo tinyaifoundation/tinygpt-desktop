@@ -47,7 +47,7 @@ export class AppUpdates {
   start(interval = 4 * 60 * 60 * 1000) {
     if (!this.engine || this.closed || this.timer) return;
     void this.action('check');
-    this.timer = setInterval(() => { if (['idle', 'error'].includes(this.state.phase)) void this.action('check'); }, interval);
+    this.timer = setInterval(() => { if (['idle', 'available', 'error'].includes(this.state.phase)) void this.action('check'); }, interval);
     this.timer.unref?.();
   }
   action(action: UpdateAction): Promise<UpdateState> {
