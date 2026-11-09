@@ -20,7 +20,8 @@ jobs:
           cache-dependency-path: desktop-clone/package-lock.json
       - run: npm ci
       - name: Use the physical temporary directory
-        run: node -e "const fs=require('node:fs'),os=require('node:os'); const p=fs.realpathSync.native(os.tmpdir()); fs.appendFileSync(process.env.GITHUB_ENV, 'TEMP='+p+'\nTMP='+p+'\n'); console.log('Canonical test temporary directory: '+p)"
+        run: |
+          node -e "const fs=require('node:fs'),os=require('node:os'); const p=fs.realpathSync.native(os.tmpdir()); fs.appendFileSync(process.env.GITHUB_ENV, 'TEMP='+p+'\nTMP='+p+'\n'); console.log('Canonical test temporary directory: '+p)"
       - uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: |
