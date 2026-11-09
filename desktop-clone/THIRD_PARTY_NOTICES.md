@@ -20,7 +20,9 @@ Optional response acceleration downloads the separate Qwen3.8-27B Q4_0 MTP head
 from ggml-org/Qwen3.8-27B-GGUF revision `a316ea527fde32c12487be7574e2db5ac2ad2a7e`,
 under Apache-2.0. Source and checksum are retained in `licenses/bonsai-2/MTP-NOTICE.txt`.
 
-TinyGPT uses open-source dependencies. Their license files remain with the packaged dependencies. A complete distribution license inventory is a release gate.
+TinyGPT uses open-source dependencies. Their license files remain with the packaged dependencies. Production npm dependency declarations, including optional platform packages, are listed in `licenses/dependency-inventory.json` and checked against the lockfile before a release. Native runtime and model notices are documented below and remain with their distributions.
+
+`buffers` 0.1.1 is used transitively by spreadsheet extraction. Its npm archive omits a license declaration. Original author James Halliday declared MIT/X11 in upstream commit `1b745ee35d33eb166e15ef1866073a07c6d7de87`, preserved at https://github.com/bitpay/node-buffers/commit/1b745ee35d33eb166e15ef1866073a07c6d7de87 . Attribution and the MIT permission text are retained in `licenses/buffers-MIT.txt`.
 
 ## Remote chat QR codes
 

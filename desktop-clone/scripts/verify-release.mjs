@@ -1,4 +1,4 @@
-import { readFile, writeFile, stat } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
@@ -20,12 +20,15 @@ for (const [name, expected] of [[metadata.path, { sha512: metadata.sha512 }], [m
   if (integrity.digest('base64') !== expected.sha512 || (expected.size && bytes !== expected.size)) throw Error('Release checksum differs from builder metadata.');
   files.push({ name, bytes, sha256: hash.digest('hex') });
 }
-for (const path of [join(directory, metadata.path), join(root, 'release/win-unpacked/TinyGPT.exe')]) execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', join(root, 'scripts/verify-code-signature.ps1'), '-Path', path, ...(mode === 'unsigned' ? ['-AllowUnsigned'] : ['-Publisher', publisher])], { stdio: 'inherit', windowsHide: true });
+const signatureEnvironment = { ...process.env, PSModulePath: [join(process.env.USERPROFILE || '', 'Documents/WindowsPowerShell/Modules'), join(process.env.ProgramFiles || 'C:/Program Files', 'WindowsPowerShell/Modules'), join(process.env.SystemRoot || 'C:/Windows', 'System32/WindowsPowerShell/v1.0/Modules')].join(';') };
+for (const path of [join(directory, metadata.path), join(root, 'release/win-unpacked/TinyGPT.exe')]) execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', join(root, 'scripts/verify-code-signature.ps1'), '-Path', path, ...(mode === 'unsigned' ? ['-AllowUnsigned'] : ['-Publisher', publisher])], { stdio: 'inherit', windowsHide: true, env: signatureEnvironment });
 const packaged = parse(await readFile(join(root, 'release/win-unpacked/resources/app-update.yml'), 'utf8'));
 if (mode === 'windows' && ![packaged.publisherName].flat().includes(publisher)) throw Error('Packaged updater does not pin the signing publisher.');
 if (mode === 'unsigned' && packaged.publisherName !== undefined) throw Error('Unsigned builds must not claim a verified Windows publisher.');
 const archive = join(root, 'release/win-unpacked/resources/app.asar');
 if (JSON.parse(extractFile(archive, 'package.json').toString('utf8')).version !== version) throw Error('The packaged app version is stale.');
+if (!extractFile(archive, 'licenses/dependency-inventory.json').equals(await readFile(join(root, 'licenses/dependency-inventory.json')))) throw Error('The packaged dependency license inventory is stale.');
+if (!extractFile(archive, 'licenses/buffers-MIT.txt').length) throw Error('The recovered dependency notice is missing.');
 const key = JSON.parse(await readFile(join(root, 'src/shared/update-key.json'), 'utf8'));
 if (!listPackage(archive).filter(name => /^\/out\/main\/.*\.js$/.test(name)).some(name => extractFile(archive, name.slice(1)).includes(Buffer.from(key.publicKey)))) throw Error('The packaged updater does not contain the pinned release key.');
 const catalog = await readFile(join(root, 'release/win-unpacked/resources/model-assets.json'));

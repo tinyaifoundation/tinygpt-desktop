@@ -4,6 +4,8 @@ const { releaseConfigurationIssues } = require('./release-config.cjs');
 const root = join(__dirname, '..');
 const { version } = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const issues = releaseConfigurationIssues(process.env, process.argv.includes('--ci'));
+try { require('./license-inventory.cjs').checkInventory(); }
+catch { issues.push('Review and regenerate the production dependency license inventory.'); }
 try {
   const crypto = require('node:crypto');
   const data = JSON.parse(readFileSync(join(root, 'src/shared/update-key.json'), 'utf8'));

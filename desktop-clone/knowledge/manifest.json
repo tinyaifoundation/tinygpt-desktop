@@ -337,6 +337,7 @@
         "scripts/release-builder.cjs",
         "scripts/release-config.cjs",
         "scripts/release-preflight.cjs",
+        "scripts/license-inventory.cjs",
         "scripts/verify-release.mjs",
         "scripts/verify-code-signature.ps1",
         "scripts/publish-release.mjs",
