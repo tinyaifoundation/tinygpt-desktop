@@ -13,10 +13,17 @@ function required(name) { return process.env[name].trim(); }
 const config = parse(readFileSync(join(root, 'electron-builder.yml'), 'utf8'));
 const { version } = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 if (!/^\d+\.\d+\.\d+-prebeta\.\d+$/.test(version)) throw Error('Use a version such as 0.1.0-prebeta.3 for this release channel.');
-const endpoint = required('TINYGPT_SIGNING_ENDPOINT');
-const publisherName = required('TINYGPT_PUBLISHER_NAME');
-config.forceCodeSigning = true;
-config.win.publisherName = publisherName;
-config.win.azureSignOptions = { publisherName, endpoint, codeSigningAccountName: required('TINYGPT_SIGNING_ACCOUNT'), certificateProfileName: required('TINYGPT_SIGNING_PROFILE') };
+if (process.env.TINYGPT_RELEASE_SIGNING_MODE === 'unsigned') {
+  config.forceCodeSigning = false;
+  delete config.win.publisherName;
+  delete config.win.azureSignOptions;
+  process.env.CSC_IDENTITY_AUTO_DISCOVERY = 'false';
+} else {
+  const endpoint = required('TINYGPT_SIGNING_ENDPOINT');
+  const publisherName = required('TINYGPT_PUBLISHER_NAME');
+  config.forceCodeSigning = true;
+  config.win.publisherName = publisherName;
+  config.win.azureSignOptions = { publisherName, endpoint, codeSigningAccountName: required('TINYGPT_SIGNING_ACCOUNT'), certificateProfileName: required('TINYGPT_SIGNING_PROFILE') };
+}
 config.publish = [{ provider: 'generic', url: `https://downloads.tinygpt.org/releases/${version}` }];
 module.exports = config;

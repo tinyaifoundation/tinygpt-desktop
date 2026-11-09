@@ -20,7 +20,7 @@ export class AppUpdates {
   private operation?: Promise<UpdateState>;
   private timer?: ReturnType<typeof setInterval>;
   private closed = false;
-  constructor(private engine: UpdateEngine | undefined, version: string, private publish: (state: UpdateState) => void, private busy: () => boolean, private prepareInstall: () => Promise<void>, unavailableMessage = 'Updates are available in signed Windows release builds.') {
+  constructor(private engine: UpdateEngine | undefined, version: string, private publish: (state: UpdateState) => void, private busy: () => boolean, private prepareInstall: () => Promise<void>, unavailableMessage = 'Updates are available in verified Windows release builds.') {
     this.state = { phase: engine ? 'idle' : 'unavailable', currentVersion: version, ...(!engine ? { message: unavailableMessage } : {}) };
     if (!engine) return;
     engine.autoDownload = false;

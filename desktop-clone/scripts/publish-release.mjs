@@ -8,6 +8,7 @@ import { Upload } from '@aws-sdk/lib-storage';
 import { parse, stringify } from 'yaml';
 import { updateFeed } from './release-metadata.mjs';
 import { verifyStoredObject } from './release-storage.mjs';
+import { createReleaseEnvelope } from '../src/main/update-auth.ts';
 const root = resolve(import.meta.dirname, '..');
 function required(name) { const value = process.env[name]; if (!value) throw Error(`Set ${name} before publishing.`); return value; }
 // Recheck the actual files and signatures immediately before publication.
@@ -16,7 +17,10 @@ const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'
 const directory = join(root, 'release/nsis-web');
 const metadata = parse(await readFile(join(directory, 'prebeta.yml'), 'utf8'));
 const verification = JSON.parse(await readFile(join(directory, 'verified-release.json'), 'utf8'));
-if (verification.version !== version) throw Error('Stale verified release.');
+if (verification.version !== version || verification.signingMode !== (process.env.TINYGPT_RELEASE_SIGNING_MODE || 'windows')) throw Error('Stale verified release.');
+const key = JSON.parse(await readFile(join(root, 'src/shared/update-key.json'), 'utf8'));
+const notes = await readFile(join(directory, 'START-HERE.txt'), 'utf8');
+const feed = createReleaseEnvelope(stringify(updateFeed(metadata, notes)), required('TINYGPT_UPDATE_PRIVATE_KEY'), key.publicKey);
 const assets = JSON.parse(await readFile(join(root, '.tmp/model-asset-uploads.json'), 'utf8'));
 const account = required('CLOUDFLARE_ACCOUNT_ID'); if (!/^[a-f0-9]{32}$/.test(account)) throw Error('Invalid Cloudflare account identifier.');
 const Bucket = required('R2_RELEASE_BUCKET');
@@ -40,8 +44,6 @@ async function immutable(path, Key, expected) {
 for (const asset of new Map(assets.map(asset => [asset.key, asset])).values()) await immutable(asset.source, asset.key, asset.sha256);
 for (const file of verification.files) await immutable(join(directory, file.name), `releases/${version}/${file.name}`, file.sha256);
 for (const name of ['START-HERE.txt', 'SHA256SUMS.txt', 'prebeta.yml']) await immutable(join(directory, name), `releases/${version}/${name}`);
-const notes = await readFile(join(directory, 'START-HERE.txt'), 'utf8');
-const feed = stringify(updateFeed(metadata, notes));
 // Single-object promotion happens last. Existing clients cannot discover a partial upload.
-await client.send(new PutObjectCommand({ Bucket, Key: 'updates/prebeta/win-x64/prebeta.yml', Body: feed, ContentType: 'application/yaml; charset=utf-8', CacheControl: 'no-store' }));
+await client.send(new PutObjectCommand({ Bucket, Key: 'updates/prebeta/win-x64/prebeta.json', Body: feed, ContentType: 'application/json; charset=utf-8', CacheControl: 'no-store' }));
 console.log(`Published TinyGPT ${version} to the Windows pre-beta update channel.`);

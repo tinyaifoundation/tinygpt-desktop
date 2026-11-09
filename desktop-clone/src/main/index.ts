@@ -1,7 +1,7 @@
 import { connectorToolIconKeys } from '../shared/connector-tool-icon-keys';
 import { OnboardingStore } from './onboarding';
 import { AppUpdates } from './app-updates';
-import { signedUpdateEngine } from './update-engine';
+import { releaseUpdateEngine } from './update-engine';
 import { prepareModelAssets } from './model-setup';
 import { updateActionSchema } from '../shared/updates';
 import { onboardingSchema } from '../shared/onboarding';
@@ -544,7 +544,7 @@ else {
     handle('tinygpt:memory-index', async input => { const { projectId, action } = indexRequestSchema.parse(input); history.project(projectId); chat.assertProjectIdle(projectId); await indexer.configure(projectId, action); return memoryResult(); });
     handle('tinygpt:memory-preview', input => { const { projectId, query } = memorySearchSchema.parse(input); return memory.preview(projectId, query); });
     handle('tinygpt:snapshot', () => snapshot());
-    updates = new AppUpdates(app.isPackaged && process.platform === 'win32' ? await signedUpdateEngine(process.resourcesPath) : undefined, version, value => broadcast('tinygpt:update-state', value), () => chat.hasActiveRuns() || botService.hasActiveRuns() || !!scheduled?.hasActiveRuns() || terminals.hasActiveTerminals(), async () => { await browserProfiles?.flush(); });
+    updates = new AppUpdates(app.isPackaged && process.platform === 'win32' ? await releaseUpdateEngine(process.resourcesPath) : undefined, version, value => broadcast('tinygpt:update-state', value), () => chat.hasActiveRuns() || botService.hasActiveRuns() || !!scheduled?.hasActiveRuns() || terminals.hasActiveTerminals(), async () => { await browserProfiles?.flush(); });
     handle('tinygpt:updates', () => updates!.snapshot());
     handle('tinygpt:update-action', input => updates!.action(updateActionSchema.parse(input)));
     updates.start();

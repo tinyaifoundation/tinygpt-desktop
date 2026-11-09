@@ -9,6 +9,7 @@ function releaseFor(path: string, env: Env): Release | undefined {
   const model = /^\/assets\/sha256\/([a-f0-9]{64})$/.exec(path);
   if (model) return { key: `assets/sha256/${model[1]}`, filename: model[1], sha256: model[1] };
   if (path === '/updates/prebeta/win-x64/prebeta.yml') return { key: 'updates/prebeta/win-x64/prebeta.yml', filename: 'prebeta.yml' };
+  if (path === '/updates/prebeta/win-x64/prebeta.json') return { key: 'updates/prebeta/win-x64/prebeta.json', filename: 'prebeta.json' };
   const releases = JSON.parse(env.EXTRA_RELEASES || '{}') as Record<string, Release>;
   if (!Object.hasOwn(releases, path)) {
     const release = /^\/releases\/(\d+\.\d+\.\d+-prebeta\.\d+)\/([\w.-]+\.(?:exe|7z|blockmap|txt|yml))$/.exec(path);
@@ -35,7 +36,7 @@ export default {
     catch (error) { if (range) return invalidRange(); throw error; }
     if (!object) return new Response('Not found', { status: 404 });
     const headers = new Headers(); object.writeHttpMetadata(headers);
-    headers.set('Content-Type', release.filename.endsWith('.yml') ? 'application/yaml; charset=utf-8' : release.filename.endsWith('.txt') ? 'text/plain; charset=utf-8' : 'application/octet-stream');
+    headers.set('Content-Type', release.filename.endsWith('.json') ? 'application/json; charset=utf-8' : release.filename.endsWith('.yml') ? 'application/yaml; charset=utf-8' : release.filename.endsWith('.txt') ? 'text/plain; charset=utf-8' : 'application/octet-stream');
     headers.set('Content-Disposition', `attachment; filename="${release.filename}"`);
     headers.set('ETag', object.httpEtag); headers.set('Accept-Ranges', 'bytes');
     headers.set('Cache-Control', 'private, max-age=0'); headers.set('X-Content-Type-Options', 'nosniff'); headers.set('X-Robots-Tag', 'noindex, nofollow');

@@ -8,6 +8,14 @@ it('requires signing for local releases and storage plus federation before CI bu
   expect(releaseConfigurationIssues(signing, true)).toContain('Set R2_SECRET_ACCESS_KEY.');
   expect(releaseConfigurationIssues(signing, true)).toContain('Set AZURE_CLIENT_ID.');
 });
+it('permits explicitly unsigned pre-beta builds while still requiring release authentication and storage in CI', () => {
+  expect(releaseConfigurationIssues({ TINYGPT_RELEASE_SIGNING_MODE: 'unsigned' })).toEqual([]);
+  const issues = releaseConfigurationIssues({ TINYGPT_RELEASE_SIGNING_MODE: 'unsigned' }, true);
+  expect(issues).toContain('Set TINYGPT_UPDATE_PRIVATE_KEY.');
+  expect(issues).toContain('Set R2_SECRET_ACCESS_KEY.');
+  expect(issues).not.toContain('Set AZURE_CLIENT_ID.');
+  expect(releaseConfigurationIssues({ TINYGPT_RELEASE_SIGNING_MODE: 'skip-everything' })).toContain('TINYGPT_RELEASE_SIGNING_MODE must be windows or unsigned.');
+});
 it('rejects an untrusted signing endpoint without disclosing configuration values', () => {
   const privateValue = 'https://evil.example/secret-value';
   const issues = releaseConfigurationIssues({ ...signing, TINYGPT_SIGNING_ENDPOINT: privateValue, AZURE_CLIENT_ID: 'private-identifier' }, true);

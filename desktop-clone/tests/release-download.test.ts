@@ -44,6 +44,9 @@ it('serves only content-addressed models, scoped release artifacts and the fixed
   const feed = await worker.fetch(new Request('https://download.test/updates/prebeta/win-x64/prebeta.yml'), env);
   expect(feed.headers.get('Content-Type')).toBe('application/yaml; charset=utf-8'); expect(feed.headers.get('Cache-Control')).toContain('max-age=0');
   expect(get).toHaveBeenLastCalledWith('updates/prebeta/win-x64/prebeta.yml', expect.anything());
+  const authenticated = await worker.fetch(new Request('https://download.test/updates/prebeta/win-x64/prebeta.json'), env);
+  expect(authenticated.status).toBe(200); expect(authenticated.headers.get('Content-Type')).toBe('application/json; charset=utf-8');
+  expect(get).toHaveBeenLastCalledWith('updates/prebeta/win-x64/prebeta.json', expect.anything());
   expect((await worker.fetch(new Request('https://download.test/releases/0.1.0-prebeta.3/TinyGPT-Setup.exe'), env)).status).toBe(200);
   expect(get).toHaveBeenLastCalledWith('releases/0.1.0-prebeta.3/TinyGPT-Setup.exe', expect.anything());
   for (const path of ['/assets/sha256/not-a-hash','/assets/sha256/','/updates/stable/latest.yml','/releases/0.1.0-prebeta.3/credentials.json','/releases/0.1.0-prebeta.3/..secret.exe']) expect((await worker.fetch(new Request('https://download.test' + path), env)).status).toBe(404);

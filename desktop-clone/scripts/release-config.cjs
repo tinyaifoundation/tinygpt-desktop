@@ -1,8 +1,13 @@
 // Shared by the build and the workflow preflight. Never include values in errors.
 function releaseConfigurationIssues(env, ci = false) {
-  const names = ['TINYGPT_PUBLISHER_NAME', 'TINYGPT_SIGNING_ENDPOINT', 'TINYGPT_SIGNING_ACCOUNT', 'TINYGPT_SIGNING_PROFILE'];
-  if (ci) names.push('AZURE_CLIENT_ID', 'AZURE_TENANT_ID', 'AZURE_SUBSCRIPTION_ID', 'CLOUDFLARE_ACCOUNT_ID', 'R2_RELEASE_BUCKET', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY');
+  const mode = env.TINYGPT_RELEASE_SIGNING_MODE || 'windows';
+  const names = mode === 'windows' ? ['TINYGPT_PUBLISHER_NAME', 'TINYGPT_SIGNING_ENDPOINT', 'TINYGPT_SIGNING_ACCOUNT', 'TINYGPT_SIGNING_PROFILE'] : [];
+  if (ci) {
+    names.push('TINYGPT_UPDATE_PRIVATE_KEY', 'CLOUDFLARE_ACCOUNT_ID', 'R2_RELEASE_BUCKET', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY');
+    if (mode === 'windows') names.push('AZURE_CLIENT_ID', 'AZURE_TENANT_ID', 'AZURE_SUBSCRIPTION_ID');
+  }
   const issues = names.filter(name => !env[name]?.trim()).map(name => `Set ${name}.`);
+  if (!['windows', 'unsigned'].includes(mode)) issues.push('TINYGPT_RELEASE_SIGNING_MODE must be windows or unsigned.');
   const endpoint = env.TINYGPT_SIGNING_ENDPOINT?.trim();
   if (endpoint && !/^https:\/\/[a-z0-9]+\.codesigning\.azure\.net\/?$/.test(endpoint)) issues.push('TINYGPT_SIGNING_ENDPOINT must be a Microsoft regional HTTPS signing endpoint.');
   for (const name of ['TINYGPT_PUBLISHER_NAME', 'TINYGPT_SIGNING_ACCOUNT', 'TINYGPT_SIGNING_PROFILE']) {

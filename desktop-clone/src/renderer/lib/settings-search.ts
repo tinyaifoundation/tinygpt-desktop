@@ -29,7 +29,7 @@ const permissions = [
 ] as const;
 for (const [title, description, keywords] of permissions) general(title, `${description} Ask me first, allow automatically, or never allow.`, { keywords: `tool approvals ${keywords}` });
 general('Version', 'The installed TinyGPT version.', { keywords: 'about update build' });
-general('Updates', 'Check for a signed Windows pre-beta update, download it, and restart when ready. Updates never install automatically on quit.', { keywords: 'update upgrade restart download prebeta release version sidebar', targets: ['Updates', 'Check for updates'] });
+general('Updates', 'Check for a verified Windows pre-beta update, download it, and restart when ready. Updates never install automatically on quit.', { keywords: 'update upgrade restart download prebeta release version sidebar', targets: ['Updates', 'Check for updates'] });
 general('Welcome to TinyGPT', 'Revisit light/dark theme, optional Pro and OpenRouter setup, your name and memories, Bot, voice, and your first conversation with Open welcome.', { keywords: 'onboarding first launch getting started setup tour restart resume free forever name local memory theme light dark Pro OpenRouter Bot add later skip', targets: ['Welcome to TinyGPT', 'Open welcome'] });
 general('Language', 'TinyGPT interface language. English.');
 general('Storage', 'Conversations, Projects, and preferences are saved on this computer.', { keywords: 'local data history privacy' });

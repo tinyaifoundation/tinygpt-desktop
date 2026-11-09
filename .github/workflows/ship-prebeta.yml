@@ -1,6 +1,12 @@
 name: Ship Windows pre-beta
 on:
   workflow_dispatch:
+    inputs:
+      signing_mode:
+        description: Windows publisher signing (unsigned while Azure signup is pending)
+        type: choice
+        options: [unsigned, windows]
+        default: unsigned
 permissions:
   contents: read
 concurrency:
@@ -19,6 +25,7 @@ jobs:
         working-directory: desktop-clone
         shell: pwsh
     env:
+      TINYGPT_RELEASE_SIGNING_MODE: ${{ inputs.signing_mode }}
       TINYGPT_PUBLISHER_NAME: ${{ vars.TINYGPT_PUBLISHER_NAME }}
       TINYGPT_SIGNING_ENDPOINT: ${{ vars.TINYGPT_SIGNING_ENDPOINT }}
       TINYGPT_SIGNING_ACCOUNT: ${{ vars.TINYGPT_SIGNING_ACCOUNT }}
@@ -42,6 +49,7 @@ jobs:
           R2_RELEASE_BUCKET: ${{ vars.R2_RELEASE_BUCKET }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          TINYGPT_UPDATE_PRIVATE_KEY: ${{ secrets.TINYGPT_UPDATE_PRIVATE_KEY }}
       - run: npm ci
       - name: Use the physical temporary directory
         run: |
@@ -61,11 +69,12 @@ jobs:
       - run: npm run source:audit -- ..
       - run: npm run secrets:check -- ..
       - uses: azure/login@7184910d9eb2b1c5e48f7073824a90609bb9b6d6 # v2
+        if: inputs.signing_mode == 'windows'
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-      - name: Build and verify signed release
+      - name: Build and verify Windows release
         run: npm run release:win
       - name: Upload complete release and promote update feed
         run: npm run release:publish
@@ -74,3 +83,4 @@ jobs:
           R2_RELEASE_BUCKET: ${{ vars.R2_RELEASE_BUCKET }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          TINYGPT_UPDATE_PRIVATE_KEY: ${{ secrets.TINYGPT_UPDATE_PRIVATE_KEY }}

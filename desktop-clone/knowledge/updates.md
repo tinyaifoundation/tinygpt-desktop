@@ -1,6 +1,6 @@
 # Updating TinyGPT and keeping local models
 
-Signed Windows x64 release builds can check the TinyGPT pre-beta update channel. Unsigned builds, development sessions and Mac builds do not enable this updater. The previously published 0.1.0-prebeta.2 build does not contain an updater; install an updater-enabled release manually once before expecting update notifications.
+Windows x64 release builds can check the TinyGPT pre-beta update channel. Pre-beta installers may be unsigned by a verified Windows publisher while Azure account verification is pending. These builds still require a valid TinyGPT release-key signature before accepting update metadata or downloading replacement files. Development sessions and Mac builds do not enable this updater. The previously published 0.1.0-prebeta.2 build does not contain an updater; install an updater-enabled release manually once before expecting update notifications.
 
 ## Check, download and restart
 
@@ -8,7 +8,9 @@ Open **Settings → General → Updates → Check for updates**. A supported bui
 
 After a verified download, choose **Restart to update**. The app refuses to restart through this control while Chat, Work, Bot or Scheduled work is active or a workspace terminal is still open. Finish the work and close terminals, then try again. Updates do not install automatically just because you quit the app. Download/check failures provide a retry through checking again; a failed check is not proof that you have the latest version.
 
-Windows updates verify the expected publisher's code signature and package checksum. Builds with no configured publisher disable in-app updating rather than accept unsigned replacements. Update metadata and files come from downloads.tinygpt.org over HTTPS; the app checks that release artifact locations stay on that host. Update checks and model downloads expose ordinary network metadata to the hosting service. The updater's per-installation staging identifier header is suppressed. Chats, memories, profile names, API keys and account credentials are not supplied to the updater.
+Every update verifies metadata signed by TinyGPT's Ed25519 release key, pinned in the installed app. That authenticated metadata contains the version, immutable download locations and SHA-512 checksums; downloaded files must match. Missing, altered or incorrectly signed metadata is rejected, with no fallback to an unauthenticated feed. When the installed build also pins a verified Windows publisher, its updater additionally requires that publisher's valid Windows code signature. A TinyGPT release-key signature does not make an installer Windows-signed or remove an unverified publisher warning.
+
+Update metadata and files come from downloads.tinygpt.org over HTTPS; the app checks that release artifact locations stay on that host and match the authenticated version. Update checks and model downloads expose ordinary network metadata to the hosting service. The updater's per-installation staging identifier header is suppressed. Chats, memories, profile names, API keys and account credentials are not supplied to the updater.
 
 ## Smaller app downloads
 
