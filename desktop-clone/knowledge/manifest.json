@@ -332,9 +332,12 @@
         "scripts/prepare-model-assets.mjs",
         "scripts/migrate-model-assets.cjs",
         "scripts/release-builder.cjs",
+        "scripts/release-config.cjs",
+        "scripts/release-preflight.cjs",
         "scripts/verify-release.mjs",
         "scripts/verify-code-signature.ps1",
         "scripts/publish-release.mjs",
+        "scripts/release-storage.mjs",
         "scripts/release-metadata.mjs",
         "release-hosting/worker.ts"
       ]
