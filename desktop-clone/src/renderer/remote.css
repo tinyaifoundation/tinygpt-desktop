@@ -1,0 +1,51 @@
+.remote-pair-modal.dialog-content { width: min(460px, calc(100vw - 40px)); max-height: calc(100dvh - 40px); padding: 0; border: 0; border-radius: 24px; overflow-x: hidden; scrollbar-width: thin; }
+.remote-pair-modal .dialog-close { top: 12px; right: 12px; z-index: 2; width: 32px; height: 32px; border-radius: 50%; color: white; background: #142a5b24; }
+.remote-pair-modal .dialog-close:hover { background: #142a5b50; }
+.remote-connect-hero { height: 168px; overflow: hidden; background: #91b6fa; }
+.remote-connect-hero img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.remote-connect-body { padding: 24px 28px; }
+.remote-connect-body > h2 { text-align: center; font-size: 25px; line-height: 1.25; font-weight: 600; letter-spacing: -.8px; }
+.remote-connect-caption { margin-top: 7px; text-align: center; font-size: 13px; line-height: 1.5; color: var(--muted-foreground); }
+.remote-code-stage { position: relative; display: grid; place-items: center; min-height: 324px; padding: 18px; margin-top: 22px; border: 1px solid var(--border); border-radius: 22px; background: color-mix(in srgb, var(--foreground) 2%, transparent); }
+.remote-qr { width: min(340px, 100%); aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: white; padding: 4px; }
+.remote-qr > svg { display: block; width: 100%; height: 100%; }
+.remote-code-stage[aria-busy="true"] .remote-qr { opacity: .4; }
+.remote-code-refresh { position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px; border-radius: 50%; color: var(--muted-foreground); }
+.remote-code-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }
+.remote-pin-label { display: block; margin-bottom: 4px; font-size: 11px; color: var(--muted-foreground); }
+.remote-pin { font-size: 25px; line-height: 1.2; letter-spacing: .2em; font-variant-numeric: tabular-nums; font-weight: 500; }
+.remote-copy-link { height: 38px; gap: 7px; border-radius: 99px; font-size: 12px; color: var(--muted-foreground); }
+.remote-code-placeholder { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 18px; min-height: 240px; color: var(--muted-foreground); font-size: 13px; }
+.remote-code-placeholder > svg.solar { width: 32px; height: 32px; }
+.remote-connect-success { display: flex; align-items: center; flex-direction: column; gap: 28px; padding: 36px 0 8px; }
+.remote-connect-success > span { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--user-accent) 12%, transparent); color: var(--user-accent); }
+.remote-connect-success > span > svg.solar { width: 30px; height: 30px; }
+.remote-connect-success > button { min-width: 120px; }
+.remote-connect-error { margin-top: 16px; color: var(--destructive); font-size: 12px; line-height: 1.5; text-align: center; }
+@media (max-height: 740px) { .remote-connect-hero { height: 120px; } .remote-connect-body { padding-block: 16px; } .remote-code-stage { margin-top: 12px; min-height: 292px; } .remote-qr { width: 288px; } }
+.remote-settings-intro { margin: -30px 0 32px; max-width: 540px; font-size: 13px; line-height: 1.65; color: var(--muted-foreground); }
+.remote-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.remote-section-heading h2 { margin: 0; }
+.remote-section-heading > div { display: flex; gap: 8px; align-items: center; }
+.remote-status-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted-foreground); }
+.remote-status-badge[data-connected]::before { content: ''; width: 6px; height: 6px; background: #3b976b; border-radius: 50%; }
+.remote-settings-device { display: flex; align-items: center; gap: 14px; padding: 18px 0; }
+.remote-settings-device + .remote-settings-device { border-top: 1px solid var(--border); }
+.remote-settings-device .remote-device-icon { width: 21px; height: 21px; flex-shrink: 0; color: var(--muted-foreground); }
+.remote-device-copy { flex: 1; min-width: 0; }
+.remote-device-copy > p { font-size: 13px; font-weight: 500; overflow-wrap: anywhere; }
+.remote-device-copy > span { display: block; margin-top: 4px; font-size: 12px; color: var(--muted-foreground); overflow-wrap: anywhere; }
+.remote-device-copy > small { display: block; margin-top: 3px; color: var(--muted-foreground); font-size: 11px; }
+.remote-devices-empty { display: flex; align-items: center; gap: 16px; padding: 24px 0; }
+.remote-devices-empty > svg { width: 25px; height: 25px; color: var(--muted-foreground); }
+.remote-devices-empty p { font-size: 13px; }
+.remote-devices-empty span { display: block; font-size: 12px; color: var(--muted-foreground); margin-top: 5px; }
+.remote-settings-note { margin: 28px 0 12px; font-size: 12px; line-height: 1.65; color: var(--muted-foreground); }
+@media (max-width: 900px) { .remote-settings-device { flex-wrap: wrap; gap: 10px; } .remote-device-copy { min-width: 150px; } }
+
+.remote-code-footer { justify-content: center; }
+.remote-approve-device { display: flex; align-items: center; flex-direction: column; padding: 30px 0 12px; gap: 38px; }
+.remote-approve-icon { display: grid; place-items: center; width: 112px; height: 112px; border-radius: 30px; background: color-mix(in srgb,var(--foreground) 5%,transparent); border: 1px solid color-mix(in srgb,var(--foreground) 9%,transparent); }
+.remote-approve-icon svg { width: 52px; height: 52px; }
+.remote-approve-actions { display: flex; justify-content: center; gap: 14px; width: 100%; }
+.remote-approve-actions button { min-height: 44px; min-width: 130px; }

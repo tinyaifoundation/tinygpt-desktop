@@ -1,0 +1,4440 @@
+[
+  {
+    "id": "github-anthropics-frontend-design",
+    "title": "Frontend Design",
+    "category": "Design",
+    "tags": [
+      "frontend",
+      "ui"
+    ],
+    "rank": 1,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "frontend-design",
+      "description": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/frontend-design",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/frontend-design/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/frontend-design/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/frontend-design/LICENSE.txt",
+          "sha": "f433b1a53f5b830a205fd2df78e2b34974656c7b",
+          "size": 10174,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/frontend-design/SKILL.md",
+          "sha": "a5333457c414d20d625f307df945842c0952ecc3",
+          "size": 9390,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-vercel-labs-vercel-react-best-practices",
+    "title": "React Best Practices",
+    "category": "Development",
+    "tags": [
+      "react",
+      "nextjs"
+    ],
+    "rank": 2,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "vercel-react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+      "requirements": [
+        "React or Next.js project"
+      ]
+    },
+    "maker": {
+      "id": "vercel-labs",
+      "name": "Vercel",
+      "url": "https://github.com/vercel-labs",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/108547162?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 32301,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "vercel-labs/agent-skills",
+      "commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "directory": "skills/react-best-practices",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/README.md",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-08-28T13:36:31Z",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "repositoryPath": "skills/react-best-practices/AGENTS.md",
+          "sha": "4e340a50684a8e7811d5bfa4df48bd9989d0fd87",
+          "size": 108261,
+          "kind": "text"
+        },
+        {
+          "path": "README.md",
+          "repositoryPath": "skills/react-best-practices/README.md",
+          "sha": "f283e1c0c21c5b13c848452528c3949ff544846c",
+          "size": 3360,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/react-best-practices/SKILL.md",
+          "sha": "237988de4a66dd8a71d30a2c24ebe1a86b58d04e",
+          "size": 7251,
+          "kind": "text"
+        },
+        {
+          "path": "metadata.json",
+          "repositoryPath": "skills/react-best-practices/metadata.json",
+          "sha": "3bec38b176cc71d105895ec4678bbe79305dcb4c",
+          "size": 921,
+          "kind": "text"
+        },
+        {
+          "path": "rules/_sections.md",
+          "repositoryPath": "skills/react-best-practices/rules/_sections.md",
+          "sha": "4d20c144bc3b9265fc5976c704a8dd60ed3a806a",
+          "size": 1554,
+          "kind": "text"
+        },
+        {
+          "path": "rules/_template.md",
+          "repositoryPath": "skills/react-best-practices/rules/_template.md",
+          "sha": "1e9e70703485021e0b969f5731f38c8b9f8694db",
+          "size": 631,
+          "kind": "text"
+        },
+        {
+          "path": "rules/advanced-effect-event-deps.md",
+          "repositoryPath": "skills/react-best-practices/rules/advanced-effect-event-deps.md",
+          "sha": "24d901b62be66f6088eb1de5b262e67f5c337d57",
+          "size": 1802,
+          "kind": "text"
+        },
+        {
+          "path": "rules/advanced-event-handler-refs.md",
+          "repositoryPath": "skills/react-best-practices/rules/advanced-event-handler-refs.md",
+          "sha": "97e7ade243aa6dae50d6faa5111dea0d04778ead",
+          "size": 1483,
+          "kind": "text"
+        },
+        {
+          "path": "rules/advanced-init-once.md",
+          "repositoryPath": "skills/react-best-practices/rules/advanced-init-once.md",
+          "sha": "73ee38e5e74c0afa28cb730afe3275479432092a",
+          "size": 958,
+          "kind": "text"
+        },
+        {
+          "path": "rules/advanced-use-latest.md",
+          "repositoryPath": "skills/react-best-practices/rules/advanced-use-latest.md",
+          "sha": "9c7cb501693d4a9521697f13dbd5906dd99f0257",
+          "size": 1072,
+          "kind": "text"
+        },
+        {
+          "path": "rules/async-api-routes.md",
+          "repositoryPath": "skills/react-best-practices/rules/async-api-routes.md",
+          "sha": "6feda1ef0ac06b57b33c7b5bd6a19ca88d6c8a34",
+          "size": 1125,
+          "kind": "text"
+        },
+        {
+          "path": "rules/async-cheap-condition-before-await.md",
+          "repositoryPath": "skills/react-best-practices/rules/async-cheap-condition-before-await.md",
+          "sha": "5799d7f6ee6e9d70422048ab0cae06ca021d22b2",
+          "size": 1220,
+          "kind": "text"
+        },
+        {
+          "path": "rules/async-defer-await.md",
+          "repositoryPath": "skills/react-best-practices/rules/async-defer-await.md",
+          "sha": "460b5e16baf9c66f85e4169eb9d43e4d07f2ce94",
+          "size": 2208,
+          "kind": "text"
+        },
+        {
+          "path": "rules/async-dependencies.md",
+          "repositoryPath": "skills/react-best-practices/rules/async-dependencies.md",
+          "sha": "0484ebab993f3db78277e8731872473d02475e6d",
+          "size": 1293,
+          "kind": "text"
+        },
+        {
+          "path": "rules/async-parallel.md",
+          "repositoryPath": "skills/react-best-practices/rules/async-parallel.md",
+          "sha": "64133f6c31fec81eaaabd712586337d20122e09f",
+          "size": 654,
+          "kind": "text"
+        },
+        {
+          "path": "rules/async-suspense-boundaries.md",
+          "repositoryPath": "skills/react-best-practices/rules/async-suspense-boundaries.md",
+          "sha": "1fbc05b04ed2474637b12014a77688750e78f931",
+          "size": 2510,
+          "kind": "text"
+        },
+        {
+          "path": "rules/bundle-analyzable-paths.md",
+          "repositoryPath": "skills/react-best-practices/rules/bundle-analyzable-paths.md",
+          "sha": "8276f156cf1aa8a611bd5bc3cadcb362e16ccd13",
+          "size": 2382,
+          "kind": "text"
+        },
+        {
+          "path": "rules/bundle-barrel-imports.md",
+          "repositoryPath": "skills/react-best-practices/rules/bundle-barrel-imports.md",
+          "sha": "22d1050196671b7bc9f9aaf88cc665ba6fa8deb0",
+          "size": 2795,
+          "kind": "text"
+        },
+        {
+          "path": "rules/bundle-conditional.md",
+          "repositoryPath": "skills/react-best-practices/rules/bundle-conditional.md",
+          "sha": "99d6fc90e31d683d2b6b71353b92d620b484b644",
+          "size": 949,
+          "kind": "text"
+        },
+        {
+          "path": "rules/bundle-defer-third-party.md",
+          "repositoryPath": "skills/react-best-practices/rules/bundle-defer-third-party.md",
+          "sha": "db041d1510e51defeade05926ba4e6bbad1068b5",
+          "size": 920,
+          "kind": "text"
+        },
+        {
+          "path": "rules/bundle-dynamic-imports.md",
+          "repositoryPath": "skills/react-best-practices/rules/bundle-dynamic-imports.md",
+          "sha": "60b62695e7a080e2020ff2242d8d841c5e3ecbc4",
+          "size": 791,
+          "kind": "text"
+        },
+        {
+          "path": "rules/bundle-preload.md",
+          "repositoryPath": "skills/react-best-practices/rules/bundle-preload.md",
+          "sha": "7000504065472628ae614786a3faadd23b0435a7",
+          "size": 1149,
+          "kind": "text"
+        },
+        {
+          "path": "rules/client-event-listeners.md",
+          "repositoryPath": "skills/react-best-practices/rules/client-event-listeners.md",
+          "sha": "aad4ae91605d715aad8e92b76bd7fb85c91d7cdf",
+          "size": 1969,
+          "kind": "text"
+        },
+        {
+          "path": "rules/client-localstorage-schema.md",
+          "repositoryPath": "skills/react-best-practices/rules/client-localstorage-schema.md",
+          "sha": "d30a1a7d4f85b0d50a0808eaa1b382c6deb595f4",
+          "size": 1950,
+          "kind": "text"
+        },
+        {
+          "path": "rules/client-passive-event-listeners.md",
+          "repositoryPath": "skills/react-best-practices/rules/client-passive-event-listeners.md",
+          "sha": "ce39a889efb4452ec4c044555ff818301dcf7ece",
+          "size": 1644,
+          "kind": "text"
+        },
+        {
+          "path": "rules/client-swr-dedup.md",
+          "repositoryPath": "skills/react-best-practices/rules/client-swr-dedup.md",
+          "sha": "2a430f27fd6abdc1b1b2f809b7a60114ff506790",
+          "size": 1159,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-batch-dom-css.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-batch-dom-css.md",
+          "sha": "a62d84ed8149b6d4f173debc7043af03f8f8dd06",
+          "size": 3266,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-cache-function-results.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-cache-function-results.md",
+          "sha": "180f8ac8fffd7e6ee320242d59d06565d40a12f8",
+          "size": 1949,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-cache-property-access.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-cache-property-access.md",
+          "sha": "39eec9061b4ca820150cc8183fb73f9e0c91ce85",
+          "size": 532,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-cache-storage.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-cache-storage.md",
+          "sha": "aa4a30c08176aabd27b41fa44d5c1981457b675f",
+          "size": 1651,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-combine-iterations.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-combine-iterations.md",
+          "sha": "044d017ec3b24b53e46d638acd1d936a22ac6323",
+          "size": 753,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-early-exit.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-early-exit.md",
+          "sha": "f46cb89c6cbe06e481aba0136848e3b17263ba96",
+          "size": 1133,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-flatmap-filter.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-flatmap-filter.md",
+          "sha": "ee0edf0da256eb8b62c5a998c768c51eb520e8cd",
+          "size": 1411,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-hoist-regexp.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-hoist-regexp.md",
+          "sha": "dae3fefdc0a1db66badcd4875489715edcdb038b",
+          "size": 1028,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-index-maps.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-index-maps.md",
+          "sha": "9d357a00b15ac67cdd638886f5197a13173a637d",
+          "size": 837,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-length-check-first.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-length-check-first.md",
+          "sha": "8b89573630fdc3aa10564273f390ecc7e2b1cd3e",
+          "size": 1747,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-min-max-loop.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-min-max-loop.md",
+          "sha": "4b6656e96aecf3ae6ade52974090ae8b3e3f2bb5",
+          "size": 2290,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-request-idle-callback.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-request-idle-callback.md",
+          "sha": "d81927e5f0ddb9fa4eece79197728bfc4382cbfe",
+          "size": 2647,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-set-map-lookups.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-set-map-lookups.md",
+          "sha": "680a4892ee291c432bf8e769a44d0f1eb102b74b",
+          "size": 532,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-tosorted-immutable.md",
+          "repositoryPath": "skills/react-best-practices/rules/js-tosorted-immutable.md",
+          "sha": "eae8b3f8aed2c7a893ceaae4cab55fa1c444b309",
+          "size": 1782,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-activity.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-activity.md",
+          "sha": "c957a490b7c2688542766150741e85e066539251",
+          "size": 564,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-animate-svg-wrapper.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-animate-svg-wrapper.md",
+          "sha": "646744cbe53b213c6fa5ead54ef107510e5be89d",
+          "size": 1185,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-conditional-render.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-conditional-render.md",
+          "sha": "7e866f5852dac80e0822e7f7c33476f5c9fc22f1",
+          "size": 980,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-content-visibility.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-content-visibility.md",
+          "sha": "aa6656362b2c0dad9ffea788b5850843d6c0629e",
+          "size": 815,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-hoist-jsx.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-hoist-jsx.md",
+          "sha": "32d2f3fcea53dadcf847231ee20c60fa2c5c3049",
+          "size": 1039,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-hydration-no-flicker.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-hydration-no-flicker.md",
+          "sha": "5cf0e79b69afd7564b965c09435a2c7ee79eb2bd",
+          "size": 2308,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-hydration-suppress-warning.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-hydration-suppress-warning.md",
+          "sha": "24ba2513a29f5259b3184695d2d4da25e03e42ac",
+          "size": 872,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-resource-hints.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-resource-hints.md",
+          "sha": "1290bef06baf459f85dc5856ffc4486951224a48",
+          "size": 2549,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-script-defer-async.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-script-defer-async.md",
+          "sha": "ee275ed1c06da8f1ae70e744e47965799eaebf02",
+          "size": 1868,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-svg-precision.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-svg-precision.md",
+          "sha": "6d7712860365294936a1b736d29d3eb970b91da7",
+          "size": 588,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-usetransition-loading.md",
+          "repositoryPath": "skills/react-best-practices/rules/rendering-usetransition-loading.md",
+          "sha": "0c1b0b98e884d2c77bdec66df754693bd48c7777",
+          "size": 2074,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-defer-reads.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-defer-reads.md",
+          "sha": "e867c95f02fe6ed6ac2f91fdf1c0922304e0423a",
+          "size": 973,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-dependencies.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-dependencies.md",
+          "sha": "47a4d92685702e3a3b07073c62a61800fa0a6d7d",
+          "size": 824,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-derived-state-no-effect.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-derived-state-no-effect.md",
+          "sha": "3d9fe4050794ea6655add6bee50cfbc104e5dc31",
+          "size": 1201,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-derived-state.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-derived-state.md",
+          "sha": "e5c899f6c073338bbd1b73c0275bc3e5e7d9ae7b",
+          "size": 728,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-functional-setstate.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-functional-setstate.md",
+          "sha": "b004ef45e347503947fee397b6c3d163b0a317fb",
+          "size": 2968,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-lazy-state-init.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-lazy-state-init.md",
+          "sha": "4ecb350fbadff3db805b72429276e672d42736dc",
+          "size": 2016,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-memo-with-default-value.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-memo-with-default-value.md",
+          "sha": "63570491848cb42c2bc7073bceb754893a6a4cfa",
+          "size": 1173,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-memo.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-memo.md",
+          "sha": "f8982ab612105a3b7faee1292b797338e7fb5271",
+          "size": 1148,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-move-effect-to-event.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-move-effect-to-event.md",
+          "sha": "dd58a1af091b3cf5cb271d25904af4feb836d1aa",
+          "size": 1268,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-no-inline-components.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-no-inline-components.md",
+          "sha": "d97592acefced05bc4a8538c77d226fa24c08534",
+          "size": 2135,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-simple-expression-in-memo.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-simple-expression-in-memo.md",
+          "sha": "59dfab0f3b048097627e0ca6e4c8da36629a5268",
+          "size": 1018,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-split-combined-hooks.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-split-combined-hooks.md",
+          "sha": "89d805644dbffe3877bc1356bdf8ad416a5c715b",
+          "size": 1844,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-transitions.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-transitions.md",
+          "sha": "d99f43f764232e994a49a1df89ec9d624552f439",
+          "size": 1055,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-use-deferred-value.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-use-deferred-value.md",
+          "sha": "619c04b0142bf5a5b7d0f69532a56b797a78f664",
+          "size": 1846,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rerender-use-ref-transient-values.md",
+          "repositoryPath": "skills/react-best-practices/rules/rerender-use-ref-transient-values.md",
+          "sha": "cf04b81f8a531eacd07a32e8917fb3ed3c1bbecb",
+          "size": 1742,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-after-nonblocking.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-after-nonblocking.md",
+          "sha": "e8f5b260f5fc6d58141bc61e0a091569adb81e7e",
+          "size": 2012,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-auth-actions.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-auth-actions.md",
+          "sha": "ee82c0442bc69ffae7bf20c07709d57893da1123",
+          "size": 2649,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-cache-lru.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-cache-lru.md",
+          "sha": "ef6938aa53c55dc3c0035bd6c66838810d870260",
+          "size": 1353,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-cache-react.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-cache-react.md",
+          "sha": "87c9ca33168a321a59fbaaa84843e2f48c99751a",
+          "size": 2228,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-dedup-props.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-dedup-props.md",
+          "sha": "fb24a2562c73fadbb9a11a79897c2cf93ea3c69a",
+          "size": 2060,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-hoist-static-io.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-hoist-static-io.md",
+          "sha": "25205c2fc42d0dd684d6423acde642774329a8cc",
+          "size": 4423,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-no-shared-module-state.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-no-shared-module-state.md",
+          "sha": "ff7d9f29c6e0e42ec1471acec8a3c7f394c8358d",
+          "size": 1766,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-parallel-fetching.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-parallel-fetching.md",
+          "sha": "1affc835a601a894fd02de08e6c9cdfd76d34b64",
+          "size": 1554,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-parallel-nested-fetching.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-parallel-nested-fetching.md",
+          "sha": "be1dc25075e40e6bda46cb24dc5a6f42b916b0e8",
+          "size": 992,
+          "kind": "text"
+        },
+        {
+          "path": "rules/server-serialization.md",
+          "repositoryPath": "skills/react-best-practices/rules/server-serialization.md",
+          "sha": "39c5c4164c31be7f171ea2f4b3b32fe47709a651",
+          "size": 996,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-README.md",
+          "repositoryPath": "README.md",
+          "sha": "04a1a5a46a22cfd430e2877b7c145e34fc2653ab",
+          "size": 7838,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-copywriting",
+    "title": "Copywriting",
+    "category": "Writing",
+    "tags": [
+      "marketing",
+      "copy"
+    ],
+    "rank": 3,
+    "version": "2.1.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "copywriting",
+      "description": "When the user wants to write, rewrite, or improve marketing copy for any page, including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy,\" \"value proposition,\" \"tagline,\" \"subheadline,\" \"hero section copy,\" \"above the fold,\" \"this copy is weak,\" \"make this more compelling,\" \"this sounds like AI,\" \"AI slop,\" \"make it sound human,\" or \"help me describe my product.\" Use this whenever someone is working on website text that needs to persuade or convert. Drafts never use AI tells like \"it's not X, it's Y\" reveals, \"no X, no Y, no Z\" lists, or sentences that trail into extra comma clauses. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/copywriting",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/copywriting/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/copywriting/SKILL.md",
+          "sha": "9e5c593c5b4df747c1b037295b8801defc1660b4",
+          "size": 10940,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/copywriting/evals/evals.json",
+          "sha": "bc64a84ce267aa69b715c963983da54e84fb5c69",
+          "size": 11550,
+          "kind": "text"
+        },
+        {
+          "path": "references/ai-tells.md",
+          "repositoryPath": "skills/copywriting/references/ai-tells.md",
+          "sha": "a14e0dbbee6062f057aa9aa9b8e98be8dfd8e882",
+          "size": 15617,
+          "kind": "text"
+        },
+        {
+          "path": "references/copy-frameworks.md",
+          "repositoryPath": "skills/copywriting/references/copy-frameworks.md",
+          "sha": "194aefed131c4e2e508b76ae9fdfc9cdcd37a6ba",
+          "size": 14352,
+          "kind": "text"
+        },
+        {
+          "path": "references/natural-transitions.md",
+          "repositoryPath": "skills/copywriting/references/natural-transitions.md",
+          "sha": "5fba31a5d3bf0f35a9cc62605af5ceaa454a6186",
+          "size": 5561,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-obra-systematic-debugging",
+    "title": "Systematic Debugging",
+    "category": "Development",
+    "tags": [
+      "debugging",
+      "testing"
+    ],
+    "rank": 4,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "systematic-debugging",
+      "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "obra",
+      "name": "Jesse Vincent",
+      "url": "https://github.com/obra",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45416?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 298232,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "obra/superpowers",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "directory": "skills/systematic-debugging",
+      "url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/systematic-debugging/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-10T03:03:30Z",
+      "files": [
+        {
+          "path": "CREATION-LOG.md",
+          "repositoryPath": "skills/systematic-debugging/CREATION-LOG.md",
+          "sha": "9aa03092809feaf93c9bfa985252f6f1c9624692",
+          "size": 4257,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/systematic-debugging/SKILL.md",
+          "sha": "62fc752aaef59a8bbed5d305f4cadc60f8ae07ed",
+          "size": 9530,
+          "kind": "text"
+        },
+        {
+          "path": "condition-based-waiting-example.ts",
+          "repositoryPath": "skills/systematic-debugging/condition-based-waiting-example.ts",
+          "sha": "703a06b653160d060bbf46ab5c6e0cd7446bd592",
+          "size": 5054,
+          "kind": "text"
+        },
+        {
+          "path": "condition-based-waiting.md",
+          "repositoryPath": "skills/systematic-debugging/condition-based-waiting.md",
+          "sha": "70994f777c586f7d4c43033aac34c7cf0da6688b",
+          "size": 3516,
+          "kind": "text"
+        },
+        {
+          "path": "defense-in-depth.md",
+          "repositoryPath": "skills/systematic-debugging/defense-in-depth.md",
+          "sha": "e2483354dc2b62478a2624e34ca18bc0efe887b2",
+          "size": 3650,
+          "kind": "text"
+        },
+        {
+          "path": "find-polluter.sh",
+          "repositoryPath": "skills/systematic-debugging/find-polluter.sh",
+          "sha": "985f5d08ccf8a3f2d40739cfcaf4413bb24bf1cb",
+          "size": 1986,
+          "kind": "text"
+        },
+        {
+          "path": "root-cause-tracing.md",
+          "repositoryPath": "skills/systematic-debugging/root-cause-tracing.md",
+          "sha": "0e72e8f9566b7ef85e814633d1feacad9d0c5868",
+          "size": 5321,
+          "kind": "text"
+        },
+        {
+          "path": "test-academic.md",
+          "repositoryPath": "skills/systematic-debugging/test-academic.md",
+          "sha": "23a6ed7a2044e0c44d74c3101406140f4851aa41",
+          "size": 653,
+          "kind": "text"
+        },
+        {
+          "path": "test-pressure-1.md",
+          "repositoryPath": "skills/systematic-debugging/test-pressure-1.md",
+          "sha": "8d13b467e4a98abfffd12161cbc3c418021d6023",
+          "size": 1900,
+          "kind": "text"
+        },
+        {
+          "path": "test-pressure-2.md",
+          "repositoryPath": "skills/systematic-debugging/test-pressure-2.md",
+          "sha": "2d2315ec8a24ca872bc80d2f4056468ba051462a",
+          "size": 2283,
+          "kind": "text"
+        },
+        {
+          "path": "test-pressure-3.md",
+          "repositoryPath": "skills/systematic-debugging/test-pressure-3.md",
+          "sha": "89734b86fdc756488df315d53e5c3ac2d3752cd8",
+          "size": 2692,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "abf0390320aa14406af7a520b9b0739fdda9bf08",
+          "size": 1070,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-mattpocock-grilling",
+    "title": "Grilling",
+    "category": "Productivity",
+    "tags": [
+      "planning",
+      "questions"
+    ],
+    "rank": 5,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "grilling",
+      "description": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "mattpocock",
+      "name": "Matt Pocock",
+      "url": "https://github.com/mattpocock",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/28293365?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 288070,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "mattpocock/skills",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
+      "directory": "skills/productivity/grilling",
+      "url": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/grilling/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-12T08:46:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/productivity/grilling/SKILL.md",
+          "sha": "df69d9936880cd3314c28858c6c52f48db23b856",
+          "size": 2049,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/productivity/grilling/agents/openai.yaml",
+          "sha": "ddbdb96139c0c1dfe6bca698f39d0465674b8a39",
+          "size": 113,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "f1dd2c09108dde1a5f56097cee8461b3ea834499",
+          "size": 1068,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-supabase-supabase-postgres-best-practices",
+    "title": "Postgres Best Practices",
+    "category": "Data",
+    "tags": [
+      "postgres",
+      "sql"
+    ],
+    "rank": 6,
+    "version": "1.1.1",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "supabase-postgres-best-practices",
+      "description": "Postgres best practices maintained by Supabase, for Postgres running anywhere. Load this skill BEFORE writing or changing anything that lives in a Postgres database: creating or altering tables and columns (including choosing column types), schema design, migrations and declarative schema files, RLS policies and the tests that verify them, indexes, triggers, database functions, queues and scheduled jobs (pg_cron, pgmq), vector/semantic search (pgvector), and restoring dumps (pg_restore) or importing data. Also load it when diagnosing slow queries, high CPU, timeouts, EXPLAIN plans, connection exhaustion, locking, bloat, or rows visible to the wrong user or tenant. This is not just a performance guide — schema, migration, security, and SQL authoring tasks need these rules too, even for a one-column change or a single query.",
+      "requirements": [
+        "SQL, query plans, or a PostgreSQL project"
+      ]
+    },
+    "maker": {
+      "id": "supabase",
+      "name": "Supabase",
+      "url": "https://github.com/supabase",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/54469796?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 2792,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "supabase/agent-skills",
+      "commit": "c9be0e931b7930f7d02126d04774d904c381e7d7",
+      "directory": "skills/supabase-postgres-best-practices",
+      "url": "https://github.com/supabase/agent-skills/blob/c9be0e931b7930f7d02126d04774d904c381e7d7/skills/supabase-postgres-best-practices/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/supabase/agent-skills/blob/c9be0e931b7930f7d02126d04774d904c381e7d7/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-02T12:34:51Z",
+      "files": [
+        {
+          "path": "CHANGELOG.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/CHANGELOG.md",
+          "sha": "6d7d0d2acd380d09be9a4431037858149ce3496f",
+          "size": 5684,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/SKILL.md",
+          "sha": "6400792389dfcc82c81953054e546bd72ebcd259",
+          "size": 3231,
+          "kind": "text"
+        },
+        {
+          "path": "references/_contributing.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/_contributing.md",
+          "sha": "1c055aff9ad2bf12cfe7edc0002f2f77fe6980d2",
+          "size": 4113,
+          "kind": "text"
+        },
+        {
+          "path": "references/_sections.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/_sections.md",
+          "sha": "8ba57c23e8119e411fcc8a230cda08e695792cac",
+          "size": 1682,
+          "kind": "text"
+        },
+        {
+          "path": "references/_template.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/_template.md",
+          "sha": "91ace90e10a4d8ef354a82bb1994842e6979ebed",
+          "size": 1040,
+          "kind": "text"
+        },
+        {
+          "path": "references/advanced-full-text-search.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/advanced-full-text-search.md",
+          "sha": "582cbeaada9378a280ad61f57e06c10d258e3c43",
+          "size": 1468,
+          "kind": "text"
+        },
+        {
+          "path": "references/advanced-jsonb-indexing.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/advanced-jsonb-indexing.md",
+          "sha": "e3d261ea117fd7b1ad9c4f0d45308407b898ed5a",
+          "size": 1444,
+          "kind": "text"
+        },
+        {
+          "path": "references/conn-idle-timeout.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/conn-idle-timeout.md",
+          "sha": "40b9cc50dd12cf347ed189fac965673b533f3f99",
+          "size": 1282,
+          "kind": "text"
+        },
+        {
+          "path": "references/conn-limits.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/conn-limits.md",
+          "sha": "cb3e400c0234e7e9196c1650423faad66375b70b",
+          "size": 1325,
+          "kind": "text"
+        },
+        {
+          "path": "references/conn-pooling.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/conn-pooling.md",
+          "sha": "e2ebd581d3c85bff0a077e8d9a2cb562d2513d03",
+          "size": 1382,
+          "kind": "text"
+        },
+        {
+          "path": "references/conn-prepared-statements.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/conn-prepared-statements.md",
+          "sha": "555547d834e35b5059152dfb2288eca5e9838ea0",
+          "size": 1529,
+          "kind": "text"
+        },
+        {
+          "path": "references/data-batch-inserts.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/data-batch-inserts.md",
+          "sha": "997947cb17bfed67f29eaa8da2a58de2306cc2c1",
+          "size": 1287,
+          "kind": "text"
+        },
+        {
+          "path": "references/data-n-plus-one.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/data-n-plus-one.md",
+          "sha": "2109186ff88b3ba1cc32789f81e2a00d345c6e3f",
+          "size": 1361,
+          "kind": "text"
+        },
+        {
+          "path": "references/data-pagination.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/data-pagination.md",
+          "sha": "633d839323612e212a833dd96828cb31fdfb39f8",
+          "size": 1358,
+          "kind": "text"
+        },
+        {
+          "path": "references/data-upsert.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/data-upsert.md",
+          "sha": "bc95e2305d955679446c70854cb2b56b183aa56d",
+          "size": 1390,
+          "kind": "text"
+        },
+        {
+          "path": "references/lock-advisory.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/lock-advisory.md",
+          "sha": "572eaf0dcf518ac925c4cde41beb60b62852b79c",
+          "size": 1531,
+          "kind": "text"
+        },
+        {
+          "path": "references/lock-deadlock-prevention.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/lock-deadlock-prevention.md",
+          "sha": "974da5edec32f79de0fcdc771d4ef759dc3e049d",
+          "size": 1855,
+          "kind": "text"
+        },
+        {
+          "path": "references/lock-short-transactions.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/lock-short-transactions.md",
+          "sha": "e6b8ef2633248a4aa4394628e48d8cb693e7e6ab",
+          "size": 1350,
+          "kind": "text"
+        },
+        {
+          "path": "references/lock-skip-locked.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/lock-skip-locked.md",
+          "sha": "77bdbb97045010ce2fdbd90733e8f764be82881a",
+          "size": 1353,
+          "kind": "text"
+        },
+        {
+          "path": "references/monitor-explain-analyze.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/monitor-explain-analyze.md",
+          "sha": "542978c3bafc510fa8d7a8864cff994ad40be4d7",
+          "size": 1441,
+          "kind": "text"
+        },
+        {
+          "path": "references/monitor-pg-stat-statements.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/monitor-pg-stat-statements.md",
+          "sha": "d7e82f1aacd105d53789eb6188d11e8ea39e7310",
+          "size": 1418,
+          "kind": "text"
+        },
+        {
+          "path": "references/monitor-vacuum-analyze.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/monitor-vacuum-analyze.md",
+          "sha": "e0e8ea0b7db8c1513a0d1605be477192bc21d91d",
+          "size": 1506,
+          "kind": "text"
+        },
+        {
+          "path": "references/query-composite-indexes.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/query-composite-indexes.md",
+          "sha": "fea64523fd5bb3696f943d486ccaf2aea75d27b8",
+          "size": 1454,
+          "kind": "text"
+        },
+        {
+          "path": "references/query-covering-indexes.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/query-covering-indexes.md",
+          "sha": "9d2a4947b94516dd975e1044d132bb007280f478",
+          "size": 1287,
+          "kind": "text"
+        },
+        {
+          "path": "references/query-index-types.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/query-index-types.md",
+          "sha": "93b32590f4bfe377869274f45414ae6e43d168fa",
+          "size": 1521,
+          "kind": "text"
+        },
+        {
+          "path": "references/query-missing-indexes.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/query-missing-indexes.md",
+          "sha": "e6daace7dd368c75cdf87dc61be4afd6ff66cbbe",
+          "size": 1218,
+          "kind": "text"
+        },
+        {
+          "path": "references/query-partial-indexes.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/query-partial-indexes.md",
+          "sha": "3e61a3417b9cce3c8cee99b39b78b7ebf495dd1f",
+          "size": 1347,
+          "kind": "text"
+        },
+        {
+          "path": "references/schema-constraints.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/schema-constraints.md",
+          "sha": "1d2ef8f9a968cd6fa882c7299134c30ace06373c",
+          "size": 1880,
+          "kind": "text"
+        },
+        {
+          "path": "references/schema-data-types.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/schema-data-types.md",
+          "sha": "f253a5819d05531371e04485ab84f552fbb32fbe",
+          "size": 1453,
+          "kind": "text"
+        },
+        {
+          "path": "references/schema-foreign-key-indexes.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/schema-foreign-key-indexes.md",
+          "sha": "6c3d6ff622b8a9df358f6673f323292e682ce87c",
+          "size": 1679,
+          "kind": "text"
+        },
+        {
+          "path": "references/schema-lowercase-identifiers.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/schema-lowercase-identifiers.md",
+          "sha": "f0072940b159ff64e0c2d4fbb499133cb8f49a66",
+          "size": 1728,
+          "kind": "text"
+        },
+        {
+          "path": "references/schema-partitioning.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/schema-partitioning.md",
+          "sha": "13137a03275fa45001c870a40b0069204d44e005",
+          "size": 1548,
+          "kind": "text"
+        },
+        {
+          "path": "references/schema-primary-keys.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/schema-primary-keys.md",
+          "sha": "fb0fbb166fac9ea38c127d807a263282acc2dc93",
+          "size": 1821,
+          "kind": "text"
+        },
+        {
+          "path": "references/security-privileges.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/security-privileges.md",
+          "sha": "448ec345fab6c5a0116c584d65638b86d758c558",
+          "size": 1566,
+          "kind": "text"
+        },
+        {
+          "path": "references/security-rls-basics.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/security-rls-basics.md",
+          "sha": "c61e1a8503de113be0981759b82f5e37090f344c",
+          "size": 1372,
+          "kind": "text"
+        },
+        {
+          "path": "references/security-rls-performance.md",
+          "repositoryPath": "skills/supabase-postgres-best-practices/references/security-rls-performance.md",
+          "sha": "c3c7c416d57d9a46a9993f4e0c20f772fb64483d",
+          "size": 2103,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "d3c9e94fbc6c28f66ecb5a01407d543c99c811b6",
+          "size": 1065,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-anthropics-internal-comms",
+    "title": "Internal Communications",
+    "category": "Writing",
+    "tags": [
+      "updates",
+      "communication"
+    ],
+    "rank": 7,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "internal-comms",
+      "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+      "requirements": []
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/internal-comms",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/internal-comms/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/internal-comms/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/internal-comms/LICENSE.txt",
+          "sha": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+          "size": 11345,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/internal-comms/SKILL.md",
+          "sha": "56ea935b74f371bfeb4c7d3c19d5139df866e73b",
+          "size": 1511,
+          "kind": "text"
+        },
+        {
+          "path": "examples/3p-updates.md",
+          "repositoryPath": "skills/internal-comms/examples/3p-updates.md",
+          "sha": "5329bfbf3b47035946a3995dd63025799b582f8c",
+          "size": 3274,
+          "kind": "text"
+        },
+        {
+          "path": "examples/company-newsletter.md",
+          "repositoryPath": "skills/internal-comms/examples/company-newsletter.md",
+          "sha": "4997a072b62ed7f65a9fd113903db3d9eba34b98",
+          "size": 3295,
+          "kind": "text"
+        },
+        {
+          "path": "examples/faq-answers.md",
+          "repositoryPath": "skills/internal-comms/examples/faq-answers.md",
+          "sha": "395262a860636434593cd3c3da258000231ea4f6",
+          "size": 2366,
+          "kind": "text"
+        },
+        {
+          "path": "examples/general-comms.md",
+          "repositoryPath": "skills/internal-comms/examples/general-comms.md",
+          "sha": "0ea977018ca8167d39bfc9adb253f80336819578",
+          "size": 602,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-anthropics-brand-guidelines",
+    "title": "Anthropic Brand Guidelines",
+    "category": "Design",
+    "tags": [
+      "branding",
+      "typography"
+    ],
+    "rank": 8,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "brand-guidelines",
+      "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+      "requirements": [
+        "Applies Anthropic’s own brand"
+      ]
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/brand-guidelines",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/brand-guidelines/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/brand-guidelines/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/brand-guidelines/LICENSE.txt",
+          "sha": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+          "size": 11345,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/brand-guidelines/SKILL.md",
+          "sha": "47c72c607bdb5dd81bdea5de2b5e4f3992a5fd59",
+          "size": 2235,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-anthropics-theme-factory",
+    "title": "Theme Factory",
+    "category": "Design",
+    "tags": [
+      "themes",
+      "presentations"
+    ],
+    "rank": 9,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "theme-factory",
+      "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/theme-factory",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/theme-factory/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/theme-factory/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/theme-factory/LICENSE.txt",
+          "sha": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+          "size": 11345,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/theme-factory/SKILL.md",
+          "sha": "90dfceaf2ecdc191a4dcfb0069768a9560638998",
+          "size": 3124,
+          "kind": "text"
+        },
+        {
+          "path": "theme-showcase.pdf",
+          "repositoryPath": "skills/theme-factory/theme-showcase.pdf",
+          "sha": "24495d145c95917aba3a3445f7105444b6f7cfcc",
+          "size": 124310,
+          "kind": "asset"
+        },
+        {
+          "path": "themes/arctic-frost.md",
+          "repositoryPath": "skills/theme-factory/themes/arctic-frost.md",
+          "sha": "e9f1eb0574e377ec8be59a71a1c206958f8b253e",
+          "size": 544,
+          "kind": "text"
+        },
+        {
+          "path": "themes/botanical-garden.md",
+          "repositoryPath": "skills/theme-factory/themes/botanical-garden.md",
+          "sha": "0c95bf7349c26996c7d43d6c0276a285287a9ffe",
+          "size": 519,
+          "kind": "text"
+        },
+        {
+          "path": "themes/desert-rose.md",
+          "repositoryPath": "skills/theme-factory/themes/desert-rose.md",
+          "sha": "ea7c74eb80794fe15f870e12c5588b2a988f77a1",
+          "size": 496,
+          "kind": "text"
+        },
+        {
+          "path": "themes/forest-canopy.md",
+          "repositoryPath": "skills/theme-factory/themes/forest-canopy.md",
+          "sha": "90c2b26518d8d7ff1d58981def5e93e2eca01780",
+          "size": 506,
+          "kind": "text"
+        },
+        {
+          "path": "themes/golden-hour.md",
+          "repositoryPath": "skills/theme-factory/themes/golden-hour.md",
+          "sha": "ed8fc256f4e9b2dfffd46e82fdc451c32f87dbb1",
+          "size": 528,
+          "kind": "text"
+        },
+        {
+          "path": "themes/midnight-galaxy.md",
+          "repositoryPath": "skills/theme-factory/themes/midnight-galaxy.md",
+          "sha": "97e1c5f380eba51cd8956ec96114629c6540b76e",
+          "size": 513,
+          "kind": "text"
+        },
+        {
+          "path": "themes/modern-minimalist.md",
+          "repositoryPath": "skills/theme-factory/themes/modern-minimalist.md",
+          "sha": "6bd26a29beb09e663a1c049f5f8ec86189ae2db2",
+          "size": 549,
+          "kind": "text"
+        },
+        {
+          "path": "themes/ocean-depths.md",
+          "repositoryPath": "skills/theme-factory/themes/ocean-depths.md",
+          "sha": "b675126f53c49af7b6c3e00793a6d4773fb77af6",
+          "size": 555,
+          "kind": "text"
+        },
+        {
+          "path": "themes/sunset-boulevard.md",
+          "repositoryPath": "skills/theme-factory/themes/sunset-boulevard.md",
+          "sha": "df799a0cc0e61c9226e52725afb45a1c6388f242",
+          "size": 558,
+          "kind": "text"
+        },
+        {
+          "path": "themes/tech-innovation.md",
+          "repositoryPath": "skills/theme-factory/themes/tech-innovation.md",
+          "sha": "e029a435fb02647e6fd0b440618ae21f326d35e1",
+          "size": 547,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-anthropics-webapp-testing",
+    "title": "Web App Testing",
+    "category": "Development",
+    "tags": [
+      "playwright",
+      "qa"
+    ],
+    "rank": 10,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "webapp-testing",
+      "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
+      "requirements": [
+        "Python and Playwright"
+      ]
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/webapp-testing",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/webapp-testing/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/webapp-testing/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/webapp-testing/LICENSE.txt",
+          "sha": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+          "size": 11345,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/webapp-testing/SKILL.md",
+          "sha": "4726215301db64a0cc4d41fc3219c61f37a30f4a",
+          "size": 3913,
+          "kind": "text"
+        },
+        {
+          "path": "examples/console_logging.py",
+          "repositoryPath": "skills/webapp-testing/examples/console_logging.py",
+          "sha": "9329b5e232ed53d944bfe95e750070117d31b9ab",
+          "size": 1027,
+          "kind": "text"
+        },
+        {
+          "path": "examples/element_discovery.py",
+          "repositoryPath": "skills/webapp-testing/examples/element_discovery.py",
+          "sha": "917ba72f52421a1b324f93ae8e38af72010a87b9",
+          "size": 1463,
+          "kind": "text"
+        },
+        {
+          "path": "examples/static_html_automation.py",
+          "repositoryPath": "skills/webapp-testing/examples/static_html_automation.py",
+          "sha": "90bbedcc08cdb345c74fb938ebad02c0baf56603",
+          "size": 953,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/with_server.py",
+          "repositoryPath": "skills/webapp-testing/scripts/with_server.py",
+          "sha": "431f2eba16b268b7f3e2ae4daae9db41c0289b6d",
+          "size": 3693,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-anthropics-mcp-builder",
+    "title": "MCP Builder",
+    "category": "Development",
+    "tags": [
+      "mcp",
+      "integrations"
+    ],
+    "rank": 11,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "mcp-builder",
+      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+      "requirements": [
+        "Python or Node.js"
+      ]
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/mcp-builder",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/mcp-builder/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/mcp-builder/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/mcp-builder/LICENSE.txt",
+          "sha": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+          "size": 11345,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/mcp-builder/SKILL.md",
+          "sha": "8a1a77a47d141967b246adb4da4f91037578ff7d",
+          "size": 9092,
+          "kind": "text"
+        },
+        {
+          "path": "reference/evaluation.md",
+          "repositoryPath": "skills/mcp-builder/reference/evaluation.md",
+          "sha": "87e9bb78840fac113d93b4a27ab5b229a18cf226",
+          "size": 21663,
+          "kind": "text"
+        },
+        {
+          "path": "reference/mcp_best_practices.md",
+          "repositoryPath": "skills/mcp-builder/reference/mcp_best_practices.md",
+          "sha": "b9d343cc3ae89b1fc139dae96bdb2b7e29ba3648",
+          "size": 7330,
+          "kind": "text"
+        },
+        {
+          "path": "reference/node_mcp_server.md",
+          "repositoryPath": "skills/mcp-builder/reference/node_mcp_server.md",
+          "sha": "f6e5df982adc0848bf261c47ab8d65a1e0469391",
+          "size": 28550,
+          "kind": "text"
+        },
+        {
+          "path": "reference/python_mcp_server.md",
+          "repositoryPath": "skills/mcp-builder/reference/python_mcp_server.md",
+          "sha": "cf7ec996d2e6e3655bc75ff6902738d03a37334e",
+          "size": 25099,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/connections.py",
+          "repositoryPath": "skills/mcp-builder/scripts/connections.py",
+          "sha": "ffcd0da3fbe1539320d022017ae83b61a9587a5c",
+          "size": 4875,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/evaluation.py",
+          "repositoryPath": "skills/mcp-builder/scripts/evaluation.py",
+          "sha": "41778569c45a458e0eea839b8917692ad65be2d5",
+          "size": 12579,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/example_evaluation.xml",
+          "repositoryPath": "skills/mcp-builder/scripts/example_evaluation.xml",
+          "sha": "41e4459b5af861e61f1ca87d2f8f5ab5543dc054",
+          "size": 1194,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/requirements.txt",
+          "repositoryPath": "skills/mcp-builder/scripts/requirements.txt",
+          "sha": "e73e5d1e356edafadb9dc9243e6f300f2c5529b3",
+          "size": 29,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-anthropics-skill-creator",
+    "title": "Skill Creator",
+    "category": "Productivity",
+    "tags": [
+      "skills",
+      "evaluation"
+    ],
+    "rank": 12,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "skill-creator",
+      "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+      "requirements": [
+        "Python; Claude CLI for upstream evaluation scripts"
+      ]
+    },
+    "maker": {
+      "id": "anthropics",
+      "name": "Anthropic",
+      "url": "https://github.com/anthropics",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76263028?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 180745,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "anthropics/skills",
+      "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "directory": "skills/skill-creator",
+      "url": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/skill-creator/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/skill-creator/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/skill-creator/LICENSE.txt",
+          "sha": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+          "size": 11345,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/skill-creator/SKILL.md",
+          "sha": "65b3a402dbd09b8e83f9d637c6b553875189085c",
+          "size": 33168,
+          "kind": "text"
+        },
+        {
+          "path": "agents/analyzer.md",
+          "repositoryPath": "skills/skill-creator/agents/analyzer.md",
+          "sha": "14e41d6068635f4dd3fb878fd1626312395dda63",
+          "size": 10376,
+          "kind": "text"
+        },
+        {
+          "path": "agents/comparator.md",
+          "repositoryPath": "skills/skill-creator/agents/comparator.md",
+          "sha": "80e00eb45db3ee53a132fc2ba97fd59a7339e563",
+          "size": 7287,
+          "kind": "text"
+        },
+        {
+          "path": "agents/grader.md",
+          "repositoryPath": "skills/skill-creator/agents/grader.md",
+          "sha": "558ab05c0a9a8bb062ef4c51823d4d76c3acf7c4",
+          "size": 9049,
+          "kind": "text"
+        },
+        {
+          "path": "assets/eval_review.html",
+          "repositoryPath": "skills/skill-creator/assets/eval_review.html",
+          "sha": "938ff32aed9bffabf723bd5492d720f4736c8e4d",
+          "size": 7058,
+          "kind": "text"
+        },
+        {
+          "path": "eval-viewer/generate_review.py",
+          "repositoryPath": "skills/skill-creator/eval-viewer/generate_review.py",
+          "sha": "7fa5978631fed1ed545591dbb2b0eb21ce3f3d08",
+          "size": 16365,
+          "kind": "text"
+        },
+        {
+          "path": "eval-viewer/viewer.html",
+          "repositoryPath": "skills/skill-creator/eval-viewer/viewer.html",
+          "sha": "6d8e96348a02e66c3363d2ff3b3ae58ac11e6382",
+          "size": 44998,
+          "kind": "text"
+        },
+        {
+          "path": "references/schemas.md",
+          "repositoryPath": "skills/skill-creator/references/schemas.md",
+          "sha": "b6eeaa2d4a34c1653069585c6c5603da39a5bdbe",
+          "size": 12061,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/__init__.py",
+          "repositoryPath": "skills/skill-creator/scripts/__init__.py",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "size": 0,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/aggregate_benchmark.py",
+          "repositoryPath": "skills/skill-creator/scripts/aggregate_benchmark.py",
+          "sha": "3e66e8c105be9bab9f0e9c61f0d1482619401580",
+          "size": 14386,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/generate_report.py",
+          "repositoryPath": "skills/skill-creator/scripts/generate_report.py",
+          "sha": "959e30a0014ec165c41a2bb7420b7dfe1416bbac",
+          "size": 12847,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/improve_description.py",
+          "repositoryPath": "skills/skill-creator/scripts/improve_description.py",
+          "sha": "06bcec76122446986e3610c20a39c466de36f495",
+          "size": 11116,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/package_skill.py",
+          "repositoryPath": "skills/skill-creator/scripts/package_skill.py",
+          "sha": "f48eac444656ddc41204aac1760a217951ce609e",
+          "size": 4234,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/quick_validate.py",
+          "repositoryPath": "skills/skill-creator/scripts/quick_validate.py",
+          "sha": "ed8e1dddce77b16af13c6f36b3fe86c4ac7c590c",
+          "size": 3972,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/run_eval.py",
+          "repositoryPath": "skills/skill-creator/scripts/run_eval.py",
+          "sha": "e58c70bea39d5b252a1e819f242bbdcdf20e8b87",
+          "size": 11464,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/run_loop.py",
+          "repositoryPath": "skills/skill-creator/scripts/run_loop.py",
+          "sha": "30a263d674ef19de11c756d6f7537f91a421909e",
+          "size": 13605,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/utils.py",
+          "repositoryPath": "skills/skill-creator/scripts/utils.py",
+          "sha": "51b6a07dd57174197a937034b7eecebd5768ff8a",
+          "size": 1661,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-vercel-labs-web-design-guidelines",
+    "title": "Web Design Guidelines",
+    "category": "Design",
+    "tags": [
+      "accessibility",
+      "web"
+    ],
+    "rank": 13,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "web-design-guidelines",
+      "description": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\".",
+      "requirements": [
+        "Web project"
+      ]
+    },
+    "maker": {
+      "id": "vercel-labs",
+      "name": "Vercel",
+      "url": "https://github.com/vercel-labs",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/108547162?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 32301,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "vercel-labs/agent-skills",
+      "commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "directory": "skills/web-design-guidelines",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/skills/web-design-guidelines/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/README.md",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-08-28T13:36:31Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/web-design-guidelines/SKILL.md",
+          "sha": "ceae92ab319216a68274168fba9b63b998b65997",
+          "size": 1231,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-README.md",
+          "repositoryPath": "README.md",
+          "sha": "04a1a5a46a22cfd430e2877b7c145e34fc2653ab",
+          "size": 7838,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-vercel-labs-vercel-composition-patterns",
+    "title": "React Composition Patterns",
+    "category": "Development",
+    "tags": [
+      "react",
+      "components"
+    ],
+    "rank": 14,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "vercel-composition-patterns",
+      "description": "React composition patterns that scale. Use when refactoring components with boolean prop proliferation, building flexible component libraries, or designing reusable APIs. Triggers on tasks involving compound components, render props, context providers, or component architecture. Includes React 19 API changes.",
+      "requirements": [
+        "React project"
+      ]
+    },
+    "maker": {
+      "id": "vercel-labs",
+      "name": "Vercel",
+      "url": "https://github.com/vercel-labs",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/108547162?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 32301,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "vercel-labs/agent-skills",
+      "commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "directory": "skills/composition-patterns",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/skills/composition-patterns/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/README.md",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-08-28T13:36:31Z",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "repositoryPath": "skills/composition-patterns/AGENTS.md",
+          "sha": "558bf9aa1e36db2161f1633c9bfae14a819f0508",
+          "size": 22627,
+          "kind": "text"
+        },
+        {
+          "path": "README.md",
+          "repositoryPath": "skills/composition-patterns/README.md",
+          "sha": "01f359b0e79ce544d1463057be54946e50d62bcd",
+          "size": 2140,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/composition-patterns/SKILL.md",
+          "sha": "d07025bf943345bc1cf15eb923594f889ff881f0",
+          "size": 2886,
+          "kind": "text"
+        },
+        {
+          "path": "metadata.json",
+          "repositoryPath": "skills/composition-patterns/metadata.json",
+          "sha": "3470b744190af044373abbfe80d94630c0cc6041",
+          "size": 530,
+          "kind": "text"
+        },
+        {
+          "path": "rules/_sections.md",
+          "repositoryPath": "skills/composition-patterns/rules/_sections.md",
+          "sha": "f921dd41b53e4d847f25a6b3eca25a4e8857db44",
+          "size": 829,
+          "kind": "text"
+        },
+        {
+          "path": "rules/_template.md",
+          "repositoryPath": "skills/composition-patterns/rules/_template.md",
+          "sha": "119a30167f162c439f05e73c63044c590dff645c",
+          "size": 329,
+          "kind": "text"
+        },
+        {
+          "path": "rules/architecture-avoid-boolean-props.md",
+          "repositoryPath": "skills/composition-patterns/rules/architecture-avoid-boolean-props.md",
+          "sha": "ccee19ce495b9d7fdf08867db3c6b6282006312e",
+          "size": 2267,
+          "kind": "text"
+        },
+        {
+          "path": "rules/architecture-compound-components.md",
+          "repositoryPath": "skills/composition-patterns/rules/architecture-compound-components.md",
+          "sha": "e5e3043cb5a81b83dce0389848b828455f00854f",
+          "size": 2600,
+          "kind": "text"
+        },
+        {
+          "path": "rules/patterns-children-over-render-props.md",
+          "repositoryPath": "skills/composition-patterns/rules/patterns-children-over-render-props.md",
+          "sha": "d4345ee30aea5f1b11815251edca7ebd0aefe2e2",
+          "size": 1886,
+          "kind": "text"
+        },
+        {
+          "path": "rules/patterns-explicit-variants.md",
+          "repositoryPath": "skills/composition-patterns/rules/patterns-explicit-variants.md",
+          "sha": "56e32e8bee5e5768f747db4e9718a6c2b54bfce5",
+          "size": 2395,
+          "kind": "text"
+        },
+        {
+          "path": "rules/react19-no-forwardref.md",
+          "repositoryPath": "skills/composition-patterns/rules/react19-no-forwardref.md",
+          "sha": "e0d8f8a76f14888f2fafc8cccd3d9395e4711d0d",
+          "size": 953,
+          "kind": "text"
+        },
+        {
+          "path": "rules/state-context-interface.md",
+          "repositoryPath": "skills/composition-patterns/rules/state-context-interface.md",
+          "sha": "d961bede0c6c6e318f6ba3aca9b5dfcdb768d8f9",
+          "size": 4974,
+          "kind": "text"
+        },
+        {
+          "path": "rules/state-decouple-implementation.md",
+          "repositoryPath": "skills/composition-patterns/rules/state-decouple-implementation.md",
+          "sha": "71a5afaa7d7078c262c92d32c3b97723de62f99f",
+          "size": 2699,
+          "kind": "text"
+        },
+        {
+          "path": "rules/state-lift-state.md",
+          "repositoryPath": "skills/composition-patterns/rules/state-lift-state.md",
+          "sha": "d7fe27b54933135f9050365b6c2001c101029d51",
+          "size": 3224,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-README.md",
+          "repositoryPath": "README.md",
+          "sha": "04a1a5a46a22cfd430e2877b7c145e34fc2653ab",
+          "size": 7838,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-vercel-labs-vercel-react-native-skills",
+    "title": "React Native Best Practices",
+    "category": "Development",
+    "tags": [
+      "mobile",
+      "react-native"
+    ],
+    "rank": 15,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "vercel-react-native-skills",
+      "description": "React Native and Expo best practices for building performant mobile apps. Use when building React Native components, optimizing list performance, implementing animations, or working with native modules. Triggers on tasks involving React Native, Expo, mobile performance, or native platform APIs.",
+      "requirements": [
+        "React Native project"
+      ]
+    },
+    "maker": {
+      "id": "vercel-labs",
+      "name": "Vercel",
+      "url": "https://github.com/vercel-labs",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/108547162?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 32301,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "vercel-labs/agent-skills",
+      "commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "directory": "skills/react-native-skills",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-native-skills/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/README.md",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-08-28T13:36:31Z",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "repositoryPath": "skills/react-native-skills/AGENTS.md",
+          "sha": "d263eb9c111002248ec8b1539dbcd7ba7b6fddde",
+          "size": 73771,
+          "kind": "text"
+        },
+        {
+          "path": "README.md",
+          "repositoryPath": "skills/react-native-skills/README.md",
+          "sha": "854db9f525c3427060b4ecefd266f00beca94eac",
+          "size": 5064,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/react-native-skills/SKILL.md",
+          "sha": "73401865dd7440a43c5243b107a3763e0d2f4aae",
+          "size": 4439,
+          "kind": "text"
+        },
+        {
+          "path": "metadata.json",
+          "repositoryPath": "skills/react-native-skills/metadata.json",
+          "sha": "600eb5bc73d42a337a1d7aa3a59c654fee7b3278",
+          "size": 896,
+          "kind": "text"
+        },
+        {
+          "path": "rules/_sections.md",
+          "repositoryPath": "skills/react-native-skills/rules/_sections.md",
+          "sha": "0519cf2325eec35f2f56611204d9ee35aa2a9782",
+          "size": 2228,
+          "kind": "text"
+        },
+        {
+          "path": "rules/_template.md",
+          "repositoryPath": "skills/react-native-skills/rules/_template.md",
+          "sha": "1e9e70703485021e0b969f5731f38c8b9f8694db",
+          "size": 631,
+          "kind": "text"
+        },
+        {
+          "path": "rules/animation-derived-value.md",
+          "repositoryPath": "skills/react-native-skills/rules/animation-derived-value.md",
+          "sha": "310928a957b841fc5af335e984a4df6c1a6b3f3a",
+          "size": 1373,
+          "kind": "text"
+        },
+        {
+          "path": "rules/animation-gesture-detector-press.md",
+          "repositoryPath": "skills/react-native-skills/rules/animation-gesture-detector-press.md",
+          "sha": "87c67827054bbb0a41d7e4ad78adf3612accb6bf",
+          "size": 2559,
+          "kind": "text"
+        },
+        {
+          "path": "rules/animation-gpu-properties.md",
+          "repositoryPath": "skills/react-native-skills/rules/animation-gpu-properties.md",
+          "sha": "5fda09558e89b2d6021bbbe5a2731fd26d16b1f3",
+          "size": 2059,
+          "kind": "text"
+        },
+        {
+          "path": "rules/design-system-compound-components.md",
+          "repositoryPath": "skills/react-native-skills/rules/design-system-compound-components.md",
+          "sha": "d8239ee1fbb95d52b5b57a1d699199b1f4758e8c",
+          "size": 1625,
+          "kind": "text"
+        },
+        {
+          "path": "rules/fonts-config-plugin.md",
+          "repositoryPath": "skills/react-native-skills/rules/fonts-config-plugin.md",
+          "sha": "39aa01477af69b372e7e6251831430da1c3203f9",
+          "size": 1393,
+          "kind": "text"
+        },
+        {
+          "path": "rules/imports-design-system-folder.md",
+          "repositoryPath": "skills/react-native-skills/rules/imports-design-system-folder.md",
+          "sha": "8466dcb2544dad65639d29e5921a6be00ea1ac2c",
+          "size": 1418,
+          "kind": "text"
+        },
+        {
+          "path": "rules/js-hoist-intl.md",
+          "repositoryPath": "skills/react-native-skills/rules/js-hoist-intl.md",
+          "sha": "9af1c354c3e5e8836883c1a79a533fa5e72d4958",
+          "size": 1645,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-callbacks.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-callbacks.md",
+          "sha": "a0b3913ff3b88e92bd0a91b555f8c96732b2b953",
+          "size": 1059,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-function-references.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-function-references.md",
+          "sha": "9721929b28b8115e8fa24ff8a6f82a6b1ec94d6e",
+          "size": 4133,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-images.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-images.md",
+          "sha": "75a3bafc83f65e0e14af3b7cc5786ea40b0d34b4",
+          "size": 1417,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-inline-objects.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-inline-objects.md",
+          "sha": "d5b6514a6658917468399803b16cb61b17459af7",
+          "size": 2308,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-item-expensive.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-item-expensive.md",
+          "sha": "f617a76d4e525cde99b937a8e0e163dfe0ef52b0",
+          "size": 2466,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-item-memo.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-item-memo.md",
+          "sha": "634935e8ed0e6bd10014450c91b8a97187cbeda1",
+          "size": 2250,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-item-types.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-item-types.md",
+          "sha": "1027e4e6cd982476271d12507c329653ec793484",
+          "size": 2749,
+          "kind": "text"
+        },
+        {
+          "path": "rules/list-performance-virtualize.md",
+          "repositoryPath": "skills/react-native-skills/rules/list-performance-virtualize.md",
+          "sha": "8a393ba1eef972f72a00a67c6b0a23c09c688639",
+          "size": 1742,
+          "kind": "text"
+        },
+        {
+          "path": "rules/monorepo-native-deps-in-app.md",
+          "repositoryPath": "skills/react-native-skills/rules/monorepo-native-deps-in-app.md",
+          "sha": "ff85d76735d89e4cdfa89afd75759020780c5d5f",
+          "size": 1091,
+          "kind": "text"
+        },
+        {
+          "path": "rules/monorepo-single-dependency-versions.md",
+          "repositoryPath": "skills/react-native-skills/rules/monorepo-single-dependency-versions.md",
+          "sha": "1087dfa511e9837f14b71f49d1c3d2018d6cfdc1",
+          "size": 1351,
+          "kind": "text"
+        },
+        {
+          "path": "rules/navigation-native-navigators.md",
+          "repositoryPath": "skills/react-native-skills/rules/navigation-native-navigators.md",
+          "sha": "035c5fd37ce16afc0613405bd1f0b8ad0cc8b1ce",
+          "size": 4941,
+          "kind": "text"
+        },
+        {
+          "path": "rules/react-compiler-destructure-functions.md",
+          "repositoryPath": "skills/react-native-skills/rules/react-compiler-destructure-functions.md",
+          "sha": "f76c25ac6f8c48c8436f0ccee1359a649a33b48f",
+          "size": 1274,
+          "kind": "text"
+        },
+        {
+          "path": "rules/react-compiler-reanimated-shared-values.md",
+          "repositoryPath": "skills/react-native-skills/rules/react-compiler-reanimated-shared-values.md",
+          "sha": "0dcbaf47a6abeb72da8673f99b45d2e8b609412b",
+          "size": 1268,
+          "kind": "text"
+        },
+        {
+          "path": "rules/react-state-dispatcher.md",
+          "repositoryPath": "skills/react-native-skills/rules/react-state-dispatcher.md",
+          "sha": "93e8b6db6112936ad57e6506f56eeef0725336c1",
+          "size": 2255,
+          "kind": "text"
+        },
+        {
+          "path": "rules/react-state-fallback.md",
+          "repositoryPath": "skills/react-native-skills/rules/react-state-fallback.md",
+          "sha": "204f34665f206a734cb2d0de17a7179f3793dc89",
+          "size": 1735,
+          "kind": "text"
+        },
+        {
+          "path": "rules/react-state-minimize.md",
+          "repositoryPath": "skills/react-native-skills/rules/react-state-minimize.md",
+          "sha": "64605b6c382e407f244d2db8b72bb3105ebae87b",
+          "size": 1740,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-no-falsy-and.md",
+          "repositoryPath": "skills/react-native-skills/rules/rendering-no-falsy-and.md",
+          "sha": "30f05d3f8bea95379273799a21f0a1990a6e6511",
+          "size": 1812,
+          "kind": "text"
+        },
+        {
+          "path": "rules/rendering-text-in-text-component.md",
+          "repositoryPath": "skills/react-native-skills/rules/rendering-text-in-text-component.md",
+          "sha": "fd1b9f407014c783f3e59a5f3e5bf72979d62547",
+          "size": 697,
+          "kind": "text"
+        },
+        {
+          "path": "rules/scroll-position-no-state.md",
+          "repositoryPath": "skills/react-native-skills/rules/scroll-position-no-state.md",
+          "sha": "a5760cd2892a9985aeeed93abf719be5dc4efa88",
+          "size": 1936,
+          "kind": "text"
+        },
+        {
+          "path": "rules/state-ground-truth.md",
+          "repositoryPath": "skills/react-native-skills/rules/state-ground-truth.md",
+          "sha": "c3c4bd9e497bcec63c303ec1cf2d0ff34e5a39cb",
+          "size": 2172,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-expo-image.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-expo-image.md",
+          "sha": "72d768f1bf89d998e93611724e3608f48eb6b3a1",
+          "size": 1648,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-image-gallery.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-image-gallery.md",
+          "sha": "ef26d962f376c8c3fe052d578e143932fdd96a58",
+          "size": 2546,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-measure-views.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-measure-views.md",
+          "sha": "8b783fee314ec7a4152cf49e0febcbdd78411e2c",
+          "size": 2232,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-menus.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-menus.md",
+          "sha": "5168bc2037ca1fd1e1312abd4a2b77fec8eb5264",
+          "size": 4598,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-native-modals.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-native-modals.md",
+          "sha": "f560e11e12e703a46517ff87d371a43e56230a81",
+          "size": 1859,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-pressable.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-pressable.md",
+          "sha": "31c3d204274292e244466bae9f425064263ae80a",
+          "size": 1534,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-safe-area-scroll.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-safe-area-scroll.md",
+          "sha": "79812bc9ce35eaad4c965103d0d87b7230084ca8",
+          "size": 1579,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-scrollview-content-inset.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-scrollview-content-inset.md",
+          "sha": "bbebc3b81c22ded13447efe5876c8c3408b4eb02",
+          "size": 1317,
+          "kind": "text"
+        },
+        {
+          "path": "rules/ui-styling.md",
+          "repositoryPath": "skills/react-native-skills/rules/ui-styling.md",
+          "sha": "3908de3c4bbd03ce2f024917a2d82f9c03517100",
+          "size": 2212,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-README.md",
+          "repositoryPath": "README.md",
+          "sha": "04a1a5a46a22cfd430e2877b7c145e34fc2653ab",
+          "size": 7838,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-vercel-labs-writing-guidelines",
+    "title": "Writing Guidelines",
+    "category": "Writing",
+    "tags": [
+      "editing",
+      "technical-writing"
+    ],
+    "rank": 16,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "writing-guidelines",
+      "description": "Review docs/prose for Writing Guidelines compliance. Use when asked to \"review my docs\", \"check writing style\", \"audit prose\", \"review docs voice and tone\", or \"check this page against the writing handbook\".",
+      "requirements": []
+    },
+    "maker": {
+      "id": "vercel-labs",
+      "name": "Vercel",
+      "url": "https://github.com/vercel-labs",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/108547162?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 32301,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "vercel-labs/agent-skills",
+      "commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "directory": "skills/writing-guidelines",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/skills/writing-guidelines/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/vercel-labs/agent-skills/blob/063bee94c3f4df8453406c830b0a7df0f2860278/README.md",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-08-28T13:36:31Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/writing-guidelines/SKILL.md",
+          "sha": "63facf310252a990d154bed12b3dcdd295ba771a",
+          "size": 1233,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-README.md",
+          "repositoryPath": "README.md",
+          "sha": "04a1a5a46a22cfd430e2877b7c145e34fc2653ab",
+          "size": 7838,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-obra-verification-before-completion",
+    "title": "Verification Before Completion",
+    "category": "Development",
+    "tags": [
+      "verification",
+      "quality"
+    ],
+    "rank": 17,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "verification-before-completion",
+      "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "obra",
+      "name": "Jesse Vincent",
+      "url": "https://github.com/obra",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45416?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 298232,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "obra/superpowers",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "directory": "skills/verification-before-completion",
+      "url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/verification-before-completion/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-10T03:03:30Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/verification-before-completion/SKILL.md",
+          "sha": "7d45333cc4a49c57a80df6c1fe2fa777a207afbc",
+          "size": 3646,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "abf0390320aa14406af7a520b9b0739fdda9bf08",
+          "size": 1070,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-obra-test-driven-development",
+    "title": "Test Driven Development",
+    "category": "Development",
+    "tags": [
+      "testing",
+      "tdd"
+    ],
+    "rank": 18,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "test-driven-development",
+      "description": "Use when implementing any feature or bugfix, before writing implementation code",
+      "requirements": [
+        "Project folder and test runner"
+      ]
+    },
+    "maker": {
+      "id": "obra",
+      "name": "Jesse Vincent",
+      "url": "https://github.com/obra",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45416?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 298232,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "obra/superpowers",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "directory": "skills/test-driven-development",
+      "url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/test-driven-development/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-10T03:03:30Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/test-driven-development/SKILL.md",
+          "sha": "46838cc9e893c06259e3bdad0fc2425b36242f15",
+          "size": 9578,
+          "kind": "text"
+        },
+        {
+          "path": "writing-good-tests.md",
+          "repositoryPath": "skills/test-driven-development/writing-good-tests.md",
+          "sha": "d3c4482fd30b4f9084bb61545fe73939a7502c28",
+          "size": 8268,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "abf0390320aa14406af7a520b9b0739fdda9bf08",
+          "size": 1070,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-obra-brainstorming",
+    "title": "Brainstorming",
+    "category": "Productivity",
+    "tags": [
+      "planning",
+      "design"
+    ],
+    "rank": 19,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "brainstorming",
+      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a talk, a business, a renovation).",
+      "requirements": [
+        "Project folder; Writing Plans for the upstream handoff"
+      ]
+    },
+    "maker": {
+      "id": "obra",
+      "name": "Jesse Vincent",
+      "url": "https://github.com/obra",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45416?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 298232,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "obra/superpowers",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "directory": "skills/brainstorming",
+      "url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/brainstorming/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-10T03:03:30Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/brainstorming/SKILL.md",
+          "sha": "22b98fc5bac68d46bc8f066df90155aa3815262d",
+          "size": 10073,
+          "kind": "text"
+        },
+        {
+          "path": "builder-check-prompt.md",
+          "repositoryPath": "skills/brainstorming/builder-check-prompt.md",
+          "sha": "136e9c1d516ee1852abc5e556e76ce1b085d3827",
+          "size": 881,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/frame-template.html",
+          "repositoryPath": "skills/brainstorming/scripts/frame-template.html",
+          "sha": "f540bb8a4f88107e2b37b2871a4c1a55a3b6f720",
+          "size": 8094,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/helper.js",
+          "repositoryPath": "skills/brainstorming/scripts/helper.js",
+          "sha": "e11d26489ce248f37af3e4dd01ddec6a4e88287f",
+          "size": 5615,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/server.cjs",
+          "repositoryPath": "skills/brainstorming/scripts/server.cjs",
+          "sha": "fdc796122583f5d6687d9582eb265c2fa0cb7781",
+          "size": 25699,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/start-server.sh",
+          "repositoryPath": "skills/brainstorming/scripts/start-server.sh",
+          "sha": "016a8e4870142ce2adbe81a021d8b6b9073e7618",
+          "size": 6908,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/stop-server.sh",
+          "repositoryPath": "skills/brainstorming/scripts/stop-server.sh",
+          "sha": "7cacfe9440043f7a46eac555cd835fad0769c425",
+          "size": 3263,
+          "kind": "text"
+        },
+        {
+          "path": "visual-companion.md",
+          "repositoryPath": "skills/brainstorming/visual-companion.md",
+          "sha": "8dca065bd9adb9d4fa82a66acbb4176ea23259c6",
+          "size": 13413,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "abf0390320aa14406af7a520b9b0739fdda9bf08",
+          "size": 1070,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-obra-writing-plans",
+    "title": "Writing Plans",
+    "category": "Productivity",
+    "tags": [
+      "planning",
+      "implementation"
+    ],
+    "rank": 20,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "writing-plans",
+      "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "obra",
+      "name": "Jesse Vincent",
+      "url": "https://github.com/obra",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45416?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 298232,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "obra/superpowers",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "directory": "skills/writing-plans",
+      "url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/writing-plans/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-10T03:03:30Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/writing-plans/SKILL.md",
+          "sha": "4cf0275d88d67aa4ef09f4bbca9970ed6ff74a00",
+          "size": 10335,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "abf0390320aa14406af7a520b9b0739fdda9bf08",
+          "size": 1070,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-obra-receiving-code-review",
+    "title": "Receiving Code Review",
+    "category": "Development",
+    "tags": [
+      "review",
+      "feedback"
+    ],
+    "rank": 21,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "receiving-code-review",
+      "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+      "requirements": [
+        "Project folder and review feedback"
+      ]
+    },
+    "maker": {
+      "id": "obra",
+      "name": "Jesse Vincent",
+      "url": "https://github.com/obra",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45416?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 298232,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "obra/superpowers",
+      "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "directory": "skills/receiving-code-review",
+      "url": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/receiving-code-review/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-10T03:03:30Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/receiving-code-review/SKILL.md",
+          "sha": "950da7b74bf6dbed6b8726d12ddadd65a9f5fda7",
+          "size": 6203,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "abf0390320aa14406af7a520b9b0739fdda9bf08",
+          "size": 1070,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-copy-editing",
+    "title": "Copy Editing",
+    "category": "Writing",
+    "tags": [
+      "editing",
+      "marketing"
+    ],
+    "rank": 22,
+    "version": "2.1.1",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "copy-editing",
+      "description": "When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,' 'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit,' 'this sounds like AI,' 'AI slop,' 'de-slop this,' or 'make it sound human.' Use this when the user already has copy and wants it improved or refreshed rather than rewritten from scratch. Every edit removes AI tells such as 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and sentences that trail into extra comma clauses. For writing new copy, see copywriting.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/copy-editing",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/copy-editing/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/copy-editing/SKILL.md",
+          "sha": "5749fdc856c4c2c7d37d7886672443769fc685f9",
+          "size": 17894,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/copy-editing/evals/evals.json",
+          "sha": "8b1adc394050b28c48c5871d9cfd2025c02e803f",
+          "size": 10564,
+          "kind": "text"
+        },
+        {
+          "path": "references/checklist.md",
+          "repositoryPath": "skills/copy-editing/references/checklist.md",
+          "sha": "8710c8ae76b75856fc3852ead3f8146386d9e75b",
+          "size": 2462,
+          "kind": "text"
+        },
+        {
+          "path": "references/content-refresh.md",
+          "repositoryPath": "skills/copy-editing/references/content-refresh.md",
+          "sha": "5def44f806c36e66b1d69400c33ec63a4e0d024d",
+          "size": 4662,
+          "kind": "text"
+        },
+        {
+          "path": "references/plain-english-alternatives.md",
+          "repositoryPath": "skills/copy-editing/references/plain-english-alternatives.md",
+          "sha": "2fc323557dabdee6ee9f0a52e2a4c24f473fc775",
+          "size": 8258,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-seo-audit",
+    "title": "SEO Audit",
+    "category": "Research",
+    "tags": [
+      "seo",
+      "web"
+    ],
+    "rank": 23,
+    "version": "2.2.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "seo-audit",
+      "description": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" \"SEO health check,\" \"my traffic dropped,\" \"lost rankings,\" \"not showing up in Google,\" \"site isn't ranking,\" \"Google update hit me,\" \"page speed,\" \"core web vitals,\" \"crawl errors,\" \"indexing issues,\" \"stuck on page 2,\" \"striking distance keywords,\" \"title tag rewrite,\" \"low CTR,\" \"local SEO,\" \"Google Business Profile,\" or \"map pack.\" Use this even if the user just says something vague like \"my SEO is bad\" or \"help with SEO\" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.",
+      "requirements": [
+        "Website or supplied site evidence"
+      ]
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/seo-audit",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/seo-audit/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/seo-audit/SKILL.md",
+          "sha": "9139ffeb437f4e36e16f19a7a16b3a99e44193c5",
+          "size": 17665,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/seo-audit/evals/evals.json",
+          "sha": "d569ae70cf4746f7a27e7808abbaea4878c27fd7",
+          "size": 15717,
+          "kind": "text"
+        },
+        {
+          "path": "references/ai-writing-detection.md",
+          "repositoryPath": "skills/seo-audit/references/ai-writing-detection.md",
+          "sha": "cb67ece4135f4153575bbbdfbf722364babff61d",
+          "size": 6528,
+          "kind": "text"
+        },
+        {
+          "path": "references/international-seo.md",
+          "repositoryPath": "skills/seo-audit/references/international-seo.md",
+          "sha": "6ba5f1f6804477f3f86aecabecc128fbe9083911",
+          "size": 14622,
+          "kind": "text"
+        },
+        {
+          "path": "references/local-seo-pages-and-measurement.md",
+          "repositoryPath": "skills/seo-audit/references/local-seo-pages-and-measurement.md",
+          "sha": "d49f0443e091c70e4778a4e33030a33d18a361a4",
+          "size": 4036,
+          "kind": "text"
+        },
+        {
+          "path": "references/local-seo-profile-and-citations.md",
+          "repositoryPath": "skills/seo-audit/references/local-seo-profile-and-citations.md",
+          "sha": "d34b7e043cb7c4d2da114f04e986bd476a22d0c6",
+          "size": 3971,
+          "kind": "text"
+        },
+        {
+          "path": "references/local-seo.md",
+          "repositoryPath": "skills/seo-audit/references/local-seo.md",
+          "sha": "c2636ada98809d6ed8db588040817adc332add5e",
+          "size": 7249,
+          "kind": "text"
+        },
+        {
+          "path": "references/rankings-push.md",
+          "repositoryPath": "skills/seo-audit/references/rankings-push.md",
+          "sha": "7883357f7425dd90a9ce8ba7c94a9105b4f7fda7",
+          "size": 4466,
+          "kind": "text"
+        },
+        {
+          "path": "references/title-tags.md",
+          "repositoryPath": "skills/seo-audit/references/title-tags.md",
+          "sha": "5d5eac8002179ac5288f3b4bbd2aa35b3a409a42",
+          "size": 5533,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-content-strategy",
+    "title": "Content Strategy",
+    "category": "Writing",
+    "tags": [
+      "content",
+      "marketing"
+    ],
+    "rank": 24,
+    "version": "2.1.3",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "content-strategy",
+      "description": "When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions \"content strategy,\" \"what should I write about,\" \"content ideas,\" \"blog strategy,\" \"topic clusters,\" \"content planning,\" \"editorial calendar,\" \"content marketing,\" \"content roadmap,\" \"what content should I create,\" \"blog topics,\" \"content pillars,\" or \"I don't know what to write.\" Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/content-strategy",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/content-strategy/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/content-strategy/SKILL.md",
+          "sha": "89b4b6323fb4a9562e213abbc538affaed193046",
+          "size": 19174,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/content-strategy/evals/evals.json",
+          "sha": "23310228166d5b0bf579299c40e9a5e4b33d5779",
+          "size": 10190,
+          "kind": "text"
+        },
+        {
+          "path": "references/content-distribution.md",
+          "repositoryPath": "skills/content-strategy/references/content-distribution.md",
+          "sha": "6f4a3c38a15e9949727ebcf621f0054710a02a83",
+          "size": 5576,
+          "kind": "text"
+        },
+        {
+          "path": "references/headless-cms.md",
+          "repositoryPath": "skills/content-strategy/references/headless-cms.md",
+          "sha": "fa01433bf3b29a33fef40c3a580a6087495d3fcc",
+          "size": 8583,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-marketing-ideas",
+    "title": "Marketing Ideas",
+    "category": "Research",
+    "tags": [
+      "growth",
+      "marketing"
+    ],
+    "rank": 25,
+    "version": "2.0.1",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "marketing-ideas",
+      "description": "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,' or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on how to grow. For specific channel execution, see the relevant skill (ads, social, emails, etc.).",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/marketing-ideas",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/marketing-ideas/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/marketing-ideas/SKILL.md",
+          "sha": "c5d681932b8e329236fa9e06fa85d6f5dc632c8d",
+          "size": 5789,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/marketing-ideas/evals/evals.json",
+          "sha": "82177fcc1a8449b6e91c6cbcc5553ec0f3bd5399",
+          "size": 7490,
+          "kind": "text"
+        },
+        {
+          "path": "references/guerrilla-marketing.md",
+          "repositoryPath": "skills/marketing-ideas/references/guerrilla-marketing.md",
+          "sha": "3a47883e8f7a55c1542762e4c4429e44053ee058",
+          "size": 5033,
+          "kind": "text"
+        },
+        {
+          "path": "references/ideas-by-category.md",
+          "repositoryPath": "skills/marketing-ideas/references/ideas-by-category.md",
+          "sha": "ab57dccde498eda91eb7999cebbebc6f5d2449a6",
+          "size": 15400,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-marketing-psychology",
+    "title": "Marketing Psychology",
+    "category": "Writing",
+    "tags": [
+      "psychology",
+      "marketing"
+    ],
+    "rank": 26,
+    "version": "2.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "marketing-psychology",
+      "description": "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,' or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see copywriting.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/marketing-psychology",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/marketing-psychology/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/marketing-psychology/SKILL.md",
+          "sha": "806c09fba8228e53b9d2443cea7e2bbb104e6ee9",
+          "size": 21884,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/marketing-psychology/evals/evals.json",
+          "sha": "09bda2f99b77dc9953e61b9b2368392334b5e7e2",
+          "size": 6036,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-product-marketing",
+    "title": "Product Marketing",
+    "category": "Writing",
+    "tags": [
+      "positioning",
+      "context"
+    ],
+    "rank": 27,
+    "version": "2.1.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "product-marketing",
+      "description": "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it creates `.agents/product-marketing.md` that all other skills reference for product, audience, and positioning context.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/product-marketing",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/product-marketing/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/product-marketing/SKILL.md",
+          "sha": "622eab19e823a131fe8b9d500aa53143604fad8a",
+          "size": 9433,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/product-marketing/evals/evals.json",
+          "sha": "a2739e5fe6fb881c130b2e8fbf96090c5e215117",
+          "size": 7214,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-launch",
+    "title": "Launch Strategy",
+    "category": "Productivity",
+    "tags": [
+      "launch",
+      "marketing"
+    ],
+    "rank": 28,
+    "version": "2.2.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "launch",
+      "description": "When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user mentions 'launch,' 'Product Hunt,' 'feature release,' 'announcement,' 'go-to-market,' 'beta launch,' 'early access,' 'waitlist,' 'product update,' 'how do I launch this,' 'site launch,' 'go live,' 'pre-launch QA,' 'launch checklist,' 'GTM plan,' 'we're about to ship,' 'changelog,' 'release notes,' or 'what did we ship this week.' Use this whenever someone is preparing to release something publicly. For ongoing marketing after launch, see marketing-ideas. For the offer being launched (bonuses, guarantees, scarcity, naming), see offers.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/launch",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/launch/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/launch/SKILL.md",
+          "sha": "b7783f50953c77cfc1d21fab4425549c2cd3ac33",
+          "size": 15727,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/launch/evals/evals.json",
+          "sha": "71547a21c972e52d2f26badca45931d54f8a5142",
+          "size": 10567,
+          "kind": "text"
+        },
+        {
+          "path": "references/shipped-changes.md",
+          "repositoryPath": "skills/launch/references/shipped-changes.md",
+          "sha": "321e5715b16c48194e05991cbf4e35833756e0fa",
+          "size": 4703,
+          "kind": "text"
+        },
+        {
+          "path": "references/site-launch-qa.md",
+          "repositoryPath": "skills/launch/references/site-launch-qa.md",
+          "sha": "07e7f3e28ba3afa2fa96976db8568190090be3da",
+          "size": 3793,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-emails",
+    "title": "Email Marketing",
+    "category": "Writing",
+    "tags": [
+      "email",
+      "copy"
+    ],
+    "rank": 29,
+    "version": "2.1.3",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "emails",
+      "description": "When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions \"email sequence,\" \"drip campaign,\" \"nurture sequence,\" \"onboarding emails,\" \"welcome sequence,\" \"re-engagement emails,\" \"email automation,\" \"lifecycle emails,\" \"trigger-based emails,\" \"email funnel,\" \"email workflow,\" \"what emails should I send,\" \"welcome series,\" or \"email cadence.\" Use this for any multi-email automated flow. Emails avoid AI tells like 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and fake 'Re:' subject lines. For cold outreach and outbound sequences, see cold-email. For in-app onboarding, see onboarding.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/emails",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/emails/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/emails/SKILL.md",
+          "sha": "82da4f8f1fd031e3660f1fd500eaa62b164c5271",
+          "size": 11353,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/emails/evals/evals.json",
+          "sha": "b1e421878e51108bf1f26598c5be58a222d7b8c3",
+          "size": 7471,
+          "kind": "text"
+        },
+        {
+          "path": "references/copy-guidelines.md",
+          "repositoryPath": "skills/emails/references/copy-guidelines.md",
+          "sha": "6e31f2b5cc331ae6ffbe3127b52199bbaf05c14d",
+          "size": 2332,
+          "kind": "text"
+        },
+        {
+          "path": "references/email-types.md",
+          "repositoryPath": "skills/emails/references/email-types.md",
+          "sha": "dd6124051517e98d0550f7e35477b428ef5b81f6",
+          "size": 14250,
+          "kind": "text"
+        },
+        {
+          "path": "references/sequence-templates.md",
+          "repositoryPath": "skills/emails/references/sequence-templates.md",
+          "sha": "6146dd36af0200ee35213091fc51dbc9bbf5750e",
+          "size": 3909,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-pricing",
+    "title": "Pricing Strategy",
+    "category": "Research",
+    "tags": [
+      "pricing",
+      "marketing"
+    ],
+    "rank": 30,
+    "version": "2.1.3",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "pricing",
+      "description": "When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,' 'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs monthly,' 'per seat pricing,' 'should I offer a free plan,' 'pricing page teardown,' 'pricing page audit,' 'is my pricing page AI-readable,' or 'can AI read my pricing.' Use this whenever someone is figuring out what to charge, how to structure their plans, or wants to audit a pricing page (for humans and for the AI agents that shortlist tools). For in-app upgrade screens, see paywalls. For offer construction (bonuses, guarantees, value framing, naming) on services/courses/coaching/high-ticket B2B, see offers.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/pricing",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/pricing/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/pricing/SKILL.md",
+          "sha": "51e53dabe1abffac3e16a6765a360adffdbcbde9",
+          "size": 13479,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/pricing/evals/evals.json",
+          "sha": "7686d800a57bde99344f3470fb2d2c763dd64768",
+          "size": 11295,
+          "kind": "text"
+        },
+        {
+          "path": "references/pricing-models.md",
+          "repositoryPath": "skills/pricing/references/pricing-models.md",
+          "sha": "807165db008f2ad3bcb1528a27c1e8b748d379f3",
+          "size": 4681,
+          "kind": "text"
+        },
+        {
+          "path": "references/pricing-page-teardown.md",
+          "repositoryPath": "skills/pricing/references/pricing-page-teardown.md",
+          "sha": "0535348f4a94b645e717ede0d3e547bba53a7b75",
+          "size": 7283,
+          "kind": "text"
+        },
+        {
+          "path": "references/research-methods.md",
+          "repositoryPath": "skills/pricing/references/research-methods.md",
+          "sha": "f125eedd4fa0e065379672695ea5ba42adb0ec4b",
+          "size": 5462,
+          "kind": "text"
+        },
+        {
+          "path": "references/tier-structure.md",
+          "repositoryPath": "skills/pricing/references/tier-structure.md",
+          "sha": "35a6d5375b408b8bfe46586380a88dda1c6fdfbf",
+          "size": 7199,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-coreyhaines31-customer-research",
+    "title": "Customer Research",
+    "category": "Research",
+    "tags": [
+      "customers",
+      "research"
+    ],
+    "rank": 31,
+    "version": "2.0.4",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "customer-research",
+      "description": "When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions \"customer research,\" \"ICP research,\" \"talk to customers,\" \"analyze transcripts,\" \"customer interviews,\" \"survey analysis,\" \"support ticket analysis,\" \"voice of customer,\" \"VOC,\" \"build personas,\" \"customer personas,\" \"jobs to be done,\" \"JTBD,\" \"what do customers say,\" \"what are customers struggling with,\" \"Reddit mining,\" \"G2 reviews,\" \"review mining,\" \"digital watering holes,\" \"community research,\" \"forum research,\" \"competitor reviews,\" \"customer sentiment,\" \"PMF survey,\" \"product/market fit survey,\" \"customer interview questions,\" \"interview outreach,\" \"Sales Safari,\" or \"find out why customers churn/convert/buy.\" Use for analyzing existing research assets, mining online sources, AND running primary research (interviews and surveys). For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "coreyhaines31",
+      "name": "Corey Haines",
+      "url": "https://github.com/coreyhaines31",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/34802794?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 54392,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd",
+      "directory": "skills/customer-research",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/skills/customer-research/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/coreyhaines31/marketingskills/blob/3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-13T00:27:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/customer-research/SKILL.md",
+          "sha": "a00538447e9e75489dbf07378325dfa428ec46da",
+          "size": 15166,
+          "kind": "text"
+        },
+        {
+          "path": "evals/evals.json",
+          "repositoryPath": "skills/customer-research/evals/evals.json",
+          "sha": "a084bb359c75d9c243e43d726a7bc2bfce39eaeb",
+          "size": 12547,
+          "kind": "text"
+        },
+        {
+          "path": "references/interviews-and-surveys.md",
+          "repositoryPath": "skills/customer-research/references/interviews-and-surveys.md",
+          "sha": "aade5bc6ed6c3f97c50bc03c1b00de8057021f9e",
+          "size": 8640,
+          "kind": "text"
+        },
+        {
+          "path": "references/source-guides.md",
+          "repositoryPath": "skills/customer-research/references/source-guides.md",
+          "sha": "be6fb691d16b6cbdf9d474c9cf52c42104e7e542",
+          "size": 16240,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf",
+          "size": 1069,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-mattpocock-teach",
+    "title": "Teach",
+    "category": "Productivity",
+    "tags": [
+      "learning",
+      "explanations"
+    ],
+    "rank": 32,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "manual",
+    "skill": {
+      "name": "teach",
+      "description": "Teach the user a new skill or concept, within this workspace.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "mattpocock",
+      "name": "Matt Pocock",
+      "url": "https://github.com/mattpocock",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/28293365?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 288070,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "mattpocock/skills",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
+      "directory": "skills/productivity/teach",
+      "url": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/teach/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-12T08:46:48Z",
+      "files": [
+        {
+          "path": "GLOSSARY-FORMAT.md",
+          "repositoryPath": "skills/productivity/teach/GLOSSARY-FORMAT.md",
+          "sha": "fdd7e366ad9760588b28981e42b3d3b561e56aca",
+          "size": 2122,
+          "kind": "text"
+        },
+        {
+          "path": "LEARNING-RECORD-FORMAT.md",
+          "repositoryPath": "skills/productivity/teach/LEARNING-RECORD-FORMAT.md",
+          "sha": "953c61422776b47612c3c945920358ad7b5daee7",
+          "size": 2747,
+          "kind": "text"
+        },
+        {
+          "path": "MISSION-FORMAT.md",
+          "repositoryPath": "skills/productivity/teach/MISSION-FORMAT.md",
+          "sha": "45250bb1bad70988bf381625931df64645e10246",
+          "size": 1540,
+          "kind": "text"
+        },
+        {
+          "path": "RESOURCES-FORMAT.md",
+          "repositoryPath": "skills/productivity/teach/RESOURCES-FORMAT.md",
+          "sha": "18b588c8b6f96a50ae2352f264928c643d2782e4",
+          "size": 1924,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/productivity/teach/SKILL.md",
+          "sha": "493fa3bae0dada971c4dfb965790e56920b1dced",
+          "size": 9733,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/productivity/teach/agents/openai.yaml",
+          "sha": "3452a850e3b0c1f0a3d41b2bfd45164d2d38d7f6",
+          "size": 139,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "f1dd2c09108dde1a5f56097cee8461b3ea834499",
+          "size": 1068,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-mattpocock-code-review",
+    "title": "Code Review",
+    "category": "Development",
+    "tags": [
+      "review",
+      "quality"
+    ],
+    "rank": 33,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "code-review",
+      "description": "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\".",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "mattpocock",
+      "name": "Matt Pocock",
+      "url": "https://github.com/mattpocock",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/28293365?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 288070,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "mattpocock/skills",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
+      "directory": "skills/engineering/code-review",
+      "url": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/code-review/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-12T08:46:48Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/engineering/code-review/SKILL.md",
+          "sha": "373a4f26e6cfa3617778397945bb069d9cb184bc",
+          "size": 6670,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/engineering/code-review/agents/openai.yaml",
+          "sha": "9076774ba327f49068db9273feceda03bfe940fa",
+          "size": 100,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "f1dd2c09108dde1a5f56097cee8461b3ea834499",
+          "size": 1068,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-mattpocock-writing-for-agents",
+    "title": "Writing for Agents",
+    "category": "Writing",
+    "tags": [
+      "documentation",
+      "agents"
+    ],
+    "rank": 34,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "writing-for-agents",
+      "description": "Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "mattpocock",
+      "name": "Matt Pocock",
+      "url": "https://github.com/mattpocock",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/28293365?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 288070,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "mattpocock/skills",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
+      "directory": "skills/productivity/writing-for-agents",
+      "url": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/writing-for-agents/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-12T08:46:48Z",
+      "files": [
+        {
+          "path": "SKILL-MECHANICS.md",
+          "repositoryPath": "skills/productivity/writing-for-agents/SKILL-MECHANICS.md",
+          "sha": "9cdbdb22aadc438755392216e75ad9a14cc9832e",
+          "size": 2629,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/productivity/writing-for-agents/SKILL.md",
+          "sha": "a37608daf6e835e767deecfb498facecaaba82ba",
+          "size": 10886,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/productivity/writing-for-agents/agents/openai.yaml",
+          "sha": "079c933b75743dec18b5d0c01006def20b6aad26",
+          "size": 102,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "f1dd2c09108dde1a5f56097cee8461b3ea834499",
+          "size": 1068,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-openai-pdf",
+    "title": "PDF",
+    "category": "Productivity",
+    "tags": [
+      "pdf",
+      "documents"
+    ],
+    "rank": 35,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "pdf",
+      "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction.",
+      "requirements": [
+        "Python, reportlab, pdfplumber, pypdf; Poppler for rendering"
+      ]
+    },
+    "maker": {
+      "id": "openai",
+      "name": "OpenAI",
+      "url": "https://github.com/openai",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/14957082?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 28028,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "openai/skills",
+      "commit": "49f948faa9258a0c61caceaf225e179651397431",
+      "directory": "skills/.curated/pdf",
+      "url": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-09-08T20:35:26Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/.curated/pdf/LICENSE.txt",
+          "sha": "13e25df86ce06eb6488e6a6bc5c5847f5dedc352",
+          "size": 10776,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/.curated/pdf/SKILL.md",
+          "sha": "fd5d56058f10202e4f50a30bc2906f39696024a1",
+          "size": 2517,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/.curated/pdf/agents/openai.yaml",
+          "sha": "fe2876a68ad5cdbf6d045396e18fba9b8919e1bf",
+          "size": 219,
+          "kind": "text"
+        },
+        {
+          "path": "assets/pdf.png",
+          "repositoryPath": "skills/.curated/pdf/assets/pdf.png",
+          "sha": "dd16ba283f6056cfe99cc3d36612d3b8cd79e00d",
+          "size": 1312,
+          "kind": "asset"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-openai-security-best-practices",
+    "title": "Security Best Practices",
+    "category": "Development",
+    "tags": [
+      "security",
+      "review"
+    ],
+    "rank": 36,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "security-best-practices",
+      "description": "Perform language and framework specific security best-practice reviews and suggest improvements. Trigger only when the user explicitly requests security best practices guidance, a security review/report, or secure-by-default coding help. Trigger only for supported languages (python, javascript/typescript, go). Do not trigger for general code review, debugging, or non-security tasks.",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "openai",
+      "name": "OpenAI",
+      "url": "https://github.com/openai",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/14957082?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 28028,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "openai/skills",
+      "commit": "49f948faa9258a0c61caceaf225e179651397431",
+      "directory": "skills/.curated/security-best-practices",
+      "url": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-09-08T20:35:26Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/.curated/security-best-practices/LICENSE.txt",
+          "sha": "13e25df86ce06eb6488e6a6bc5c5847f5dedc352",
+          "size": 10776,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/.curated/security-best-practices/SKILL.md",
+          "sha": "45ccbd8d671c4c4cc3e7e0645a16a3f80ec50de7",
+          "size": 8612,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/.curated/security-best-practices/agents/openai.yaml",
+          "sha": "1721736a914e6ce41da2e0e005f6a8e782f2e642",
+          "size": 237,
+          "kind": "text"
+        },
+        {
+          "path": "references/golang-general-backend-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/golang-general-backend-security.md",
+          "sha": "85e9c6a1669e0d04af56c9a0bce113dd35e0248d",
+          "size": 38659,
+          "kind": "text"
+        },
+        {
+          "path": "references/javascript-express-web-server-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/javascript-express-web-server-security.md",
+          "sha": "98d79067ffb784ce426394193e744ddc7f3c93be",
+          "size": 49357,
+          "kind": "text"
+        },
+        {
+          "path": "references/javascript-general-web-frontend-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/javascript-general-web-frontend-security.md",
+          "sha": "d8b696f363ea54661791c048ba19a57933d20825",
+          "size": 38638,
+          "kind": "text"
+        },
+        {
+          "path": "references/javascript-jquery-web-frontend-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/javascript-jquery-web-frontend-security.md",
+          "sha": "3fd00db430ed55fafe50112b8d8b751fe82deec1",
+          "size": 33581,
+          "kind": "text"
+        },
+        {
+          "path": "references/javascript-typescript-nextjs-web-server-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/javascript-typescript-nextjs-web-server-security.md",
+          "sha": "44cc8213b11feda2eac8283dfd6a11fe93a68965",
+          "size": 43423,
+          "kind": "text"
+        },
+        {
+          "path": "references/javascript-typescript-react-web-frontend-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/javascript-typescript-react-web-frontend-security.md",
+          "sha": "33fb693282a40754a081a499cda3d471aa23da28",
+          "size": 41686,
+          "kind": "text"
+        },
+        {
+          "path": "references/javascript-typescript-vue-web-frontend-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/javascript-typescript-vue-web-frontend-security.md",
+          "sha": "be326548bf953b6d1918727d228449ab4cb5110d",
+          "size": 31445,
+          "kind": "text"
+        },
+        {
+          "path": "references/python-django-web-server-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/python-django-web-server-security.md",
+          "sha": "0b9a89a73e0ff3a88ccb7837b56ad1a5f15259e0",
+          "size": 38661,
+          "kind": "text"
+        },
+        {
+          "path": "references/python-fastapi-web-server-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/python-fastapi-web-server-security.md",
+          "sha": "d394a55bb86b3b2e5c2b73e65cb115a2a0ce1c05",
+          "size": 44926,
+          "kind": "text"
+        },
+        {
+          "path": "references/python-flask-web-server-security.md",
+          "repositoryPath": "skills/.curated/security-best-practices/references/python-flask-web-server-security.md",
+          "sha": "adbc599aad8688a3446f5b595a1f4f0c1eac942f",
+          "size": 31748,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-openai-security-threat-model",
+    "title": "Security Threat Modeling",
+    "category": "Development",
+    "tags": [
+      "security",
+      "architecture"
+    ],
+    "rank": 37,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "security-threat-model",
+      "description": "Repository-grounded threat modeling that enumerates trust boundaries, assets, attacker capabilities, abuse paths, and mitigations, and writes a concise Markdown threat model. Trigger only when the user explicitly asks to threat model a codebase or path, enumerate threats/abuse paths, or perform AppSec threat modeling. Do not trigger for general architecture summaries, code review, or non-security design work.",
+      "requirements": [
+        "Project folder"
+      ]
+    },
+    "maker": {
+      "id": "openai",
+      "name": "OpenAI",
+      "url": "https://github.com/openai",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/14957082?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 28028,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "openai/skills",
+      "commit": "49f948faa9258a0c61caceaf225e179651397431",
+      "directory": "skills/.curated/security-threat-model",
+      "url": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/LICENSE.txt",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-09-08T20:35:26Z",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "repositoryPath": "skills/.curated/security-threat-model/LICENSE.txt",
+          "sha": "13e25df86ce06eb6488e6a6bc5c5847f5dedc352",
+          "size": 10776,
+          "kind": "text"
+        },
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/.curated/security-threat-model/SKILL.md",
+          "sha": "abd3c1c95d49c4e0e0664f198f4bf168c6291aec",
+          "size": 5561,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "skills/.curated/security-threat-model/agents/openai.yaml",
+          "sha": "d8b04e20a62688188f19bd396ae6b923841ddf8e",
+          "size": 254,
+          "kind": "text"
+        },
+        {
+          "path": "references/prompt-template.md",
+          "repositoryPath": "skills/.curated/security-threat-model/references/prompt-template.md",
+          "sha": "b6affb0d2f873ffe398f7a8df00095dc0ff01f59",
+          "size": 12642,
+          "kind": "text"
+        },
+        {
+          "path": "references/security-controls-and-assets.md",
+          "repositoryPath": "skills/.curated/security-threat-model/references/security-controls-and-assets.md",
+          "sha": "63d1455aeacfc97eaca4e371040dbadfbd791635",
+          "size": 1680,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-expo-expo-ui",
+    "title": "Expo UI",
+    "category": "Development",
+    "tags": [
+      "expo",
+      "mobile"
+    ],
+    "rank": 38,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "expo-ui",
+      "description": "Build native UI with the @expo/ui package: real SwiftUI on iOS and Jetpack Compose on Android. Default to @expo/ui for sheets (BottomSheet), pickers, sliders, toggles, menus, and grouped-form sections — do NOT reach for Reanimated, @gorhom/bottom-sheet, or RN built-in Picker/Switch; use @expo/ui instead. Fall back to RN built-ins only when @expo/ui is missing the component. NOTE: @expo/ui List renders native grouped rows like an iOS Settings screen — it is NOT a virtualized list; use FlatList/FlashList for large datasets. Covers universal components (Host, Column, Row, Button, Text, List, BottomSheet, FieldGroup, Switch, Slider, Picker, Menu), drop-in replacements for RN community libraries, and platform-specific SwiftUI/Jetpack Compose trees. Not for Expo Router navigation, Reanimated, or data fetching.",
+      "requirements": [
+        "Expo project"
+      ]
+    },
+    "maker": {
+      "id": "expo",
+      "name": "Expo",
+      "url": "https://github.com/expo",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/12504344?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 2795,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "expo/skills",
+      "commit": "d4f484024fec15196bfd3c272e953e3f983972cf",
+      "directory": "plugins/expo/skills/expo-ui",
+      "url": "https://github.com/expo/skills/blob/d4f484024fec15196bfd3c272e953e3f983972cf/plugins/expo/skills/expo-ui/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/expo/skills/blob/d4f484024fec15196bfd3c272e953e3f983972cf/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-07T12:47:44Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "plugins/expo/skills/expo-ui/SKILL.md",
+          "sha": "7f92493ffa960aed6d8ff98d2d5930e95f3d5478",
+          "size": 6950,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "plugins/expo/skills/expo-ui/agents/openai.yaml",
+          "sha": "585e24d3764bef685a79b011499f79b5915f7fc3",
+          "size": 722,
+          "kind": "text"
+        },
+        {
+          "path": "references/drop-in-replacements.md",
+          "repositoryPath": "plugins/expo/skills/expo-ui/references/drop-in-replacements.md",
+          "sha": "d462ada88e38d8f1d54279dc2961e60e861ba90d",
+          "size": 2085,
+          "kind": "text"
+        },
+        {
+          "path": "references/jetpack-compose.md",
+          "repositoryPath": "plugins/expo/skills/expo-ui/references/jetpack-compose.md",
+          "sha": "1096a57c3e9a394ae2aa93d4fb556f5663e07ee1",
+          "size": 5517,
+          "kind": "text"
+        },
+        {
+          "path": "references/swift-ui.md",
+          "repositoryPath": "plugins/expo/skills/expo-ui/references/swift-ui.md",
+          "sha": "480ec90f671c4f1ab8f04996cfc94a10d7b1ac5e",
+          "size": 4397,
+          "kind": "text"
+        },
+        {
+          "path": "references/universal.md",
+          "repositoryPath": "plugins/expo/skills/expo-ui/references/universal.md",
+          "sha": "3271d5451b66bb6ada37acb777b4a9d3721969f2",
+          "size": 4792,
+          "kind": "text"
+        },
+        {
+          "path": "scripts/list-components.js",
+          "repositoryPath": "plugins/expo/skills/expo-ui/scripts/list-components.js",
+          "sha": "3a64f7d1dd6d42abff320f65ab81cf7680d71e78",
+          "size": 7343,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "548fbcb6e0cc27e99b2cd341feb421a67eafdd2f",
+          "size": 1106,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-expo-expo-router",
+    "title": "Expo Router",
+    "category": "Development",
+    "tags": [
+      "expo",
+      "navigation"
+    ],
+    "rank": 39,
+    "version": "1.0.0",
+    "modes": [
+      "code"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "expo-router",
+      "description": "Navigation and routing for Expo Router. Covers file-based routes, groups and dynamic routes, folder organization, Link with previews and context menus, native Stack, page titles, modals and form sheets, NativeTabs, headers and toolbars, and header search bars.",
+      "requirements": [
+        "Expo project"
+      ]
+    },
+    "maker": {
+      "id": "expo",
+      "name": "Expo",
+      "url": "https://github.com/expo",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/12504344?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 2795,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "expo/skills",
+      "commit": "d4f484024fec15196bfd3c272e953e3f983972cf",
+      "directory": "plugins/expo/skills/expo-router",
+      "url": "https://github.com/expo/skills/blob/d4f484024fec15196bfd3c272e953e3f983972cf/plugins/expo/skills/expo-router/SKILL.md",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/expo/skills/blob/d4f484024fec15196bfd3c272e953e3f983972cf/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-07T12:47:44Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/SKILL.md",
+          "sha": "21c5c245db867c9b842f4d65fd8f1a2e9114a58e",
+          "size": 7018,
+          "kind": "text"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "repositoryPath": "plugins/expo/skills/expo-router/agents/openai.yaml",
+          "sha": "a314bc85a701a0464b6408fa3a0dbd4624984901",
+          "size": 422,
+          "kind": "text"
+        },
+        {
+          "path": "references/form-sheet.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/references/form-sheet.md",
+          "sha": "1ed80fb6f4e0c01104768079156381865a9dddd8",
+          "size": 6320,
+          "kind": "text"
+        },
+        {
+          "path": "references/route-structure.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/references/route-structure.md",
+          "sha": "b552729a4d9b845b482f69d002433e146c1b41ab",
+          "size": 5106,
+          "kind": "text"
+        },
+        {
+          "path": "references/search.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/references/search.md",
+          "sha": "9ca13bd58396a4aa9c4eb8e5a5fc21de552e8f86",
+          "size": 5173,
+          "kind": "text"
+        },
+        {
+          "path": "references/tabs.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/references/tabs.md",
+          "sha": "f689f74c506c04bc28a01ba6106ed2d77810e564",
+          "size": 13323,
+          "kind": "text"
+        },
+        {
+          "path": "references/toolbar-and-headers.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/references/toolbar-and-headers.md",
+          "sha": "9706b8d3f09abd5bae0d56b6179664e99b7bf940",
+          "size": 8061,
+          "kind": "text"
+        },
+        {
+          "path": "references/zoom-transitions.md",
+          "repositoryPath": "plugins/expo/skills/expo-router/references/zoom-transitions.md",
+          "sha": "27e00a888aa2ba998443ea9e3006b11321d14849",
+          "size": 4848,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "548fbcb6e0cc27e99b2cd341feb421a67eafdd2f",
+          "size": 1106,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  {
+    "id": "github-huggingface-huggingface-papers",
+    "title": "Hugging Face Papers",
+    "category": "Research",
+    "tags": [
+      "papers",
+      "ml"
+    ],
+    "rank": 40,
+    "version": "1.0.0",
+    "modes": [
+      "chat",
+      "code",
+      "bot"
+    ],
+    "invocation": "automatic",
+    "skill": {
+      "name": "huggingface-papers",
+      "description": "Look up and read Hugging Face paper pages in markdown, and use the papers API for structured metadata such as authors, linked models/datasets/spaces, Github repo and project page. Use when the user shares a Hugging Face paper page URL, an arXiv URL or ID, or asks to summarize, explain, or analyze an AI research paper.",
+      "requirements": []
+    },
+    "maker": {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "url": "https://github.com/huggingface",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/25720743?v=4"
+    },
+    "popularity": {
+      "repositoryStars": 11160,
+      "checkedAt": "2026-10-13T02:38:58.212Z"
+    },
+    "source": {
+      "repository": "huggingface/skills",
+      "commit": "c3ff942be3e07116b475253f0a8fc4f54682c1a8",
+      "directory": "skills/huggingface-papers",
+      "url": "https://github.com/huggingface/skills/blob/c3ff942be3e07116b475253f0a8fc4f54682c1a8/skills/huggingface-papers/SKILL.md",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/huggingface/skills/blob/c3ff942be3e07116b475253f0a8fc4f54682c1a8/LICENSE",
+      "checkedAt": "2026-10-13T02:38:58.212Z",
+      "pushedAt": "2026-10-08T15:30:08Z",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "repositoryPath": "skills/huggingface-papers/SKILL.md",
+          "sha": "e65fc90acabc30208883238ec89a27c4cdc1b57e",
+          "size": 9348,
+          "kind": "text"
+        },
+        {
+          "path": "UPSTREAM-LICENSE.txt",
+          "repositoryPath": "LICENSE",
+          "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "size": 11357,
+          "kind": "text"
+        }
+      ]
+    }
+  }
+]

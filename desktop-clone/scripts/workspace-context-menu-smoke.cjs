@@ -1,0 +1,51 @@
+const { _electron } = require(process.env.TINYGPT_PLAYWRIGHT_PACKAGE || 'playwright');
+const { build } = require('esbuild');
+const { resolve, join } = require('node:path');
+const { readFileSync, existsSync } = require('node:fs');
+const assert = require('node:assert/strict');
+(async () => {
+  const main = resolve('artifacts/workspace-context-menu-main.cjs');
+  await build({ entryPoints: ['scripts/workspace-design-smoke-main.ts'], outfile: main, bundle: true, platform: 'node', format: 'cjs', external: ['electron', '../out/main/index.js'] });
+  const profile = resolve('.tools-smoke-profile', `workspace-menu-${Date.now()}`), root = join(profile, 'fixture-project');
+  const env = { ...process.env, TINYGPT_TOOLS_PROFILE: profile }; delete env.ELECTRON_RUN_AS_NODE; delete env.ELECTRON_RENDERER_URL;
+  const app = await _electron.launch({ executablePath: resolve('node_modules/electron/dist/electron.exe'), args: [main], env });
+  const page = await app.firstWindow(); page.setDefaultTimeout(15000);
+  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    await app.evaluate(({ BrowserWindow }) => { const window = BrowserWindow.getAllWindows()[0]; window.setSize(1500, 950); window.setPosition(-10000, -10000); window.setIgnoreMouseEvents(true); window.showInactive(); window.webContents.setBackgroundThrottling(false); });
+    await page.getByRole('button', { name: 'Show workspace', exact: true }).click();
+    const workspace = page.getByRole('complementary', { name: 'Workspace', exact: true });
+    await workspace.getByRole('button', { name: 'Add workspace tab', exact: true }).click();
+    await page.getByRole('menuitem', { name: 'Files', exact: true }).click();
+    const row = name => workspace.getByRole('treeitem', { name, exact: true });
+    const menu = async (name, choice) => { await row(name).click({ button: 'right' }); await page.getByRole('menuitem', { name: choice, exact: true }).click(); };
+    await row('README.md').click({ button: 'right' });
+    assert.deepEqual(await page.getByRole('menuitem').allTextContents(), ['Add to Chat', 'Reveal in File Explorer', 'New File', 'New Folder', 'Copy Path', 'Copy Relative Path', 'Cut', 'Copy', 'Rename', 'Delete']);
+    await page.screenshot({ path: resolve('artifacts/workspace-file-context-menu-light.png') });
+    await page.getByRole('menuitem', { name: 'Copy Relative Path', exact: true }).click();
+    assert.equal(await app.evaluate(({ clipboard }) => clipboard.readText()), 'README.md');
+    await menu('README.md', 'Copy Path'); assert.equal(await app.evaluate(({ clipboard }) => clipboard.readText()), join(root, 'README.md'));
+    await menu('README.md', 'Add to Chat');
+    await page.waitForFunction(async () => { const library = await window.tinygpt.library(); const chat = await window.tinygpt.conversation(library.value.lastConversationId); return chat.ok && chat.value.sources.some(source => source.title === 'README.md'); });
+    await menu('README.md', 'Copy');
+    await row('README.md').click({ button: 'right' }); await page.getByRole('menuitem', { name: 'Paste', exact: true }).click();
+    await row('README copy.md').waitFor(); assert.equal(readFileSync(join(root, 'README copy.md'), 'utf8'), readFileSync(join(root, 'README.md'), 'utf8'));
+    await menu('README copy.md', 'New Folder'); await page.getByRole('textbox', { name: 'Name', exact: true }).fill('destination'); await page.getByRole('dialog').getByRole('button', { name: 'Create folder', exact: true }).click(); await row('destination').waitFor();
+    await row('README copy.md').click(); await workspace.getByRole('button', { name: 'Source', exact: true }).click();
+    const editor = workspace.getByRole('textbox', { name: 'Edit README copy.md', exact: true }); await editor.click(); await page.keyboard.press('Control+End'); await page.keyboard.type('\nUNSAVED_MENU_DRAFT');
+    await menu('README copy.md', 'Rename'); await page.getByRole('textbox', { name: 'Name', exact: true }).fill('renamed.md'); await page.getByRole('dialog').getByRole('button', { name: 'Save', exact: true }).click(); await row('renamed.md').waitFor();
+    assert.ok((await workspace.getByRole('textbox', { name: 'Edit renamed.md', exact: true }).textContent()).includes('UNSAVED_MENU_DRAFT'));
+    await workspace.getByRole('button', { name: 'Save file', exact: true }).click(); await page.waitForFunction(() => document.querySelector('button[aria-label="Save file"]')?.disabled);
+    await menu('renamed.md', 'Cut'); await menu('destination', 'Paste'); if (await row('destination').getAttribute('aria-expanded') !== 'true') await row('destination').click(); await row('renamed.md').waitFor();
+    await menu('destination', 'Rename'); await page.getByRole('textbox', { name: 'Name', exact: true }).fill('moved'); await page.getByRole('dialog').getByRole('button', { name: 'Save', exact: true }).click(); await row('moved').waitFor(); await row('renamed.md').waitFor();
+    assert.ok(!existsSync(join(root, 'renamed.md'))); assert.ok(readFileSync(join(root, 'moved/renamed.md'), 'utf8').includes('UNSAVED_MENU_DRAFT'));
+    await menu('renamed.md', 'Delete'); assert.ok(existsSync(join(root, 'moved/renamed.md'))); await page.getByRole('dialog').getByRole('button', { name: 'Cancel', exact: true }).click();
+    await menu('renamed.md', 'Delete'); await page.getByRole('dialog').getByRole('button', { name: 'Delete', exact: true }).click(); await page.getByRole('dialog').waitFor({ state: 'hidden' }); assert.ok(!existsSync(join(root, 'moved/renamed.md'))); await row('renamed.md').waitFor({ state: 'hidden' });
+    await row('README.md').focus(); await page.keyboard.press('Shift+F10'); await page.getByRole('menuitem', { name: 'Rename', exact: true }).waitFor(); await page.keyboard.press('Escape');
+    await workspace.getByRole('button', { name: 'Close workspace', exact: true }).click(); await page.getByRole('button', { name: 'Settings', exact: true }).click(); await page.getByRole('navigation', { name: 'Settings sections' }).getByRole('button', { name: 'Appearance', exact: true }).click(); await page.getByRole('button', { name: 'Dark', exact: true }).click(); await page.getByRole('button', { name: 'Back to TinyGPT', exact: true }).click(); await page.getByRole('button', { name: 'Show workspace', exact: true }).click();
+    await row('README.md').click({ button: 'right' }); await page.getByRole('menuitem', { name: 'Delete', exact: true }).waitFor(); await page.screenshot({ path: resolve('artifacts/workspace-file-context-menu-dark.png') });
+    assert.deepEqual(errors, []); console.log('PASS: right-click menu ordering, path clipboard, Add to Chat, file copy/paste, folder creation, draft-preserving rename, cut/paste, native Recycle Bin confirmation, keyboard menu and light/dark styling.');
+  } finally { await app.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });
+

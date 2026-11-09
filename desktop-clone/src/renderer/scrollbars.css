@@ -1,0 +1,10 @@
+/* Match the shared shadcn ScrollBar on native controls and embedded editors.
+   Radix viewports and surfaces with their own overlay keep their hidden rails. */
+@supports selector(::-webkit-scrollbar) {
+  :root :where(*):not([data-radix-scroll-area-viewport]):not(.thread-viewport):not(.cm-scroller) { scrollbar-width:auto; scrollbar-color:auto; }
+}
+::-webkit-scrollbar { width:10px; height:10px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); background-clip:padding-box; border:2px solid transparent; border-radius:9999px; }
+::-webkit-scrollbar-button { display:none; width:0; height:0; }
+[data-slot=scroll-area-scrollbar] { z-index:2; }

@@ -1,0 +1,25 @@
+/* One action-button geometry across settings and their portaled dialogs. */
+button.settings-action-button {
+  height: 30px;
+  min-height: 30px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0 13px;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+button.settings-action-button > svg.solar {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.25;
+  flex-shrink: 0;
+}
+button.settings-icon-button { width: 30px; height: 30px; border-radius: 999px; }
+button.settings-action-button.settings-muted-action { border-radius: 8px; background: transparent; color: var(--muted-foreground); }
+button.settings-action-button.settings-muted-action:hover { background: var(--accent); color: var(--foreground); }
+.profile-upload-action { margin: 7px 0 12px; }
+.appearance-card-actions { gap: 8px; flex-wrap: wrap; }
+.connector-alternative-action { margin-top: 12px; }
+.settings-form > .flex:has(.settings-action-button) { flex-wrap: wrap; }

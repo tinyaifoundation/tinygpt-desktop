@@ -1,0 +1,25 @@
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { MobileApp } from './MobileApp';
+import { applyMobileAppearance } from './lib/mobile-appearance';
+// Keep these in the desktop order: mobile uses the same design system and message components.
+import './styles.css';
+import './fonts.css';
+import './desktop-v2.css';
+import './desktop-interactions.css';
+import './chat-composer.css';
+import './answer-content.css';
+import './chat-window.css';
+import './generative-ui.css';
+import './work-response.css';
+import './image-generation.css';
+import './plugins.css';
+import './inference-controls.css';
+import './request-queue.css';
+import './bot-conversation.css';
+import './mobile.css';
+import './mobile-settings.css';
+import './scrollbars.css';
+applyMobileAppearance();
+if ('serviceWorker' in navigator) window.addEventListener('load',() => { void navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).catch(() => {}); });
+createRoot(document.getElementById('root')!).render(<StrictMode><MobileApp /></StrictMode>);

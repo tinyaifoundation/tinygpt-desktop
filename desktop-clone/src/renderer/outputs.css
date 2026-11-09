@@ -1,0 +1,45 @@
+.outputs-library { display:flex; flex:1; flex-direction:column; min-width:0; min-height:0; }
+.outputs-tabs { overflow-x:auto; min-width:0; }
+.outputs-tabs > button { flex-shrink:0; }
+.outputs-library .catalog-header { display:grid; grid-template-columns:auto minmax(0,1fr); grid-template-areas:'heading toolbar' 'description description'; align-items:center; gap:12px 20px; }
+.outputs-library .catalog-heading { grid-area:heading; }
+.outputs-library .outputs-toolbar { grid-area:toolbar; min-width:0; max-width:100%; margin-left:0; justify-self:end; justify-content:flex-end; }
+.outputs-description { grid-area:description; margin:0; font-size:13px; line-height:1.6; color:var(--muted-foreground); }
+.outputs-toolbar { flex-wrap:wrap; }
+.outputs-toolbar > select { max-width:180px; border:1px solid var(--border); border-radius:8px; padding:6px 8px; background:var(--background); color:var(--foreground); }
+.library-file-destination { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:18px; }
+.library-file-destination > label { font-size:13px; color:var(--muted-foreground); }
+.library-file-destination > select { flex:1; min-width:140px; max-width:280px; }
+.library-file-actions { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:14px; }
+.library-file-actions > button, .library-file-destination > button { flex-shrink:0; white-space:nowrap; }
+.outputs-content { flex:1; }
+.outputs-toolbar > button { border-radius:50%; display:grid; place-items:center; cursor:pointer; color:var(--muted-foreground); }
+.outputs-toolbar > button:hover, .outputs-toolbar > button[aria-pressed="true"] { background:var(--muted); color:var(--foreground); }
+.outputs-toolbar > button svg { width:16px; height:16px; stroke-width:1.25; }
+.outputs-recent { margin-bottom:34px; }
+.output-open { opacity:0; }
+.outputs-recent button:hover .output-open, .outputs-recent button:focus-visible .output-open { opacity:1; }
+.output-icon { color:var(--muted-foreground); }
+.output-icon svg { width:20px; height:20px; stroke-width:1.25; }
+.output-icon.is-pages { color:#498ee6; }
+.output-icon.is-sites { color:#a477e9; }
+.output-icon.is-images { color:#d966a5; }
+.outputs-table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:13px; }
+.outputs-table th { text-align:left; color:var(--muted-foreground); font-size:12px; font-weight:500; padding:0 10px 14px; }
+.outputs-table th:first-child { width:52%; padding-left:0; }
+.outputs-table th:nth-child(2) { width:30%; }
+.outputs-table tr { border-bottom:1px solid var(--border); }
+.outputs-table td { padding:14px 10px; height:63px; color:var(--muted-foreground); font-size:12px; }
+.outputs-table td > span { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.outputs-table td:first-child { padding:0; }
+.outputs-table td button { display:flex; align-items:center; gap:13px; width:100%; min-width:0; height:63px; padding:14px 0; text-align:left; border-radius:9px; color:var(--foreground); cursor:pointer; font-size:13px; font-weight:550; }
+.outputs-table td button > span:last-child { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.outputs-table tbody tr:hover { background:color-mix(in srgb,var(--muted) 50%,transparent); }
+.outputs-grid time { color:var(--muted-foreground); font-size:11px; margin-right:7px; flex-shrink:0; }
+.outputs-empty { display:flex; align-items:center; flex-direction:column; justify-content:center; gap:12px; min-height:280px; color:var(--muted-foreground); font-size:13px; text-align:center; }
+.outputs-empty > svg { width:30px; height:30px; stroke-width:1.3; }
+.outputs-empty h2 { color:var(--foreground); font-weight:550; font-size:17px; }
+.outputs-error { color:var(--destructive); font-size:13px; margin-bottom:18px; }
+.outputs-library button:focus-visible { outline:2px solid var(--ring); outline-offset:2px; }
+@media(max-width:800px) { .outputs-table th:first-child { width:65%; } .outputs-table th:nth-child(2), .outputs-table td:nth-child(2) { display:none; } .outputs-table th:last-child { width:35%; } }
+@media(max-width:700px) { .outputs-library .catalog-header { grid-template-columns:minmax(0,1fr); grid-template-areas:'heading' 'description' 'toolbar'; } .outputs-library .outputs-toolbar { justify-self:start; justify-content:flex-start; } }

@@ -1,0 +1,11 @@
+/* Preserve the existing desktop layout with continuous chat and settings surfaces. */
+:root, :root[data-theme="dark"], :root[data-translucent="true"] { --sidebar: var(--background); --window-surface: var(--background); }
+.desktop-shell, .tiny-sidebar, .tiny-main, .conversation-header { background: var(--background); }
+.tiny-sidebar { border-right: 0; }
+.conversation-area { margin: 0; }
+.conversation-pane { border: 0; border-radius: 0; box-shadow: none; background: var(--background); }
+.settings-content { margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+.tiny-sidebar[data-collapsed="true"] .tiny-sidebar-header { min-height: 74px; }
+.tiny-sidebar[data-collapsed="true"] .sidebar-header-actions { flex-direction: column; gap: 4px; }
+
+.composer-model-trigger[aria-label="AI connections"] > svg { opacity: 1; }

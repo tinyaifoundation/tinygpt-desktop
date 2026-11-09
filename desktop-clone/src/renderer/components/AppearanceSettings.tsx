@@ -1,0 +1,43 @@
+import { SettingsSelect } from './ui/settings-select';
+import { SettingsButton as Button } from './ui/settings-button';
+import { useRef, useState, type ReactNode } from 'react';
+import { displayFonts, paletteSchema, type Appearance, type ThemePalette } from '../lib/appearance';
+import defaultIcon from '../../main/assets/dock-icons/tinygpt-ios-default.png';
+import darkIcon from '../../main/assets/dock-icons/tinygpt-dark.png';
+import tintedIcon from '../../main/assets/dock-icons/tinygpt-tinted-light.png';
+import clearLightIcon from '../../main/assets/dock-icons/tinygpt-clear-light.png';
+import clearDarkIcon from '../../main/assets/dock-icons/tinygpt-clear-dark.png';
+
+export function SettingRow({ title, description, children }: { title: string; description?: string; children: ReactNode }) { return <div className="settings-row" data-setting-title={title}><div><div className="settings-row-title">{title}</div>{description && <p>{description}</p>}</div><div className="settings-row-control">{children}</div></div>; }
+export function Switch({ label, value, change, disabled }: { label: string; value: boolean; change: (value: boolean) => void; disabled?: boolean }) { return <button type="button" role="switch" aria-label={label} aria-checked={value} disabled={disabled} className={`settings-toggle ${value ? 'is-on' : ''}`} onClick={() => change(!value)}><span /></button>; }
+export function AppearanceSettings({ value, change }: { value: Appearance; change: (next: Appearance) => void }) {
+  const [notice, setNotice] = useState(''); const files = { light: useRef<HTMLInputElement>(null), dark: useRef<HTMLInputElement>(null) };
+  const patch = (next: Partial<Appearance>) => change({ ...value, ...next });
+  const palette = (mode: 'light' | 'dark', next: Partial<ThemePalette>) => patch({ [mode]: { ...value[mode], ...next } });
+  async function importTheme(mode: 'light' | 'dark', file?: File) {
+    if (!file) return;
+    try { if (file.size > 20000) throw new Error(); const parsed = paletteSchema.parse(JSON.parse(await file.text())); palette(mode, parsed); setNotice('Theme imported.'); }
+    catch { setNotice('Choose a valid TinyGPT theme JSON file.'); }
+  }
+  return <div className="appearance-page"><section className="settings-content-group"><h2>Theme</h2><div className="appearance-theme-options">{(['system', 'light', 'dark'] as const).map(theme => <button type="button" key={theme} className={`appearance-theme-choice ${value.theme === theme ? 'is-selected' : ''}`} aria-pressed={value.theme === theme} onClick={() => patch({ theme })}><span className={`appearance-theme-preview preview-${theme}`} aria-hidden="true"><i /><b /><em /></span><span>{theme[0].toUpperCase() + theme.slice(1)}</span></button>)}</div></section>
+    <div className="appearance-editors">{(['light', 'dark'] as const).map(mode => {
+      const current = value[mode]; const label = mode === 'light' ? 'Light theme' : 'Dark theme';
+      function fontControl(key: 'uiFont' | 'contentFont' | 'codeFont', weight: 'uiWeight' | 'contentWeight' | 'codeWeight') { return <div className="appearance-font-controls"><SettingsSelect aria-label={`${label} ${key}`} className="settings-value" value={current[key]} onChange={event => palette(mode, { [key]: event.target.value })}>{(key === 'codeFont' ? ['System default', 'Inter', 'Arial', 'Georgia', 'Menlo'] : displayFonts).map(font => <option key={font}>{font}</option>)}</SettingsSelect><SettingsSelect aria-label={`${label} ${weight}`} className="settings-value" value={current[weight]} onChange={event => palette(mode, { [weight]: event.target.value })}>{['Light', 'Regular', 'Medium', 'Semibold', 'Bold'].map(weight => <option key={weight}>{weight}</option>)}</SettingsSelect></div>; }
+      return <section className="appearance-theme-editor" key={mode}><div className="appearance-card-heading"><h2>{label}</h2><div className="appearance-card-actions"><input ref={files[mode]} type="file" accept="application/json,.json" hidden onChange={event => { void importTheme(mode, event.target.files?.[0]); event.currentTarget.value = ''; }} /><Button type="button" onClick={() => files[mode].current?.click()}>Import</Button><Button type="button" onClick={() => { void navigator.clipboard.writeText(JSON.stringify(current, null, 2)).then(() => setNotice('Theme copied.'), () => setNotice('Clipboard unavailable.')); }}>Copy theme</Button></div></div><div className="settings-card">
+        <SettingRow title="Accent"><SettingsSelect className="settings-value" aria-label={`${label} accent`} value={current.accent} onChange={event => palette(mode, { accent: event.target.value })}>{[['#3478f6', 'Blue'], ['#4c84fa', 'Soft blue'], ['#0ea5e9', 'Cyan'], ['#8b5cf6', 'Purple'], ['#10b981', 'Green'], ['#f97316', 'Orange'], ['#ec4899', 'Pink']].map(([color, name]) => <option key={color} value={color}>{name}</option>)}</SettingsSelect></SettingRow>
+        {(['background', 'foreground'] as const).map(key => <SettingRow key={key} title={key[0].toUpperCase() + key.slice(1)}><label className="appearance-color-control"><input aria-label={`${label} ${key}`} type="color" value={current[key]} onChange={event => palette(mode, { [key]: event.target.value })} /><span>{current[key]}</span></label></SettingRow>)}
+        <SettingRow title="UI font">{fontControl('uiFont', 'uiWeight')}</SettingRow><SettingRow title="Content font">{fontControl('contentFont', 'contentWeight')}</SettingRow><SettingRow title="Code font">{fontControl('codeFont', 'codeWeight')}</SettingRow>
+        <SettingRow title="Translucent window"><Switch label={`${label} translucent window`} value={current.translucentSidebar} change={translucentSidebar => palette(mode, { translucentSidebar })} /></SettingRow>
+        <SettingRow title="Contrast"><div className="appearance-range"><input aria-label={`${label} contrast`} type="range" min="0" max="100" value={current.contrast} onChange={event => palette(mode, { contrast: Number(event.target.value) })} /><output>{current.contrast}</output></div></SettingRow>
+      </div></section>;
+    })}</div><section className="settings-content-group"><h2>Preferences</h2><div className="settings-card">
+      <SettingRow title="Use pointer cursors" description="Show a pointer over interactive controls."><Switch label="Use pointer cursors" value={value.pointerCursors} change={pointerCursors => patch({ pointerCursors })} /></SettingRow>
+      <SettingRow title="App icon" description="Choose the icon used in the Dock or window."><div className="appearance-dock-options">{([['ios-default', defaultIcon], ['dark', darkIcon], ['tinted-light', tintedIcon], ['clear-light', clearLightIcon], ['clear-dark', clearDarkIcon]] as const).map(([dockIcon, source]) => <button type="button" key={dockIcon} aria-label={`App icon ${dockIcon}`} aria-pressed={value.dockIcon === dockIcon} onClick={() => patch({ dockIcon })}><img src={source} alt="" /></button>)}</div></SettingRow>
+      <SettingRow title="Reduce motion" description="Reduce animations or match your system."><div className="appearance-segmented">{(['system', 'on', 'off'] as const).map(reduceMotion => <button key={reduceMotion} type="button" aria-pressed={value.reduceMotion === reduceMotion} onClick={() => patch({ reduceMotion })}>{reduceMotion[0].toUpperCase() + reduceMotion.slice(1)}</button>)}</div></SettingRow>
+      <SettingRow title="UI font size"><input className="settings-value appearance-number" aria-label="UI font size" type="number" min={11} max={20} value={value.uiFontSize} onChange={event => patch({ uiFontSize: Math.max(11, Math.min(20, Number(event.target.value) || 14)) })} /></SettingRow>
+      <SettingRow title="Code font size"><input className="settings-value appearance-number" aria-label="Code font size" type="number" min={10} max={24} value={value.codeFontSize} onChange={event => patch({ codeFontSize: Math.max(10, Math.min(24, Number(event.target.value) || 12)) })} /></SettingRow>
+      <SettingRow title="Diff markers" description="Choose how additions and removals are marked in code previews."><div className="appearance-segmented">{(['color', 'symbols'] as const).map(diffMarkers => <button type="button" key={diffMarkers} aria-pressed={value.diffMarkers === diffMarkers} onClick={() => patch({ diffMarkers })}>{diffMarkers === 'color' ? 'Color' : 'Symbols'}</button>)}</div></SettingRow>
+      <SettingRow title="Font smoothing"><Switch label="Font smoothing" value={value.fontSmoothing} change={fontSmoothing => patch({ fontSmoothing })} /></SettingRow>
+    </div></section>{notice && <p role="status" className="settings-notice">{notice}</p>}</div>;
+}
+

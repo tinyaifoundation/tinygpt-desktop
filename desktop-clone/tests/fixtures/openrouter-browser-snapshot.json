@@ -1,0 +1,761 @@
+{
+  "url": "https://openrouter.ai/rankings",
+  "title": "LLM Rankings | OpenRouter",
+  "text": "Text\nImage\nVideo\nSpeech\nDecisions\nEmbeddings\nRerank\nTranscription\nBatch\nTop Models\nLeaderboard\nTop models by task\nCost per session\nMarket Share\nOpen / Closed\nBenchmarks\nFastest models\nLanguages\nProgramming\nDomain\nContext Length\nTool Calls\nImages\nTop Apps\nAI Model Rankings\n\nLive LLM rankings by real-world usage. Models are ranked by tokens processed through the OpenRouter API by millions of developers. View all text models\n\nUsage data through Nov 3, 2026\n\nTop Models\n\nWeekly usage of models across OpenRouter\n\nLinear\nLog\nNov 3, 2025\nDec 22\nFeb 9\nMar 30\nMay 18\nJul 6\nAug 24\nOct 12\n60T\n120T\n180T\n240T\nLLM Leaderboard\n\nCompare the most popular models on OpenRouter \n\nAll models\nThis Week\nModel rankings by tokens processed\nRank\tModel\tAuthor\ttokens processed\tChange\n1\tDeepSeek V4.1 Flash 1017\tdeepseek\t54.8T tokens\t+47%\n2\tGLM 5.3 Flash\tz-ai\t16.4T tokens\t+16%\n3\tDeepSeek V4.1 Flash\tdeepseek\t15.6T tokens\t-8%\n4\tHy4 preview\ttencent\t9.48T tokens\t+6%\n5\tGPT-6 Luna\topenai\t9.26T tokens\t+2%\n6\tStep 5 Preview\tstepfun\t6.68T tokens\t+43%\n7\tClaude Opus 5.5\tanthropic\t6.67T tokens\t-17%\n8\tMiniMax M3.1 Flash\tminimax\t6.5T tokens\t+181%\n9\tGPT-5.6 Luna\topenai\t5.33T tokens\t+176%\n10\tGPT-6.1 Sol\topenai\t4.05T tokens\t+37%\n1.\nDeepSeek V4.1 Flash 1017\nby\ndeepseek\n54.8T tokens\n47%\n2.\nGLM 5.3 Flash\nby\nz-ai\n16.4T tokens\n16%\n3.\nDeepSeek V4.1 Flash\nby\ndeepseek\n15.6T tokens\n8%\n4.\nHy4 preview\nby\ntencent\n9.48T tokens\n6%\n5.\nGPT-6 Luna\nby\nopenai\n9.26T tokens\n2%\n6.\nStep 5 Preview\nby\nstepfun\n6.68T tokens\n43%\n7.\nClaude Opus 5.5\nby\nanthropic\n6.67T tokens\n17%\n8.\nMiniMax M3.1 Flash\nby\nminimax\n6.5T tokens\n181%\n9.\nGPT-5.6 Luna\nby\nopenai\n5.33T tokens\n176%\n10.\nGPT-6.1 Sol\nby\nopenai\n4.05T tokens\n37%\nShow more\nTop models today, as text\n\nText summary of the Today tab of the leaderboard above. Models are ranked by tokens processed on OpenRouter over the most recent complete day, with the change measured against the day before it.\n\nModels ranked by tokens processed on OpenRouter over the most recent complete day\nRank\tModel\tAuthor\tTokens\tChange\n1\tDeepSeek V4.1 Flash 1017\tdeepseek\t10.3T\t+33%\n2\tGLM 5.3 Flash\tz-ai\t2.97T\t+15%\n3\tDeepSeek V4.1 Flash\tdeepseek\t2.89T\t+20%\n4\tHy4 preview\ttencent\t1.58T\t+0%\n5\tGPT-6 Luna\topenai\t1.12T\t+0%\n6\tClaude Opus 5.5\tanthropic\t1.1T\t+12%\n7\tStep 5 Preview\tstepfun\t1.02T\t+1%\n8\tMiniMax M3.1 Flash\tminimax\t887B\t-2%\n9\tJev 1.13\ttypesafe\t562B\t+20%\n10\tDeepSeek V4 Flash 0731\tdeepseek\t533B\t-7%\nTop models this month, as text\n\nText summary of the This Month tab of the leaderboard above. Models are ranked by tokens processed on OpenRouter over the trailing thirty days, with the change measured against the thirty days before them.\n\nModels ranked by tokens processed on OpenRouter over the trailing thirty days\nRank\tModel\tAuthor\tTokens\tChange\n1\tDeepSeek V4.1 Flash\tdeepseek\t113T\t+80%\n2\tDeepSeek V4.1 Flash 1017\tdeepseek\t93.2T\tnew\n3\tGLM 5.3 Flash\tz-ai\t56.5T\t+1%\n4\tHy4 preview\ttencent\t36.4T\t-29%\n5\tGPT-6 Luna\topenai\t33.1T\t+301%\n6\tMiMo-V2.6-Flash\txiaomi\t32.2T\t+133%\n7\tStep 5 Preview\tstepfun\t31.2T\tnew\n8\tClaude Opus 5.5\tanthropic\t27.5T\t+763%\n9\tNemotron 3 Ultra (free)\tnvidia\t22T\t+9%\n10\tGLM 5.3\tz-ai\t19.1T\t+55%\nNew and trending models this week, as text\n\nText summary of the New & Trending tab of the leaderboard above. Models are ranked by the percentage change in tokens processed over the trailing seven days against the seven days before, among models with at least one million tokens in the current week. A model with no prior week is marked new.\n\nModels with the largest week-over-week change in tokens processed on OpenRouter\nRank\tModel\tAuthor\tTokens\tChange\n1\tParticle-1\tparticle-ai\t88.6B\tnew\n2\tCrouton Alpha\tstealth\t25.1B\tnew\n3\tGLM 5.3 FlashX Legal\tz-ai\t10.1B\tnew\n4\tElephant 1\tbaseten\t4.45B\tnew\n5\tMammoth 1\tbaseten\t4.07B\tnew\n6\tGPT-5.4 Mini (batch)\topenai\t2.64M\t>999%\n7\td1.1\tliquid\t17.6B\t>999%\n8\tGrok 4.3 (batch)\tx-ai\t795M\t>999%\n9\tSpan-01 Lite (free)\trespan\t7.26B\t>999%\n10\tTitan Text Embeddings V2\tamazon\t375M\t>999%\nTop models by task\n\nEach task’s leading models, ranked by share of spend on OpenRouter \n\nShare of spend\nCost per session\n\nWhat one coding-agent session typically costs (paid usage), by session length \n\nMarket Share\nAbsolute\nPercentage\n\nCompare text request share by model author on OpenRouter.\n\nMarket share by model author, as text\n\nText summary of the Market Share chart above. Share of text requests made on OpenRouter in the week beginning Oct 26, 2026, with the change in each author's requests against the week before it. DeepSeek leads at 29.8% of the week's requests. Authors the chart groups as others are listed last, so the rows match the series the chart plots.\n\nModel authors ranked by their share of text requests on OpenRouter in the most recent complete week\nRank\tAuthor\tShare of requests\tChange in requests\n1\tDeepSeek\t29.8%\t+7%\n2\tOpenAI\t18.8%\t-3%\n3\tGoogle\t14.4%\t-32%\n4\tZ.ai\t11.9%\t+6%\n5\tAnthropic\t5.7%\t0%\n6\tQwen\t5.6%\t+14%\n7\tMistral AI\t2.2%\t+7%\n8\tTencent\t1.9%\t-2%\n9\tMeta Llama\t1.5%\t\n\tAll other authors\t8.2%\t-6%\nOpen / Closed\nAbsolute\nPercentage\n\nShare of tokens processed by open-weight vs. closed-weight models on OpenRouter, by week. Stealth models are excluded.\n\nBenchmarks\n\nTop models on OpenRouter by Artificial Analysis Intelligence Index \n\nView all benchmarks\nWeighted Avg Input Price\nIntelligence Index Score\nShow Pareto\nTOP 20 PLOTTED  SEARCH TO PIN UP TO 5\nFind a model…\n1.\nClaude Opus 5.5 (Max, Default Fallback)\nby\nanthropic\n59.1\n2.\nGPT-6 Astra (Max)\nby\nopenai\n56.9\n3.\nGPT-6.1 Sol (Max)\nby\nopenai\n54.6\n4.\nClaude Sonnet 5.5 (Max, Default Fallback)\nby\nanthropic\n54.5\n5.\nQwen3.8 Max\nby\nqwen\n53.4\n6.\nGPT-6.1 Terra (Max)\nby\nopenai\n51.3\n7.\nGemini 4 Argon (High)\nby\ngoogle\n50.4\n8.\nClaude Fable 5.1 (Xhigh, Default Fallback)\nby\nanthropic\n50.0\n9.\nKimi K3.1 Pro\nby\nmoonshotai\n46.5\n10.\nGPT-6 Sol (Max)\nby\nopenai\n44.1\nShow more\nLanguages\n\nCompare models by natural language on OpenRouter \n\nEnglish\nAbsolute\nPercentage\nProgramming\n\nCompare models by programming language on OpenRouter \n\nPython\nAbsolute\nPercentage\nDomain\n\nCompare models by the subject area of requests on OpenRouter \n\nSoftware & technology\nContext Length\n\nRequests by prompt & completion length on OpenRouter\n\n1K - 10K tokens\nAbsolute\nPercentage\nTop models by context length\n\nSummary of the context-length chart above for the 10K context window in the week beginning Oct 26, 2026. Others leads with 2b requests.\n\nModels ranked by requests in the most recent complete week\nRank\tModel\tRequests\n1\tOthers\t2b\n2\ttypesafe/jev-1.13-20260917\t639m\n3\tz-ai/glm-5.3-flash-20260826\t478m\n4\ttypesafe/jev-1.14-20261014\t318m\n5\topenai/gpt-6-luna-20260922\t275m\n6\tdeepseek/deepseek-v4.1-flash-20261017\t258m\n7\tdeepseek/deepseek-v4-flash-20260423\t237m\n8\tdeepseek/deepseek-v4.1-flash-20260910\t219m\n9\tdeepseek/deepseek-v4-flash-20260731\t197m\n10\tanthropic/claude-haiku-5.5-20261007\t99m\nTool Calls\nAbsolute\nPercentage\n\nTool usage across models on OpenRouter\n\nImages\nAbsolute\nPercentage\n\nTotal images processed on OpenRouter\n\nTop Apps\nToday\n\nExplore apps and agents opting into usage tracking by category\n\nBrowse the new Apps & Agents directory to explore by category, discover trending tools, and see detailed usage stats.\nBrowse apps\n1.\nHermes Agent \nHermes Agent is an open-source, self-improving AI agent by Nous Research that runs persistently with memory across sessions, and builds reusable skills from experience. It comes with 40+ built-in tools, including web search, browser automation, and vision, plus scheduled automations and subagents.\n1.89Ttokens\n2.\nClaude Code \nClaude Code is Anthropic's agentic coding tool that reads your entire codebase, plans and executes changes across files, runs tests, and iterates on failures, all from natural language prompts.\n1.68Ttokens\n3.\nPortkey AI \nControl panel for AI apps\n1.34Ttokens\n4.\nOpenClaw \nOpenClaw is an open-source AI agent that connects to your messaging apps and takes real actions on your behalf, from running commands and browsing the web to managing files and sending emails.\n932Btokens\n5.\nKilo Code \nKilo Code is an open-source AI coding agent that works across VS Code, JetBrains, and CLI to help developers ship code faster with agentic workflows.\n727Btokens\n6.\npi \nThere are many coding agents, but this one is yours.\n613Btokens\n7.\nStrix \nOpen-source AI hackers that find and validate vulnerabilities in your code, APIs, and infrastructure, and open fix PRs.\n463Btokens\n8.\nDeepSeek Harness \nnew\n368Btokens\n9.\nomp \nnew\n309Btokens\n10.\nCodex \nA coding agent that helps you build and ship with AI\n204Btokens\nHow these rankings are measured\nWhat is measured\n\nEach model is ranked by the number of tokens it processed through the OpenRouter API, counting both prompt and completion tokens. Usage is aggregated into daily buckets in UTC and totalled per model variant, so variants of the same model, such as a free variant, are ranked separately. Requests that a user or app keeps private are excluded before aggregation.\n\nSelection period\n\nToday, This Week, and This Month each cover a trailing window of one day, seven days, and thirty days, ending with the most recent complete daily bucket. Trending compares the trailing seven days with the seven days before it and ranks models by the percentage change in tokens, including only models with at least one million tokens in the current window so that a small base cannot produce a large percentage. New models with no prior week are listed first, up to five of them.\n\nFreshness\n\nThe date above the rankings is the newest usage bucket the leaderboard is computed from, not the time the page was rendered or deployed, so it advances only when new usage data is aggregated.\n\nHow to read these rankings\n\nThese rankings show traffic routed through OpenRouter. The Top Models chart and the LLM Leaderboard rank models by tokens processed, while the Market Share chart counts requests. None of them measures users or spend. Models differ in verbosity and tokenization, so a higher token total shows how much a model is used, not which model is best for a task. They do not rank models by accuracy, reasoning ability, or benchmark performance. The Benchmarks section ranks those using scores from Artificial Analysis and Design Arena, plus benchmarks such as GPQA Diamond that OpenRouter runs itself and reports as median accuracy across providers. For coding, compare the Artificial Analysis Coding Index there with the Programming section, which ranks models by tokens on a sample of requests in a chosen language, such as Python. The Top Models chart names the nine most-used models in each period and groups the rest as Others. The Market Share chart shows each model author's share of text requests on OpenRouter, with the remaining authors grouped as Others.\n\nRankings data by OpenRouter is licensed under CC BY 4.0. Reuse and republish it with attribution. The Data API docs cover the citation format and JSON access to these datasets.\n\nFooter\n© 2026 OpenRouter, Inc\nProduct\nChat\nRankings\nBenchmarks\nApps\nDiscover\nModels\nOri\nCollections\nProviders\nTools\nPricing\nBusiness\nEnterprise\nLabs\nCompany\nAbout\nBlog\nCustomers\nCareers\nHiring\nPrivacy\nTerms of Service\nTrust Center\nSupport\nWorks With OR\nData\nBrand\nDeveloper\nDocumentation\nAPI Reference\nDeveloper Platform\nStatus\nAI Site Map\nConnect\nDiscord\nGitHub\nLinkedIn\nX\nYouTube\nJoin the OpenRouter newsletter\n\nModel usage data, product updates, and research reports. One email each week.\n\nSubscribe\n\nBy subscribing you agree to receive the OpenRouter newsletter: model usage data, product updates, and research reports, about one email a week. Unsubscribe anytime via the link in every email. See our Privacy Policy.",
+  "elements": [
+    {
+      "id": "t0",
+      "role": "link",
+      "label": "Skip to content"
+    },
+    {
+      "id": "t1",
+      "role": "link",
+      "label": "OpenRouter"
+    },
+    {
+      "id": "t2",
+      "role": "link",
+      "label": "Models"
+    },
+    {
+      "id": "t3",
+      "role": "link",
+      "label": "Benchmarks"
+    },
+    {
+      "id": "t4",
+      "role": "link",
+      "label": "Chat"
+    },
+    {
+      "id": "t5",
+      "role": "link",
+      "label": "Rankings"
+    },
+    {
+      "id": "t6",
+      "role": "link",
+      "label": "Apps"
+    },
+    {
+      "id": "t7",
+      "role": "link",
+      "label": "Ori"
+    },
+    {
+      "id": "t8",
+      "role": "link",
+      "label": "Pricing"
+    },
+    {
+      "id": "t9",
+      "role": "link",
+      "label": "Docs"
+    },
+    {
+      "id": "t10",
+      "role": "button",
+      "label": "Sign Up"
+    },
+    {
+      "id": "t11",
+      "role": "link",
+      "label": "OpenRouter"
+    },
+    {
+      "id": "t12",
+      "role": "button",
+      "label": "OpenRouter"
+    },
+    {
+      "id": "t13",
+      "role": "button",
+      "label": "Search"
+    },
+    {
+      "id": "t14",
+      "role": "button",
+      "label": "Models"
+    },
+    {
+      "id": "t15",
+      "role": "button",
+      "label": "Benchmarks"
+    },
+    {
+      "id": "t16",
+      "role": "button",
+      "label": "Chat"
+    },
+    {
+      "id": "t17",
+      "role": "button",
+      "label": "Rankings"
+    },
+    {
+      "id": "t18",
+      "role": "button",
+      "label": "Apps"
+    },
+    {
+      "id": "t19",
+      "role": "button",
+      "label": "Ori"
+    },
+    {
+      "id": "t20",
+      "role": "button",
+      "label": "Pricing"
+    },
+    {
+      "id": "t21",
+      "role": "button",
+      "label": "Docs"
+    },
+    {
+      "id": "t22",
+      "role": "tab",
+      "label": "Text"
+    },
+    {
+      "id": "t23",
+      "role": "tab",
+      "label": "Image"
+    },
+    {
+      "id": "t24",
+      "role": "tab",
+      "label": "Video"
+    },
+    {
+      "id": "t25",
+      "role": "tab",
+      "label": "Speech"
+    },
+    {
+      "id": "t26",
+      "role": "tab",
+      "label": "Decisions"
+    },
+    {
+      "id": "t27",
+      "role": "tab",
+      "label": "Embeddings"
+    },
+    {
+      "id": "t28",
+      "role": "tab",
+      "label": "Rerank"
+    },
+    {
+      "id": "t29",
+      "role": "tab",
+      "label": "Transcription"
+    },
+    {
+      "id": "t30",
+      "role": "tab",
+      "label": "Batch"
+    },
+    {
+      "id": "t31",
+      "role": "link",
+      "label": "View all text models"
+    },
+    {
+      "id": "t32",
+      "role": "link",
+      "label": "Top Models"
+    },
+    {
+      "id": "t33",
+      "role": "link",
+      "label": "LLM Leaderboard"
+    },
+    {
+      "id": "t34",
+      "role": "combobox",
+      "label": "Filter models by openness"
+    },
+    {
+      "id": "t35",
+      "role": "combobox",
+      "label": "Filter by time window"
+    },
+    {
+      "id": "t36",
+      "role": "link",
+      "label": "DeepSeek V4.1 Flash 1017"
+    },
+    {
+      "id": "t37",
+      "role": "link",
+      "label": "deepseek"
+    },
+    {
+      "id": "t38",
+      "role": "link",
+      "label": "GLM 5.3 Flash"
+    },
+    {
+      "id": "t39",
+      "role": "link",
+      "label": "z-ai"
+    },
+    {
+      "id": "t40",
+      "role": "link",
+      "label": "DeepSeek V4.1 Flash"
+    },
+    {
+      "id": "t41",
+      "role": "link",
+      "label": "deepseek"
+    },
+    {
+      "id": "t42",
+      "role": "link",
+      "label": "Hy4 preview"
+    },
+    {
+      "id": "t43",
+      "role": "link",
+      "label": "tencent"
+    },
+    {
+      "id": "t44",
+      "role": "link",
+      "label": "GPT-6 Luna"
+    },
+    {
+      "id": "t45",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t46",
+      "role": "link",
+      "label": "Step 5 Preview"
+    },
+    {
+      "id": "t47",
+      "role": "link",
+      "label": "stepfun"
+    },
+    {
+      "id": "t48",
+      "role": "link",
+      "label": "Claude Opus 5.5"
+    },
+    {
+      "id": "t49",
+      "role": "link",
+      "label": "anthropic"
+    },
+    {
+      "id": "t50",
+      "role": "link",
+      "label": "MiniMax M3.1 Flash"
+    },
+    {
+      "id": "t51",
+      "role": "link",
+      "label": "minimax"
+    },
+    {
+      "id": "t52",
+      "role": "link",
+      "label": "GPT-5.6 Luna"
+    },
+    {
+      "id": "t53",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t54",
+      "role": "link",
+      "label": "GPT-6.1 Sol"
+    },
+    {
+      "id": "t55",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t56",
+      "role": "button",
+      "label": "Show more"
+    },
+    {
+      "id": "t57",
+      "role": "link",
+      "label": "Top models by task"
+    },
+    {
+      "id": "t58",
+      "role": "combobox",
+      "label": ""
+    },
+    {
+      "id": "t59",
+      "role": "link",
+      "label": "Cost per session"
+    },
+    {
+      "id": "t60",
+      "role": "link",
+      "label": "Market Share"
+    },
+    {
+      "id": "t61",
+      "role": "link",
+      "label": "Open / Closed"
+    },
+    {
+      "id": "t62",
+      "role": "link",
+      "label": "Benchmarks"
+    },
+    {
+      "id": "t63",
+      "role": "link",
+      "label": "View all benchmarks"
+    },
+    {
+      "id": "t64",
+      "role": "combobox",
+      "label": ""
+    },
+    {
+      "id": "t65",
+      "role": "combobox",
+      "label": "Filter by benchmark category"
+    },
+    {
+      "id": "t66",
+      "role": "switch",
+      "label": "Show Pareto"
+    },
+    {
+      "id": "t67",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t68",
+      "role": "button",
+      "label": "Find a model to pin, 0 of 5 pinned"
+    },
+    {
+      "id": "t69",
+      "role": "button",
+      "label": "Claude Opus 5.5 (Max, Default Fallback)"
+    },
+    {
+      "id": "t70",
+      "role": "button",
+      "label": "GPT-6 Astra (Max)"
+    },
+    {
+      "id": "t71",
+      "role": "button",
+      "label": "GPT-6.1 Sol (Max)"
+    },
+    {
+      "id": "t72",
+      "role": "button",
+      "label": "Claude Sonnet 5.5 (Max, Default Fallback)"
+    },
+    {
+      "id": "t73",
+      "role": "button",
+      "label": "Qwen3.8 Max"
+    },
+    {
+      "id": "t74",
+      "role": "button",
+      "label": "GPT-6.1 Terra (Max)"
+    },
+    {
+      "id": "t75",
+      "role": "button",
+      "label": "Gemini 4 Argon (High)"
+    },
+    {
+      "id": "t76",
+      "role": "button",
+      "label": "Claude Fable 5.1 (Xhigh, Default Fallback)"
+    },
+    {
+      "id": "t77",
+      "role": "button",
+      "label": "Kimi K3.1 Pro"
+    },
+    {
+      "id": "t78",
+      "role": "button",
+      "label": "GPT-6 Sol (Max)"
+    },
+    {
+      "id": "t79",
+      "role": "button",
+      "label": "Show more"
+    },
+    {
+      "id": "t80",
+      "role": "link",
+      "label": "Languages"
+    },
+    {
+      "id": "t81",
+      "role": "combobox",
+      "label": "Filter by natural language"
+    },
+    {
+      "id": "t82",
+      "role": "link",
+      "label": "Programming"
+    },
+    {
+      "id": "t83",
+      "role": "combobox",
+      "label": "Filter by programming language"
+    },
+    {
+      "id": "t84",
+      "role": "link",
+      "label": "Domain"
+    },
+    {
+      "id": "t85",
+      "role": "combobox",
+      "label": "Filter by domain"
+    },
+    {
+      "id": "t86",
+      "role": "link",
+      "label": "Context Length"
+    },
+    {
+      "id": "t87",
+      "role": "combobox",
+      "label": "Filter by context length"
+    },
+    {
+      "id": "t88",
+      "role": "link",
+      "label": "Tool Calls"
+    },
+    {
+      "id": "t89",
+      "role": "link",
+      "label": "Images"
+    },
+    {
+      "id": "t90",
+      "role": "link",
+      "label": "Top Apps"
+    },
+    {
+      "id": "t91",
+      "role": "combobox",
+      "label": ""
+    },
+    {
+      "id": "t92",
+      "role": "link",
+      "label": "Hermes Agent"
+    },
+    {
+      "id": "t93",
+      "role": "link",
+      "label": "Claude Code"
+    },
+    {
+      "id": "t94",
+      "role": "link",
+      "label": "Portkey AI"
+    },
+    {
+      "id": "t95",
+      "role": "link",
+      "label": "OpenClaw"
+    },
+    {
+      "id": "t96",
+      "role": "link",
+      "label": "Kilo Code"
+    },
+    {
+      "id": "t97",
+      "role": "link",
+      "label": "pi"
+    },
+    {
+      "id": "t98",
+      "role": "link",
+      "label": "Strix"
+    },
+    {
+      "id": "t99",
+      "role": "link",
+      "label": "DeepSeek Harness"
+    },
+    {
+      "id": "t100",
+      "role": "link",
+      "label": "omp"
+    },
+    {
+      "id": "t101",
+      "role": "link",
+      "label": "Codex"
+    },
+    {
+      "id": "t102",
+      "role": "link",
+      "label": "CC BY 4.0"
+    },
+    {
+      "id": "t103",
+      "role": "link",
+      "label": "Data API docs"
+    },
+    {
+      "id": "t104",
+      "role": "textbox",
+      "label": "Join the OpenRouter newsletter"
+    },
+    {
+      "id": "t105",
+      "role": "button",
+      "label": "Subscribe"
+    },
+    {
+      "id": "t150",
+      "role": "button",
+      "label": "Share chart"
+    },
+    {
+      "id": "t106",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t107",
+      "role": "button",
+      "label": "Tasks are inferred by a classifier on a representative sample of prompts. Percentages show share of sample-corrected spend; deltas compare to the prior window."
+    },
+    {
+      "id": "t108",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t109",
+      "role": "radio",
+      "label": "Absolute"
+    },
+    {
+      "id": "t110",
+      "role": "radio",
+      "label": "Percentage"
+    },
+    {
+      "id": "t111",
+      "role": "radio",
+      "label": "Absolute"
+    },
+    {
+      "id": "t112",
+      "role": "radio",
+      "label": "Percentage"
+    },
+    {
+      "id": "t113",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t114",
+      "role": "link",
+      "label": "Claude Opus 5.5 (Max, Default Fallback)"
+    },
+    {
+      "id": "t115",
+      "role": "link",
+      "label": "anthropic"
+    },
+    {
+      "id": "t116",
+      "role": "link",
+      "label": "GPT-6 Astra (Max)"
+    },
+    {
+      "id": "t117",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t118",
+      "role": "link",
+      "label": "GPT-6.1 Sol (Max)"
+    },
+    {
+      "id": "t119",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t120",
+      "role": "link",
+      "label": "Claude Sonnet 5.5 (Max, Default Fallback)"
+    },
+    {
+      "id": "t121",
+      "role": "link",
+      "label": "anthropic"
+    },
+    {
+      "id": "t122",
+      "role": "link",
+      "label": "Qwen3.8 Max"
+    },
+    {
+      "id": "t123",
+      "role": "link",
+      "label": "qwen"
+    },
+    {
+      "id": "t124",
+      "role": "link",
+      "label": "GPT-6.1 Terra (Max)"
+    },
+    {
+      "id": "t125",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t126",
+      "role": "link",
+      "label": "Gemini 4 Argon (High)"
+    },
+    {
+      "id": "t127",
+      "role": "link",
+      "label": "google"
+    },
+    {
+      "id": "t128",
+      "role": "link",
+      "label": "Claude Fable 5.1 (Xhigh, Default Fallback)"
+    },
+    {
+      "id": "t129",
+      "role": "link",
+      "label": "anthropic"
+    },
+    {
+      "id": "t130",
+      "role": "link",
+      "label": "Kimi K3.1 Pro"
+    },
+    {
+      "id": "t131",
+      "role": "link",
+      "label": "moonshotai"
+    },
+    {
+      "id": "t132",
+      "role": "link",
+      "label": "GPT-6 Sol (Max)"
+    },
+    {
+      "id": "t133",
+      "role": "link",
+      "label": "openai"
+    },
+    {
+      "id": "t134",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t135",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t136",
+      "role": "button",
+      "label": "Information"
+    },
+    {
+      "id": "t137",
+      "role": "radio",
+      "label": "Absolute"
+    },
+    {
+      "id": "t138",
+      "role": "radio",
+      "label": "Percentage"
+    },
+    {
+      "id": "t139",
+      "role": "radio",
+      "label": "Absolute"
+    },
+    {
+      "id": "t140",
+      "role": "radio",
+      "label": "Percentage"
+    },
+    {
+      "id": "t141",
+      "role": "link",
+      "label": "opting into usage tracking"
+    },
+    {
+      "id": "t142",
+      "role": "radio",
+      "label": "Light"
+    },
+    {
+      "id": "t143",
+      "role": "radio",
+      "label": "Dark"
+    },
+    {
+      "id": "t144",
+      "role": "radio",
+      "label": "System"
+    },
+    {
+      "id": "t145",
+      "role": "link",
+      "label": "Chat"
+    },
+    {
+      "id": "t146",
+      "role": "link",
+      "label": "Rankings"
+    },
+    {
+      "id": "t147",
+      "role": "link",
+      "label": "Benchmarks"
+    },
+    {
+      "id": "t148",
+      "role": "link",
+      "label": "Apps"
+    }
+  ],
+  "challenge": false,
+  "snapshotKind": "accessibility",
+  "accessibility": "RootWebArea \"LLM Rankings | OpenRouter\"\nnavigation\n[t0] link \"Skip to content\"\nStaticText \"Skip to content\"\nInlineTextBox \"Skip to content\"\n[t1] link \"OpenRouter\"\n[t12] button \"OpenRouter\"\nimage \"OpenRouter\"\n[t13] button \"Search\"\nStaticText \"Search\"\nInlineTextBox \"Search\"\nStaticText \"⌘\"\nInlineTextBox \"⌘\"\nStaticText \"K\"\nInlineTextBox \"K\"\n[t2] link \"Models\"\n[t14] button \"Models\"\nStaticText \"Models\"\nInlineTextBox \"Models\"\n[t3] link \"Benchmarks\"\n[t15] button \"Benchmarks\"\nStaticText \"Benchmarks\"\nInlineTextBox \"Benchmarks\"\n[t4] link \"Chat\"\n[t16] button \"Chat\"\nStaticText \"Chat\"\nInlineTextBox \"Chat\"\n[t5] link \"Rankings\"\n[t17] button \"Rankings\"\nStaticText \"Rankings\"\nInlineTextBox \"Rankings\"\n[t6] link \"Apps\"\n[t18] button \"Apps\"\nStaticText \"Apps\"\nInlineTextBox \"Apps\"\n[t7] link \"Ori\"\n[t19] button \"Ori\"\nStaticText \"Ori\"\nInlineTextBox \"Ori\"\n[t8] link \"Pricing\"\n[t20] button \"Pricing\"\nStaticText \"Pricing\"\nInlineTextBox \"Pricing\"\n[t9] link \"Docs\"\n[t21] button \"Docs\"\nStaticText \"Docs\"\nInlineTextBox \"Docs\"\n[t10] button \"Sign Up\"\nStaticText \"Sign Up\"\nInlineTextBox \"Sign Up\"\nmain\ntablist \"Rankings sections\"\n[t22] tab \"Text\" (selected=true)\nStaticText \"Text\"\nInlineTextBox \"Text\"\n[t23] tab \"Image\" (selected=false)\nStaticText \"Image\"\nInlineTextBox \"Image\"\n[t24] tab \"Video\" (selected=false)\nStaticText \"Video\"\nInlineTextBox \"Video\"\n[t25] tab \"Speech\" (selected=false)\nStaticText \"Speech\"\nInlineTextBox \"Speech\"\n[t26] tab \"Decisions\" (selected=false)\nStaticText \"Decisions\"\nInlineTextBox \"Decisions\"\n[t27] tab \"Embeddings\" (selected=false)\nStaticText \"Embeddings\"\nInlineTextBox \"Embeddings\"\n[t28] tab \"Rerank\" (selected=false)\nStaticText \"Rerank\"\nInlineTextBox \"Rerank\"\n[t29] tab \"Transcription\" (selected=false)\nStaticText \"Transcription\"\nInlineTextBox \"Transcription\"\n[t30] tab \"Batch\" (selected=false)\nStaticText \"Batch\"\nInlineTextBox \"Batch\"\nnavigation \"Rankings page sections\"\nlink \"Top Models\"\nStaticText \"Top Models\"\nInlineTextBox \"Top Models\"\nlink \"Leaderboard\"\nStaticText \"Leaderboard\"\nInlineTextBox \"Leaderboard\"\nlink \"Top models by task\"\nStaticText \"Top models by task\"\nInlineTextBox \"Top models by task\"\nlink \"Cost per session\"\nStaticText \"Cost per session\"\nInlineTextBox \"Cost per session\"\nlink \"Market Share\"\nStaticText \"Market Share\"\nInlineTextBox \"Market Share\"\nlink \"Open / Closed\"\nStaticText \"Open / Closed\"\nInlineTextBox \"Open / Closed\"\nlink \"Benchmarks\"\nStaticText \"Benchmarks\"\nInlineTextBox \"Benchmarks\"\nlink \"Fastest models\"\nStaticText \"Fastest models\"\nInlineTextBox \"Fastest models\"\nlink \"Languages\"\nStaticText \"Languages\"\nInlineTextBox \"Languages\"\nlink \"Programming\"\nStaticText \"Programming\"\nInlineTextBox \"Programming\"\nlink \"Domain\"\nStaticText \"Domain\"\nInlineTextBox \"Domain\"\nlink \"Context Length\"\nStaticText \"Context Length\"\nInlineTextBox \"Context Length\"\nlink \"Tool Calls\"\nStaticText \"Tool Calls\"\nInlineTextBox \"Tool Calls\"\nlink \"Images\"\nStaticText \"Images\"\nInlineTextBox \"Images\"\nlink \"Top Apps\"\nStaticText \"Top Apps\"\nInlineTextBox \"Top Apps\"\nheading \"AI Model Rankings\"\nStaticText \"AI Model Rankings\"\nInlineTextBox \"AI Model Rankings\"\nStaticText \"Live LLM rankings by real-world usage. Models are ranked by tokens processed through the OpenRouter API by millions of developers.\"\nInlineTextBox \"Live LLM rankings by real-world usage. Models are ranked by tokens processed through the OpenRouter API by \"\nInlineTextBox \"millions of developers.\"\nStaticText \" \"\nInlineTextBox \" \"\n[t31] link \"View all text models\"\nStaticText \"View all \"\nInlineTextBox \"View all \"\nStaticText \"text\"\nInlineTextBox \"text\"\nStaticText \" models\"\nInlineTextBox \" models\"\nStaticText \"Usage data through\"\nInlineTextBox \"Usage data through\"\nStaticText \" \"\nInlineTextBox \" \"\nStaticText \"Nov 3, 2026\"\nInlineTextBox \"Nov 3, 2026\"\n[t32] link \"Top Models\"\nheading \"Top Models\"\nStaticText \"Top Models\"\nInlineTextBox \"Top Models\"\n[t150] button \"Share chart\" (expanded=false)\nStaticText \"Weekly usage of models across OpenRouter\"\nInlineTextBox \"Weekly usage of models across OpenRouter\"\nradiogroup \"Y-axis scale\"\nradio \"Linear\" (checked=true)\nStaticText \"Linear\"\nInlineTextBox \"Linear\"\nradio \"Log\" (checked=false)\nStaticText \"Log\"\nInlineTextBox \"Log\"\nStaticText \"Nov 3, 2025\"\nInlineTextBox \"Nov 3, 2025\"\nStaticText \"Dec 22\"\nInlineTextBox \"Dec 22\"\nStaticText \"Feb 9\"\nInlineTextBox \"Feb 9\"\nStaticText \"Mar 30\"\nInlineTextBox \"Mar 30\"\nStaticText \"May 18\"\nInlineTextBox \"May 18\"\nStaticText \"Jul 6\"\nInlineTextBox \"Jul 6\"\nStaticText \"Aug 24\"\nInlineTextBox \"Aug 24\"\nStaticText \"Oct 12\"\nInlineTextBox \"Oct 12\"\nStaticText \"60T\"\nInlineTextBox \"60T\"\nStaticText \"120T\"\nInlineTextBox \"120T\"\nStaticText \"180T\"\nInlineTextBox \"180T\"\nStaticText \"240T\"\nInlineTextBox \"240T\"\n[t33] link \"LLM Leaderboard\"\nheading \"LLM Leaderboard\"\nStaticText \"LLM Leaderboard\"\nInlineTextBox \"LLM Leaderboard\"\nStaticText \"Compare the most popular models on OpenRouter\"\nInlineTextBox \"Compare the most popular models on OpenRouter\"\n[t106] button \"Information\"\n[t34] combobox \"Filter models by openness\" (expanded=false)\nStaticText \"All models\"\nInlineTextBox \"All models\"\n[t35] combobox \"Filter by time window\" (expanded=false)\nStaticText \"This Week\"\nInlineTextBox \"This Week\"\ntable \"Model rankings by tokens processed\"\nStaticText \"Model rankings by tokens processed\"\nInlineTextBox \"Model rankings by tokens processed\"\ncolumnheader \"Rank\" (readonly=false)\nStaticText \"Rank\"\nInlineTextBox \"Rank\"\ncolumnheader \"Model\" (readonly=false)\nStaticText \"Model\"\nInlineTextBox \"Model\"\ncolumnheader \"Author\" (readonly=false)\nStaticText \"Author\"\nInlineTextBox \"Author\"\ncolumnheader \"tokens processed\" (readonly=false)\nStaticText \"tokens processed\"\nInlineTextBox \"tokens processed\"\ncolumnheader \"Change\" (readonly=false)\nStaticText \"Change\"\nInlineTextBox \"Change\"\ncell \"1\"\nStaticText \"1\"\nInlineTextBox \"1\"\nrowheader \"DeepSeek V4.1 Flash 1017\" (readonly=false)\nStaticText \"DeepSeek V4.1 Flash 1017\"\nInlineTextBox \"DeepSeek V4.1 Flash 1017\"\ncell \"deepseek\"\nStaticText \"deepseek\"\nInlineTextBox \"deepseek\"\ncell \"54.8T tokens\"\nStaticText \"54.8T tokens\"\nInlineTextBox \"54.8T tokens\"\ncell \"+47%\"\nStaticText \"+47%\"\nInlineTextBox \"+47%\"\ncell \"2\"\nStaticText \"2\"\nInlineTextBox \"2\"\nrowheader \"GLM 5.3 Flash\" (readonly=false)\nStaticText \"GLM 5.3 Flash\"\nInlineTextBox \"GLM 5.3 Flash\"\ncell \"z-ai\"\nStaticText \"z-ai\"\nInlineTextBox \"z-ai\"\ncell \"16.4T tokens\"\nStaticText \"16.4T tokens\"\nInlineTextBox \"16.4T tokens\"\ncell \"+16%\"\nStaticText \"+16%\"\nInlineTextBox \"+16%\"\ncell \"3\"\nStaticText \"3\"\nInlineTextBox \"3\"\nrowheader \"DeepSeek V4.1 Flash\" (readonly=false)\nStaticText \"DeepSeek V4.1 Flash\"\nInlineTextBox \"DeepSeek V4.1 Flash\"\ncell \"deepseek\"\nStaticText \"deepseek\"\nInlineTextBox \"deepseek\"\ncell \"15.6T tokens\"\nStaticText \"15.6T tokens\"\nInlineTextBox \"15.6T tokens\"\ncell \"-8%\"\nStaticText \"-8%\"\nInlineTextBox \"-8%\"\ncell \"4\"\nStaticText \"4\"\nInlineTextBox \"4\"\nrowheader \"Hy4 preview\" (readonly=false)\nStaticText \"Hy4 preview\"\nInlineTextBox \"Hy4 preview\"\ncell \"tencent\"\nStaticText \"tencent\"\nInlineTextBox \"tencent\"\ncell \"9.48T tokens\"\nStaticText \"9.48T tokens\"\nInlineTextBox \"9.48T tokens\"\ncell \"+6%\"\nStaticText \"+6%\"\nInlineTextBox \"+6%\"\ncell \"5\"\nStaticText \"5\"\nInlineTextBox \"5\"\nrowheader \"GPT-6 Luna\" (readonly=false)\nStaticText \"GPT-6 Luna\"\nInlineTextBox \"GPT-6 Luna\"\ncell \"openai\"\nStaticText \"openai\"\nInlineTextBox \"openai\"\ncell \"9.26T tokens\"\nStaticText \"9.26T tokens\"\nInlineTextBox \"9.26T tokens\"\ncell \"+2%\"\nStaticText \"+2%\"\nInlineTextBox \"+2%\"\ncell \"6\"\nStaticText \"6\"\nInlineTextBox \"6\"\nrowheader \"Step 5 Preview\" (readonly=false)\nStaticText \"Step 5 Preview\"\nInlineTextBox \"Step 5 Preview\"\ncell \"stepfun\"\nStaticText \"stepfun\"\nInlineTextBox \"stepfun\"\ncell \"6.68T tokens\"\nStaticText \"6.68T tokens\"\nInlineTextBox \"6.68T tokens\"\ncell \"+43%\"\nStaticText \"+43%\"\nInlineTextBox \"+43%\"\ncell \"7\"\nStaticText \"7\"\nInlineTextBox \"7\"\nrowheader \"Claude Opus 5.5\" (readonly=false)\nStaticText \"Claude Opus 5.5\"\nInlineTextBox \"Claude Opus 5.5\"\ncell \"anthropic\"\nStaticText \"anthropic\"\nInlineTextBox \"anthropic\"\ncell \"6.67T tokens\"\nStaticText \"6.67T tokens\"\nInlineTextBox \"6.67T tokens\"\ncell \"-17%\"\nStaticText \"-17%\"\nInlineTextBox \"-17%\"\ncell \"8\"\nStaticText \"8\"\nInlineTextBox \"8\"\nrowheader \"MiniMax M3.1 Flash\" (readonly=false)\nStaticText \"MiniMax M3.1 Flash\"\nInlineTextBox \"MiniMax M3.1 Flash\"\ncell \"minimax\"\nStaticText \"minimax\"\nInlineTextBox \"minimax\"\ncell \"6.5T tokens\"\nStaticText \"6.5T tokens\"\nInlineTextBox \"6.5T tokens\"\ncell \"+181%\"\nStaticText \"+181%\"\nInlineTextBox \"+181%\"\ncell \"9\"\nStaticText \"9\"\nInlineTextBox \"9\"\nrowheader \"GPT-5.6 Luna\" (readonly=false)\nStaticText \"GPT-5.6 Luna\"\nInlineTextBox \"GPT-5.6 Luna\"\ncell \"openai\"\nStaticText \"openai\"\nInlineTextBox \"openai\"\ncell \"5.33T tokens\"\nStaticText \"5.33T tokens\"\nInlineTextBox \"5.33T tokens\"\ncell \"+176%\"\nStaticText \"+176%\"\nInlineTextBox \"+176%\"\ncell \"10\"\nStaticText \"10\"\nInlineTextBox \"10\"\nrowheader \"GPT-6.1 Sol\" (readonly=false)\nStaticText \"GPT-6.1 Sol\"\nInlineTextBox \"GPT-6.1 Sol\"\ncell \"openai\"\nStaticText \"openai\"\nInlineTextBox \"openai\"\ncell \"4.05T tokens\"\nStaticText \"4.05T tokens\"\nInlineTextBox \"4.05T tokens\"\ncell \"+37%\"\nStaticText \"+37%\"\nInlineTextBox \"+37%\"\nStaticText \"1\"\nInlineTextBox \"1\"\nStaticText \".\"\nInlineTextBox \".\"\nimage \"Favicon for deepseek\"\n[t36] link \"DeepSeek V4.1 Flash 1017\"\nStaticText \"DeepSeek V4.1 Flash 1017\"\nInlineTextBox \"DeepSeek V4.1 Flash 1017\"\nInlineTextBox \"DeepSeek V4.1 Flash 10\"\nInlineTextBox \"…\"\nStaticText \"by\"\nInlineTextBox \"by\"\n[t37] link \"deepseek\"\nStaticText \"deepseek\"\nInlineTextBox \"deepseek\"\nStaticText \"54.8T tokens\"\nInlineTextBox \"54.8T tokens\"\nStaticText \"47%\"\nInlineTextBox \"47%\"\nStaticText \"2\"\nInlineTextBox \"2\"\nStaticText \".\"\nInlineTextBox \".\"\nimage \"Favicon for z-ai\"\n[t38] link \"GLM 5.3 Flash\"\nStaticText \"GLM 5.3 Flash\"\nInlineTextBox \"GLM 5.3 Flash\"\nStaticText \"by\"\nInlineTextBox \"by\"\n[t39] link \"z-ai\"\nStaticText \"z-ai\"\nInlineTextBox \"z-ai\"\nStaticText \"16.4T tokens\"\nInlineTextBox \"16.4T tokens\"\nStaticText \"16%\"",
+  "tabId": "11111111-1111-4111-8111-111111111111"
+}

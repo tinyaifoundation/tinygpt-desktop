@@ -1,0 +1,43 @@
+import {build} from 'vite';
+import react from '@vitejs/plugin-react';
+import {chromium} from 'playwright';
+import {createServer} from 'node:http';
+import {mkdir,writeFile,readFile,readdir} from 'node:fs/promises';
+import {resolve,join,extname} from 'node:path';
+import assert from 'node:assert/strict';
+
+const root=resolve('artifacts/reply-layout');await mkdir(root,{recursive:true});
+const css=(await readdir('remote-relay/public/assets')).find(file=>/^mobile.*\.css$/.test(file));if(!css)throw Error('Build the mobile companion first.');
+await writeFile(join(root,'index.html'),`<!doctype html><html data-theme="dark"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/mobile-assets/${css}"><style>html,body,#root{height:100%;margin:0;background:var(--background);color:var(--foreground)}.conversation-pane{height:100%;display:flex;min-width:0}.thread-viewport{overflow:auto;flex:1;min-width:0}.thread-message-column{padding:24px 16px;width:100%;max-width:720px;margin:auto}</style></head><body><div id="root"></div><script type="module" src="/scripts/reply-layout-smoke.tsx"></script></body></html>`);
+await build({configFile:false,root:process.cwd(),plugins:[react()],logLevel:'error',build:{outDir:join(root,'dist'),emptyOutDir:true,rollupOptions:{input:join(root,'index.html')}},resolve:{alias:{'@':resolve('src/renderer')}}});
+const index=await readFile(join(root,'dist/artifacts/reply-layout/index.html'));
+const server=createServer(async(req,res)=>{try{const url=new URL(req.url,'http://fixture'),path=url.pathname.startsWith('/mobile-assets/')?join(resolve('remote-relay/public/assets'),url.pathname.slice('/mobile-assets/'.length)):url.pathname.startsWith('/assets/')?join(root,'dist',url.pathname):null;const bytes=path?await readFile(path):index;res.setHeader('content-type',path?({'.js':'application/javascript','.css':'text/css','.woff2':'font/woff2'}[extname(path)]||'application/octet-stream'):'text/html');res.end(bytes);}catch{res.writeHead(404).end();}});await new Promise(done=>server.listen(0,'127.0.0.1',done));
+const browser=await chromium.launch({channel:'chrome',headless:true}),page=await browser.newPage({viewport:{width:900,height:800}}),errors=[];page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(15000);
+const tool=(id,name,status='success',at=1)=>({id,name,status,conversationId:'chat',runId:'run',summary:'A recorded action',displayText:name==='code_read'?'Reading a file':undefined,result:'PRIVATE_TOOL_OUTPUT',createdAt:at});
+const update=(text='',prose='',phase='prose',lane='progress',status='streaming')=>({conversation:{id:'chat',projectId:null,title:'Reply layout',mode:'chat',createdAt:0,updatedAt:0,messages:[{id:'user',role:'user',text:'Check this for me.',runId:'run',route:'local',status:'complete',error:null,createdAt:0},{id:'assistant',role:'assistant',text,runId:'run',route:'local',status,error:null,createdAt:1}],tools:[tool('read','read_page'),tool('search','search_web','running',2)],sources:[]},library:{projects:[],conversations:[],lastConversationId:'chat',activeRuns:status==='streaming'?[{conversationId:'chat',runId:'run',phase,textLane:lane,hasVisibleAnswer:!!text&&lane==='answer',prose}]:[],approvals:[],browserHandoffs:[]}});
+const show=async(value,mobile=false)=>page.evaluate(({value,mobile})=>window.replyFixture.show(value,mobile),{value,mobile});
+const chain=()=>page.locator('.tool-chain');
+try{
+ await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>!!window.replyFixture);
+ await show(update('','First progress.'));await page.locator('[data-slot="chat-progress"]').filter({hasText:'First progress.'}).waitFor();assert.equal(await chain().count(),1);
+ await chain().evaluate(element=>window.originalChain=element);await chain().locator('summary').click();assert.equal((await chain().innerText()).includes('First progress.'),false);
+ await show(update('','Replacement progress.'));await page.locator('[data-slot="chat-progress"]').filter({hasText:'Replacement progress.'}).waitFor();assert.equal(await page.getByText('First progress.',{exact:true}).count(),0);assert.equal(await page.locator('[data-slot="chat-progress"]').count(),1);assert.equal(await chain().evaluate(element=>element===window.originalChain),true);
+ await show(update('','Replacement progress.','tool'));assert.equal(await page.locator('[data-slot="chat-progress"]').count(),1);
+ await show(update('','','answer','answer'));await page.waitForFunction(()=>!document.querySelector('[data-slot="chat-progress"]'));
+ await show(update('Final first chunk.','','answer','answer'));await page.locator('[data-slot="answer-text"]').filter({hasText:'Final first chunk.'}).waitFor();assert.equal(await page.locator('[data-slot="chat-progress"]').count(),0);
+ await show(update('Final first chunk. Final next chunk.','','answer','answer'));await page.getByText('Final first chunk. Final next chunk.',{exact:true}).waitFor();assert.equal(await chain().count(),1);assert.equal(await page.locator('[data-slot="answer-text"]').count(),1);
+ await page.screenshot({path:join(root,'chat-streaming.png')});
+ await show(update('Final first chunk. Final next chunk.','','answer','answer','complete'));await page.getByText('Worked',{exact:true}).waitFor();assert.equal((await chain().innerText()).includes('Replacement progress.'),false);
+ const work=update();work.conversation.id='work';work.conversation.mode='code';work.library.lastConversationId='work';work.library.activeRuns[0].conversationId='work';
+ const tools=[{...tool('delegate','code_delegate','running',1),conversationId:'work'}],activity=[{id:'intro',runId:'run',kind:'prose',text:'I’ll check the implementation.',startedAt:0},{id:'delegate-part',runId:'run',kind:'tool',toolId:'delegate',text:'',startedAt:1}];
+ for(let i=0;i<65;i++){const id='child-'+i;activity.push({id:'p'+i,runId:'run',kind:'prose',text:'Coding progress '+i+'.',agentId:'delegate',startedAt:i*2+2},{id:'t'+i,runId:'run',kind:'tool',toolId:id,text:'',agentId:'delegate',startedAt:i*2+3});tools.push({...tool(id,'code_read',i===64?'running':'success',i*2+3),conversationId:'work',target:'src/component.tsx'});}
+ work.conversation.tools=tools;work.conversation.messages=[{...work.conversation.messages[1],id:'work-assistant',workActivity:activity}];
+ await show(work,true);const agent=page.locator('[data-slot="coding-agent"]');await agent.locator('summary').getByText('Coding agent',{exact:true}).waitFor();assert.equal(await agent.getAttribute('open'),'');assert.equal(await agent.locator('[data-tool-name]').count(),0); // Tool disclosures begin collapsed.
+ assert.equal(await page.locator('.work-response-activity > .work-tool-chain:not([data-slot="coding-agent"])').count(),0);
+ await agent.locator('.work-tool-chain').last().locator('summary').click();assert.equal(await agent.locator('[data-tool-name="code_read"]').count(),1);
+ for(const width of [375,390,768]){await page.setViewportSize({width,height:844});await page.locator('.thread-viewport').evaluate(element=>element.scrollTop=0);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:join(root,'mobile-work-'+width+'.png')});}
+ tools[0].status='success';tools.at(-1).status='success';activity.push({id:'review',runId:'run',kind:'prose',text:'I’m reviewing the result.',startedAt:999});await show(structuredClone(work),true);await page.getByText('I’m reviewing the result.',{exact:true}).waitFor();await page.waitForFunction(()=>!document.querySelector('[data-slot="coding-agent"]').open);assert.equal(await page.locator('.work-response-heading').getAttribute('aria-expanded'),'true');
+ work.conversation.messages[0].text='The work is ready.';work.conversation.messages[0].status='complete';work.library.activeRuns=[];await show(structuredClone(work),true);await page.getByText('The work is ready.',{exact:true}).waitFor();await page.waitForFunction(()=>document.querySelector('.work-response-heading').getAttribute('aria-expanded')==='false');
+ await page.locator('.work-response-heading').click();await agent.locator(':scope > summary').click();await page.getByText('Coding progress 64.',{exact:true}).waitFor();assert.deepEqual(errors,[]);
+ console.log('Reply layout passed: one stable tool chain, replaceable progress, live answer handoff; mobile Coding agent nesting survives long runs and completion at 375/390/768px.');
+}catch(error){console.error('Renderer errors:',errors);console.error((await page.locator('body').innerText()).slice(0,3000));await page.screenshot({path:join(root,'failure.png')});throw error;}finally{await browser.close();await new Promise(done=>server.close(done));}

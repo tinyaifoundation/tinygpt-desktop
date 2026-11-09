@@ -1,0 +1,15 @@
+import { useEffect, useState } from 'react';
+import { FileText, Search } from '../icons';
+import type { DesktopBridge } from '../../shared/contracts';
+import type { WorkspaceEntry } from '../../shared/workspace';
+import { Dialog } from './ui/dialog';
+import { WorkspaceScroll } from './WorkspaceScroll';
+
+export function QuickOpen({conversationId,bridge,close,open}:{conversationId:string;bridge:DesktopBridge;close:()=>void;open:(path:string)=>void}){
+  const [query,setQuery]=useState(''),[entries,setEntries]=useState<WorkspaceEntry[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(''),[truncated,setTruncated]=useState(false),[index,setIndex]=useState(0);
+  useEffect(()=>{let live=true;setLoading(true);setError('');const timer=setTimeout(()=>void bridge.workspaceFiles({action:'find',conversationId,query}).then(result=>{if(!live)return;setLoading(false);if(!result.ok){setError(result.error);return;}setEntries(result.value.entries??[]);setTruncated(!!result.value.truncated);setIndex(0);}).catch(()=>{if(live){setLoading(false);setError('The Project could not be searched.');}}),120);return()=>{live=false;clearTimeout(timer);};},[conversationId,bridge,query]);
+  function choose(path:string){close();open(path);}
+  useEffect(()=>{document.getElementById(`quick-file-${index}`)?.scrollIntoView({block:'nearest'});},[index]);
+  return <Dialog open change={value=>{if(!value)close();}} title="Quick Open" description="Find a file in this Project. Use the arrow keys and Enter to open it." className="workspace-quick-open"><div className="workspace-quick-search"><Search/><input autoFocus aria-label="Find Project file" placeholder="Search files by name or path…" maxLength={200} value={query} onChange={event=>setQuery(event.target.value)} role="combobox" aria-expanded aria-controls="quick-open-results" aria-autocomplete="list" aria-activedescendant={entries[index]?`quick-file-${index}`:undefined} onKeyDown={event=>{if(['ArrowUp','ArrowDown','Enter'].includes(event.key)){event.preventDefault();if(event.key==='Enter'&&entries[index]&&!loading)choose(entries[index].path);else setIndex(previous=>Math.max(0,Math.min(entries.length-1,previous+(event.key==='ArrowDown'?1:-1))));}}}/></div>
+    <WorkspaceScroll className="workspace-quick-results"><div id="quick-open-results" role="listbox" aria-label="Project files">{loading?<p className="workspace-note" role="status">Finding files…</p>:error?<p className="workspace-note" role="alert">{error}</p>:entries.map((entry,i)=><button id={`quick-file-${i}`} key={entry.path} role="option" aria-selected={i===index} className="workspace-quick-result" onMouseEnter={()=>setIndex(i)} onClick={()=>choose(entry.path)}><FileText/><strong>{entry.name}</strong><span>{entry.path}</span></button>)}{!loading&&!error&&!entries.length&&<p className="workspace-note">No matching files.</p>}{truncated&&!loading&&<p className="workspace-note">Showing a limited set. Type a more specific name to narrow the search.</p>}</div></WorkspaceScroll></Dialog>;
+}

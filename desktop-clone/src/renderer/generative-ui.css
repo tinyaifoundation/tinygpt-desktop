@@ -1,0 +1,58 @@
+
+.chat-generative-ui { --chart-1:var(--user-accent); --chart-2:oklch(0.65 0.14 150); --chart-3:oklch(0.7 0.15 75); --chart-4:oklch(0.65 0.2 30); --chart-5:oklch(0.65 0.18 300); margin:16px 0; min-width:0; max-width:100%; overflow-wrap:anywhere; font-size:14px; line-height:1.55; }
+.chat-generative-ui .jr-section { display:flex; flex-direction:column; gap:14px; min-width:0; max-width:100%; margin:0; }
+.chat-generative-ui .jr-title { margin:0; font-size:15px; font-weight:600; line-height:1.45; color:var(--foreground); }
+.chat-generative-ui .jr-caption { display:block; margin:0; color:var(--muted-foreground); font-size:12px; line-height:1.5; }
+.chat-generative-ui .jr-card { padding:18px; border:1px solid var(--border); border-radius:12px; background:var(--background); }
+.chat-generative-ui .jr-stack { display:flex; flex-direction:column; gap:16px; min-width:0; }
+.chat-generative-ui .jr-stack[data-direction="horizontal"] { flex-direction:row; flex-wrap:wrap; align-items:flex-start; }
+.chat-generative-ui .jr-stack[data-direction="horizontal"] > * { flex:1 1 200px; min-width:0; }
+.chat-generative-ui .jr-stack[data-gap="small"] { gap:8px; }
+.chat-generative-ui .jr-stack[data-gap="large"] { gap:24px; }
+.chat-generative-ui .jr-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); gap:12px; margin:0; }
+.chat-generative-ui .jr-metric { padding:16px; border:1px solid var(--border); border-radius:10px; min-width:0; }
+.chat-generative-ui .jr-metric dt { font-size:12px; color:var(--muted-foreground); }
+.chat-generative-ui .jr-metric dd { margin:6px 0 0; font-size:clamp(18px,3vw,26px); line-height:1.2; letter-spacing:-0.03em; font-weight:600; font-variant-numeric:tabular-nums; }
+.chat-generative-ui .jr-metric-delta { display:block; margin-top:8px; font-size:12px; color:var(--muted-foreground); }
+.chat-generative-ui .jr-metric-delta[data-good="true"] { color:light-dark(#15803d,#86d4a0); }
+.chat-generative-ui .jr-metric-delta[data-good="false"] { color:var(--destructive); }
+.chat-generative-ui .jr-table-scroll { overflow:auto; max-width:100%; border:1px solid var(--border); border-radius:10px; scrollbar-width:thin; }
+.chat-generative-ui .jr-table { display:table; width:100%; margin:0; border-collapse:collapse; font-size:13px; }
+.chat-generative-ui .jr-table th, .chat-generative-ui .jr-table td { padding:10px 14px; border:0; border-bottom:1px solid var(--border); text-align:start; vertical-align:top; font-variant-numeric:tabular-nums; min-width:90px; max-width:400px; overflow-wrap:anywhere; }
+.chat-generative-ui .jr-table tr:last-child td { border-bottom:0; }
+.chat-generative-ui .jr-table th { background:color-mix(in srgb,var(--muted) 50%,transparent); color:var(--muted-foreground); font-weight:500; font-size:12px; }
+.chat-generative-ui .jr-table [data-align="end"] { text-align:end; }
+.chat-generative-ui .jr-table th button { appearance:none; border:0; padding:0; background:none; color:inherit; font:inherit; cursor:pointer; text-align:inherit; }
+.chat-generative-ui .jr-table tbody tr:hover { background:color-mix(in srgb,var(--muted) 25%,transparent); }
+.chat-generative-ui .jr-summary { color:var(--muted-foreground); font-size:13px; }
+.chat-generative-ui .jr-text > :first-child, .chat-generative-ui .jr-summary > :first-child { margin-top:0; }
+.chat-generative-ui .jr-text > :last-child, .chat-generative-ui .jr-summary > :last-child { margin-bottom:0; }
+.chat-generative-ui .jr-chart-scroll { min-width:0; overflow:auto; }
+.chat-generative-ui .jr-chart { display:block; width:100%; min-width:300px; height:auto; overflow:visible; }
+.chat-generative-ui .jr-chart text { font:11px system-ui,sans-serif; fill:var(--muted-foreground); }
+.chat-generative-ui .jr-chart-grid { stroke:var(--border); stroke-dasharray:3 4; }
+.chat-generative-ui .jr-chart-zero { stroke:var(--muted-foreground); stroke-opacity:0.5; }
+.chat-generative-ui .jr-chart-legend { display:flex; flex-wrap:wrap; gap:8px 18px; font-size:12px; color:var(--muted-foreground); }
+.chat-generative-ui .jr-chart-legend span { display:flex; align-items:center; gap:6px; }
+.chat-generative-ui .jr-chart-legend i { width:8px; height:8px; border-radius:2px; }
+.chat-generative-ui .jr-chart-data { font-size:12px; color:var(--muted-foreground); }
+.chat-generative-ui .jr-chart-data summary { cursor:pointer; width:fit-content; }
+.chat-generative-ui .jr-chart-data[open] summary { margin-bottom:10px; }
+.chat-generative-ui .jr-checklist { list-style:none; margin:0; padding:0; }
+.chat-generative-ui .jr-checklist li + li { border-top:1px solid var(--border); }
+.chat-generative-ui .jr-checklist label { display:flex; align-items:flex-start; gap:12px; padding:12px 0; cursor:pointer; }
+.chat-generative-ui .jr-checklist input { margin-top:4px; accent-color:var(--user-accent); flex-shrink:0; }
+.chat-generative-ui .jr-checklist input:checked + span .jr-checklist-text { color:var(--muted-foreground); text-decoration:line-through; }
+.chat-generative-ui .jr-timeline { list-style:none; margin:0 0 0 5px; padding:0 0 0 20px; border-left:1px solid var(--border); }
+.chat-generative-ui .jr-timeline li { position:relative; padding:0 0 22px; }
+.chat-generative-ui .jr-timeline li:last-child { padding-bottom:0; }
+.chat-generative-ui .jr-timeline li::before { content:''; position:absolute; left:-25px; top:7px; width:9px; height:9px; border:2px solid var(--background); border-radius:50%; background:var(--user-accent); }
+.chat-generative-ui .jr-timeline strong { display:block; font-size:14px; font-weight:500; }
+.chat-generative-ui .jr-callout { border:1px solid var(--border); border-left:3px solid var(--user-accent); padding:14px 16px; border-radius:8px; background:color-mix(in srgb,var(--muted) 30%,transparent); }
+.chat-generative-ui .jr-callout[data-tone="success"] { border-left-color:var(--chart-2); }
+.chat-generative-ui .jr-callout[data-tone="warning"] { border-left-color:var(--chart-3); }
+.chat-generative-ui .jr-callout .jr-title { margin-bottom:6px; }
+.chat-generative-ui .jr-follow-ups { display:flex; flex-wrap:wrap; gap:8px; }
+.chat-generative-ui .chat-ui-follow-up { max-width:100%; height:auto; min-height:32px; white-space:normal; }
+.chat-generative-ui :is(button,input,summary,[tabindex]):focus-visible { outline:2px solid var(--ring); outline-offset:3px; }
+@media (max-width:420px) { .chat-generative-ui .jr-card { padding:12px; } .chat-generative-ui .jr-metric { padding:12px; } }

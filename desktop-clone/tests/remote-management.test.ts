@@ -1,0 +1,13 @@
+import {describe,it,expect,vi} from 'vitest';
+import {randomUUID} from 'node:crypto';
+import {RemoteManagement} from '../src/main/remote-management';
+import {remoteManagementRequestSchema,remoteManagementStateSchema} from '../src/shared/remote-management';
+const state=()=>({allowed:true,computer:'Fixture',version:'1',keepAwake:false});
+describe('private remote management',()=>{
+ it('rejects broad settings, credential and path inputs',()=>{for(const input of [{op:'settings',settings:{}},{op:'voice',endpoint:'https://secret.example'},{op:'project-save',name:'Project',instructions:'',rootPath:'C:/private'},{op:'plugin',pluginId:randomUUID(),action:'connect',token:'secret'}])expect(remoteManagementRequestSchema.safeParse({id:randomUUID(),...input}).success).toBe(false);});
+ it('does not run or expose a snapshot without a management grant',async()=>{const actions={state:vi.fn(async()=>state()),change:vi.fn(async()=>({}))},service=new RemoteManagement(actions);await expect(service.handle('phone',{id:randomUUID(),op:'state'},()=>{throw Error('Not authorized');})).rejects.toThrow('Not authorized');expect(actions.state).not.toHaveBeenCalled();});
+ it('rechecks authorization after asynchronous reads and changes',async()=>{let allowed=true;const service=new RemoteManagement({state:async()=>{allowed=false;return state();},change:async()=>({})});await expect(service.handle('phone',{id:randomUUID(),op:'state'},()=>{if(!allowed)throw Error('Revoked');})).rejects.toThrow('Revoked');});
+ it('never repeats a mutation and rejects a reused id with different content',async()=>{const change=vi.fn(async()=>({})),service=new RemoteManagement({state:async()=>state(),change}),id=randomUUID();await service.handle('phone',{id,op:'keep-awake',value:true},()=>{});await expect(service.handle('phone',{id,op:'keep-awake',value:true},()=>{})).rejects.toThrow('already handled');await expect(service.handle('phone',{id,op:'keep-awake',value:false},()=>{})).rejects.toThrow('already been used');expect(change).toHaveBeenCalledTimes(1);});
+ it('projects no credential, raw tool, indexed-file or browser data in the reply schema',()=>{for(const extra of [{credentials:{token:'secret'}},{tools:[]},{rootPath:'C:/private'},{browserHistory:[]}])expect(remoteManagementStateSchema.safeParse({...state(),...extra}).success).toBe(false);});
+ it('bounds memory content and requires UUID project and conversation targets',()=>{expect(remoteManagementRequestSchema.safeParse({id:randomUUID(),op:'memory-save',input:{projectId:null,title:'x',text:'x'.repeat(12001),enabled:true}}).success).toBe(false);expect(remoteManagementRequestSchema.safeParse({id:randomUUID(),op:'project-move',conversationId:'other',projectId:null}).success).toBe(false);});
+});

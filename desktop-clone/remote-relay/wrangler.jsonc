@@ -1,0 +1,52 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "tinygpt-remote",
+  "main": "src/worker.ts",
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "mobile.tinygpt.org",
+      "custom_domain": true
+    }
+  ],
+  "compatibility_date": "2026-11-02",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "DESKTOPS",
+        "class_name": "DesktopRelay"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "DesktopRelay"
+      ]
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "REQUEST_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 120,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": false
+  },
+  "vars": {
+    "VAPID_PUBLIC_KEY": "BOjMPlDmnzD_WPwSQ6_CIy_-FBIeVKFC5e60_UAC_YbE12SUBF2qY6hDDPulGA3JDjBXu_qiUJRVSFDXeb5KdBE",
+    "VAPID_SUBJECT": "https://tinygpt.org"
+  }
+}

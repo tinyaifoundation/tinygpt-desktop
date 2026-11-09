@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>TinyGPT · Tool Icon Auditor</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="renderer.js" defer></script>
+</head>
+<body>
+  <div id="loading"><div class="loading-mark">T</div><h1>Tool Icon Auditor</h1><p id="loading-message">Reading the current tools and Solar icons…</p><button id="retry" hidden>Try again</button></div>
+  <div id="app" hidden>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">T</span><div><strong>TinyGPT</strong><span>Tool Icon Auditor</span></div></div>
+      <div class="section-label">REVIEW</div>
+      <nav id="views" aria-label="Review views"></nav>
+      <div class="section-label category-heading">TOOL GROUPS</div>
+      <nav id="groups" aria-label="Tool groups"></nav>
+      <div class="sidebar-footer"><span class="local-dot"></span> Saved on this computer<button id="show-file">Show change file ↗</button></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">ICON LIBRARY / AUDIT</span><h1 id="view-title">All tools</h1></div><div class="header-actions"><button id="refresh-audit">Refresh latest tools</button><button class="primary" id="copy-request" disabled>Copy update request</button></div></header>
+      <div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search tools, labels, or icon slugs" aria-label="Search tools"></label><div class="segmented" aria-label="Toolchain text state"><button data-mode="complete" aria-pressed="true">Completed</button><button data-mode="active" aria-pressed="false">Running</button></div></div>
+      <div class="scope"><span id="audit-summary"></span><button id="scope-toggle" aria-expanded="false">About this audit</button></div>
+      <div id="scope-detail" hidden>Source: the latest desktop-clone production code. Refresh latest tools reloads declarations and renders the real production icon resolver, including family rules. New tools are marked for review. Saved choices stay on disk; Applied means the current icon matches the choice. Copy update request includes pending choices only. Connected account and remote MCP catalogs are not inspected. Labels are host fallbacks; summaries and model-written status text can vary.</div>
+      <div class="results-heading"><span id="results-count"></span><span id="selection-help">Select a tool to inspect or change its icon</span></div>
+      <section id="tools" class="tool-grid" aria-label="Tools"></section>
+      <div id="empty" hidden><h2>No tools found</h2><p>Try a different search or tool group.</p></div>
+      <footer class="main-footer"><span id="save-status" role="status" aria-live="polite">No changes recorded</span><span id="solar-version"></span></footer>
+    </main>
+    <aside id="inspector" class="inspector" aria-label="Tool inspector">
+      <div class="inspector-header"><span class="eyebrow">TOOL INSPECTOR</span><span id="inspector-tag" class="tag"></span></div>
+      <div id="inspector-content"></div>
+    </aside>
+  </div>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

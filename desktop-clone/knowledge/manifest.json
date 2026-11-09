@@ -1,0 +1,338 @@
+{
+  "articles": [
+    {
+      "id": "icon-auditor",
+      "title": "Tool Icon Auditor for repository contributors",
+      "sources": [
+        "../tools/tool-icon-auditor/audit-source.cjs",
+        "../tools/tool-icon-auditor/main.cjs",
+        "../tools/tool-icon-auditor/preload.cjs",
+        "../tools/tool-icon-auditor/renderer.js",
+        "../tools/tool-icon-auditor/index.html",
+        "../tools/tool-icon-auditor/styles.css",
+        "../tools/tool-icon-auditor/store.cjs",
+        "src/renderer/tool-icons.tsx",
+        "src/shared/tool-icon-overrides.json",
+        "src/shared/connector-tool-icon-keys.ts",
+        "src/shared/tools.ts",
+        "src/shared/tool-labels.ts",
+        "src/shared/browser-tool-labels.ts",
+        "src/shared/work.ts",
+        "src/shared/computer.ts",
+        "src/core/agent-tools.ts",
+        "src/main/connector-tools.ts"
+      ]
+    },
+    {
+      "id": "overview",
+      "title": "Getting started and navigating TinyGPT",
+      "sources": [
+        "src/renderer/components/SettingsWorkspace.tsx",
+        "src/renderer/App.tsx",
+        "src/renderer/components/Onboarding.tsx",
+        "src/renderer/components/OnboardingShowcase.tsx",
+        "src/renderer/lib/onboarding-profile.ts",
+        "src/renderer/lib/appearance.ts",
+        "src/main/memory-library.ts",
+        "design/onboarding-artwork.md",
+        "src/renderer/onboarding-showcase.css",
+        "src/renderer/onboarding.css",
+        "src/shared/onboarding.ts",
+        "src/main/onboarding.ts",
+        "src/main/index.ts",
+        "src/preload/index.ts",
+        "src/shared/contracts.ts",
+        "src/renderer/components/GeneralSettings.tsx",
+        "src/renderer/lib/settings-search.ts",
+        "electron-builder.yml",
+        "build/installer.nsh",
+        "scripts/prepare-installer-art.cjs",
+        "src/core/runtime-context.ts",
+        "src/core/librechat.ts"
+      ]
+    },
+    {
+      "id": "models",
+      "title": "Models, connections and offline use",
+      "sources": [
+        "src/renderer/components/ConfigurationSettings.tsx",
+        "src/shared/config.ts",
+        "src/main/managed-local.ts",
+        "src/shared/managed-local.ts",
+        "src/main/managed-performance.ts"
+      ]
+    },
+    {
+      "id": "chat",
+      "title": "Chat, research and answers",
+      "sources": [
+        "src/main/chat-service.ts",
+        "src/shared/chat.ts",
+        "src/core/chat-presentation.ts",
+        "src/renderer/tool-icons.tsx",
+        "src/shared/tool-icon-overrides.json",
+        "src/renderer/components/ConversationMessages.tsx",
+        "src/renderer/lib/conversation-messages.ts"
+      ]
+    },
+    {
+      "id": "projects-files",
+      "title": "Projects, files, attachments and outputs",
+      "sources": [
+        "src/main/sources.ts",
+        "src/main/document-extraction.ts",
+        "src/main/attachments.ts",
+        "src/renderer/components/LibraryViews.tsx",
+        "src/core/ocr-layout.ts",
+        "src/main/file-ingestion.ts",
+        "src/main/tool-broker.ts",
+        "src/shared/tools.ts"
+      ]
+    },
+    {
+      "id": "memory",
+      "title": "Memory and local retrieval",
+      "sources": [
+        "src/main/memory-library.ts",
+        "src/main/memory-indexer.ts",
+        "src/main/memory-service.ts",
+        "src/main/rag-index.ts",
+        "src/renderer/components/MemorySettings.tsx"
+      ]
+    },
+    {
+      "id": "work",
+      "title": "Work tasks and verification",
+      "sources": [
+        "src/core/work-instructions.ts",
+        "src/main/code-shell.ts",
+        "src/main/work-runtimes.ts",
+        "src/shared/work-runtimes.ts",
+        "src/shared/work-runtimes.json",
+        "src/main/code-files.ts",
+        "src/main/code-execution.ts",
+        "src/main/code-plugin.ts",
+        "src/main/local-pty.ts",
+        "src/main/devtools-mcp.ts",
+        "scripts/prepare-work-runtimes.mjs",
+        "scripts/check-work-runtime-package.cjs",
+        "electron-builder.yml",
+        "src/renderer/components/WorkSettings.tsx",
+        "src/renderer/components/WorkResponse.tsx",
+        "src/core/remote-work.ts",
+        "src/core/work-limits.ts",
+        "src/core/work-effort.ts",
+        "src/core/pi-work.ts",
+        "src/core/code-stream.ts",
+        "src/main/work-execution.ts",
+        "src/main/work-code.ts",
+        "src/main/native-code-tools.ts",
+        "src/core/work-request.ts",
+        "src/core/provider-activity.ts",
+        "src/main/work-context.ts",
+        "src/core/stable-work-tools.ts",
+        "src/core/work-tool-catalog.ts",
+        "src/core/context.ts",
+        "src/shared/diagnostics.ts",
+        "src/renderer/components/WorkQuestionCard.tsx",
+        "src/renderer/components/ApprovalCard.tsx",
+        "src/renderer/tool-icons.tsx",
+        "src/renderer/work-response.css",
+        "src/core/runtime-context.ts",
+        "src/core/work-context-policy.ts",
+        "src/main/reply-diagnostics.ts",
+        "src/core/native-performance.ts",
+        "src/main/gpu-telemetry.ts"
+      ]
+    },
+    {
+      "id": "bot-scheduled",
+      "title": "Your Bot and Scheduled tasks",
+      "sources": [
+        "src/main/bot-service.ts",
+        "src/main/scheduled-service.ts",
+        "src/renderer/components/BotSettings.tsx",
+        "src/renderer/components/Scheduled.tsx",
+        "src/main/pi-assistant.ts",
+        "src/core/assistant-tools.ts",
+        "src/main/bot-watch.ts",
+        "src/renderer/components/Workbench.tsx",
+        "src/renderer/components/BotCompanionPanel.tsx",
+        "src/renderer/components/ui/dropdown-menu.tsx",
+        "src/renderer/components/SidebarBot.tsx",
+        "src/renderer/components/RobotAvatar.tsx",
+        "src/renderer/lib/bot-avatar.ts",
+        "src/renderer/App.tsx",
+        "src/shared/bot.ts",
+        "src/main/chat-service.ts",
+        "src/main/index.ts",
+        "src/preload/index.ts",
+        "src/renderer/components/BotAccessSettings.tsx",
+        "src/renderer/components/AgentBrowserPreview.tsx",
+        "src/renderer/bot-conversation.css",
+        "src/core/runtime-context.ts",
+        "src/renderer/components/ui/tooltip.tsx",
+        "src/core/bot-activity.ts",
+        "src/core/pi-service-grounding.ts",
+        "src/core/assistant-state-tools.ts",
+        "src/core/tool-loop.ts",
+        "src/core/work-tool-catalog.ts",
+        "src/core/pi-errors.ts",
+        "src/shared/diagnostics.ts",
+        "src/shared/bot-design.ts",
+        "src/renderer/components/MobileBot.tsx",
+        "src/renderer/components/BotMessages.tsx",
+        "src/core/chat-updates.ts",
+        "src/shared/remote-push.ts"
+      ]
+    },
+    {
+      "id": "plugins",
+      "title": "Plugins, connected accounts, MCP and skills",
+      "sources": [
+        "src/main/plugin-service.ts",
+        "src/main/tool-broker.ts",
+        "src/renderer/components/PluginLibrary.tsx",
+        "src/shared/connector-catalog.ts",
+        "src/main/connector-tools.ts",
+        "src/main/connector-oauth.ts"
+      ]
+    },
+    {
+      "id": "browser-computer",
+      "title": "Browser and computer control",
+      "sources": [
+        "src/main/browser.ts",
+        "src/main/computer-service.ts",
+        "src/renderer/components/BrowserSettings.tsx",
+        "src/renderer/components/ComputerSettings.tsx",
+        "src/main/passwords.ts",
+        "src/main/password-vault.ts",
+        "src/main/password-native.ts",
+        "src/main/password-privacy.ts",
+        "src/core/password-form.ts",
+        "src/preload/passwords.ts",
+        "native/passwords/windows.cpp",
+        "native/passwords/macos.mm",
+        "scripts/prepare-password-runtime.mjs",
+        "src/core/browser-snapshot.ts",
+        "src/core/browser-accessibility.ts",
+        "src/core/browser-errors.ts",
+        "src/core/browser-pages.ts",
+        "src/main/image-tools.ts",
+        "src/main/observations.ts",
+        "src/core/work-tool-catalog.ts",
+        "src/shared/tools.ts",
+        "src/renderer/components/ApprovalCard.tsx",
+        "src/renderer/components/Workspace.tsx",
+        "src/main/image-understanding.ts",
+        "src/main/image-text.ts"
+      ]
+    },
+    {
+      "id": "voice-images",
+      "title": "Voice, images and media",
+      "sources": [
+        "src/main/speech-service.ts",
+        "src/main/image-tools.ts",
+        "src/renderer/components/VoiceSettings.tsx"
+      ]
+    },
+    {
+      "id": "remote",
+      "title": "Remote Control and paired devices",
+      "sources": [
+        "src/main/remote-service.ts",
+        "src/shared/remote-crypto.ts",
+        "src/renderer/components/RemoteControlSettings.tsx",
+        "src/renderer/components/MobileCompanion.tsx",
+        "src/core/remote-work.ts",
+        "src/shared/remote.ts",
+        "src/renderer/MobileChat.tsx",
+        "src/renderer/mobile.css",
+        "src/core/remote-presentation.ts",
+        "src/core/remote-tool.ts",
+        "src/core/generative-parts.ts",
+        "src/main/remote-media.ts",
+        "src/shared/remote-media.ts",
+        "src/renderer/components/ChatGenerativeUI.tsx",
+        "src/renderer/components/ChatOutputComponents.tsx",
+        "src/renderer/tool-icons.tsx",
+        "src/shared/connector-tool-icon-keys.ts",
+        "src/shared/tool-icon-overrides.json",
+        "src/shared/bot-design.ts",
+        "src/renderer/components/MobileBot.tsx",
+        "src/renderer/components/BotMessages.tsx",
+        "src/core/chat-updates.ts",
+        "src/shared/remote-push.ts"
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy, permissions and data deletion",
+      "sources": [
+        "src/main/store.ts",
+        "src/main/reply-diagnostics.ts",
+        "src/renderer/components/GeneralSettings.tsx",
+        "src/main/passwords.ts",
+        "src/main/password-privacy.ts",
+        "src/main/gpu-telemetry.ts",
+        "src/core/native-performance.ts",
+        "src/shared/diagnostics.ts"
+      ]
+    },
+    {
+      "id": "personal-settings",
+      "title": "Appearance, profile and notifications",
+      "sources": [
+        "src/renderer/components/AppearanceSettings.tsx",
+        "src/renderer/components/NotificationSettings.tsx",
+        "src/renderer/components/ProfileUsage.tsx",
+        "src/main/notification-service.ts",
+        "src/main/notification-log.ts",
+        "src/shared/notifications.ts",
+        "src/renderer/lib/settings-search.ts"
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "title": "Troubleshooting and current limitations",
+      "sources": [
+        "src/renderer/components/DiagnosticsSettings.tsx",
+        "src/core/chat-errors.ts"
+      ]
+    },
+    {
+      "id": "updates",
+      "title": "Updating TinyGPT and keeping local models",
+      "sources": [
+        "src/shared/updates.ts",
+        "src/shared/model-assets.ts",
+        "src/shared/contracts.ts",
+        "src/main/app-updates.ts",
+        "src/main/update-engine.ts",
+        "src/main/model-assets.ts",
+        "src/main/model-setup.ts",
+        "src/main/index.ts",
+        "src/main/workspace-terminals.ts",
+        "src/main/bot-service.ts",
+        "src/main/scheduled-service.ts",
+        "src/preload/index.ts",
+        "src/renderer/components/AppUpdate.tsx",
+        "src/renderer/components/app-update.css",
+        "src/renderer/components/GeneralSettings.tsx",
+        "src/renderer/lib/settings-search.ts",
+        "electron-builder.yml",
+        "build/installer.nsh",
+        "scripts/prepare-model-assets.mjs",
+        "scripts/migrate-model-assets.cjs",
+        "scripts/release-builder.cjs",
+        "scripts/verify-release.mjs",
+        "scripts/verify-code-signature.ps1",
+        "scripts/publish-release.mjs",
+        "scripts/release-metadata.mjs",
+        "release-hosting/worker.ts"
+      ]
+    }
+  ]
+}

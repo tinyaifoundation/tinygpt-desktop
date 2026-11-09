@@ -1,0 +1,40 @@
+/* V2 Chat: add, prompt, and actions share a compact rounded bar. */
+.dictation-control { position:relative; display:flex; flex-shrink:0; align-items:center; gap:8px; min-width:0; }
+.dictation-overlay { position:fixed; z-index:180; pointer-events:none; }
+.dictation-overlay .dictation-error { bottom:0; }
+.dictation-overlay .dictation-error { pointer-events:auto; }
+.dictation-control[data-active] .dictation-button { color:var(--foreground); background:color-mix(in srgb,var(--foreground) 9%,transparent); box-shadow:0 0 0 3px color-mix(in srgb,var(--foreground) 4%,transparent); }
+.composer-voice { display:flex; min-width:0; flex:1; height:32px; align-items:center; gap:10px; padding:0 4px; }
+.composer-voice-dot { width:5px; height:5px; flex-shrink:0; border-radius:50%; background:var(--muted-foreground); }
+.composer-voice-dot[data-recording] { background:var(--foreground); animation:dictation-pulse 2s ease-in-out infinite; }
+.composer-voice-wave { display:block; min-width:0; flex:1; width:100%; height:24px; color:var(--foreground); }
+.composer-voice-time { flex-shrink:0; color:var(--muted-foreground); font-size:11px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+@keyframes dictation-pulse { 50% { opacity:.4; } }
+.work-composer:has(.dictation-control[data-active]) .work-composer-controls { gap:8px; }
+.work-composer:has(.dictation-control[data-active]) .work-composer-right,
+.dictation-control[data-active] { flex:1; }
+.message-edit-composer { width:100%; padding:16px 18px; border:0; border-radius:28px; background:var(--muted); }
+:root[data-theme="dark"] .message-edit-composer { background:var(--composer-surface); }
+.message-edit-controls { display:flex; justify-content:flex-end; align-items:center; gap:8px; margin-top:8px; }
+.message-edit-controls .dictation-control { margin-right:2px; }
+.message-edit-cancel { border:1px solid var(--border); border-radius:14px; background:transparent; font-weight:400; }
+.message-edit-send { border-radius:14px; font-weight:400; }
+.dictation-error { position:absolute; right:0; bottom:calc(100% + 14px); width:min(300px,70vw); display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:var(--background); color:var(--foreground); box-shadow:0 4px 16px #00000014; font-size:12px; line-height:1.5; z-index:6; }
+.work-composer:has(.dictation-control[data-active]), [data-slot="edit-message"]:has(.dictation-control[data-active]) { border-color:color-mix(in srgb,var(--foreground) 24%,var(--border)); }
+@media(prefers-reduced-motion:reduce) { .composer-voice-dot, .dictation-button { transition:none!important; animation:none!important; } }
+.chat-composer { display:grid; grid-template-columns:27px minmax(0,1fr) auto; align-items:center; gap:8px; min-height:48px; padding:4px 5px 4px 12px; border-radius:26px; }
+.chat-composer .work-composer-controls { display:contents; }
+.chat-composer .composer-add-controls { grid-column:1; grid-row:1; align-self:center; }
+.chat-composer .composer-add-controls > button { width:27px; height:34px; flex-shrink:0; }
+.chat-composer .work-composer-prompt { grid-column:2; grid-row:1; min-width:0; min-height:34px; padding:0; }
+.chat-composer .work-composer-input { min-height:34px; max-height:134px; padding:7px 0; font-size:calc(14px * var(--user-ui-scale)); line-height:20px; }
+.chat-composer .work-composer-right { grid-column:3; grid-row:1; gap:8px; align-self:center; }
+.chat-composer .dictation-control > button:first-child:not([aria-label]) { max-width:130px; }
+.chat-composer .work-composer-right [aria-label="Send message"], .chat-composer .work-composer-right [aria-label="Stop reply"] { flex-shrink:0; }
+.work-project-picker[data-required="true"] { color:var(--foreground); }
+.composer-folder-picker { white-space:nowrap; }
+.chat-composer:has(.dictation-control[data-active]) { row-gap:3px; padding-top:9px; padding-bottom:7px; border-radius:22px; }
+.chat-composer:has(.dictation-control[data-active]) .work-composer-prompt { grid-column:1 / -1; grid-row:1; padding:0 7px; }
+.chat-composer:has(.dictation-control[data-active]) .composer-add-controls { grid-row:2; }
+.chat-composer:has(.dictation-control[data-active]) .work-composer-right { grid-column:2 / -1; grid-row:2; width:100%; }
+@media(max-width:650px) { .chat-composer .dictation-control > button:first-child:not([aria-label]) { max-width:90px; } }

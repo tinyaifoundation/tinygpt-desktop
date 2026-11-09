@@ -1,0 +1,20 @@
+import { ArrowLeft, ArrowRight, Copy, MoreHorizontal, Plus, ShieldCheck, UserRound } from '../icons';
+import type { ReactNode } from 'react';
+import type { PluginView, SuggestedConnector } from '../../shared/plugins';
+import { connectorCatalog } from '../../shared/connector-catalog';
+import { ConnectorIcon } from './ConnectorIcon';
+import { PluginStatus } from './PluginStatus';
+import { SettingsButton as Button } from './ui/settings-button';
+import { ControlTooltip } from './ui/tooltip';
+export function ConnectorDetail({ kind, entry, back, connect, advanced, tryPrompt }: { kind: SuggestedConnector; entry?: PluginView; back: () => void; connect: () => void; advanced?: ReactNode; tryPrompt?: (text: string) => void }) {
+  const info = connectorCatalog.find(item => item.id === kind)!;
+  return <div className="connector-detail"><ControlTooltip label="Back to plugins"><Button className="connector-detail-back" variant="ghost" size="icon" aria-label="Back to plugins" onClick={back}><ArrowLeft /></Button></ControlTooltip><span className="connector-detail-logo"><ConnectorIcon kind={kind} /></span><div className="connector-detail-title"><div><h1>{info.name}</h1><p>{info.description}</p><PluginStatus entry={entry} /></div><div className="connector-detail-actions"><ControlTooltip label="Connection settings"><Button variant="ghost" size="icon" aria-label="Connection settings" onClick={() => document.getElementById('connector-advanced')?.scrollIntoView({ behavior: 'smooth' })}><MoreHorizontal /></Button></ControlTooltip><ControlTooltip label="Copy service link"><Button variant="muted" onClick={() => void navigator.clipboard.writeText(info.website)}><Copy />Copy link</Button></ControlTooltip><Button onClick={connect}>{entry?.status === 'connected' ? 'Manage connection' : 'Connect'}</Button></div></div>
+    <div className={`connector-examples is-${kind}`}>{info.examples.map(text => <button key={text} disabled={!tryPrompt} onClick={() => tryPrompt?.(text)}><span><ConnectorIcon kind={kind} /><strong>{info.name}</strong> {text}</span><ArrowRight /></button>)}</div>
+    <p className="connector-detail-description">Use {info.name} through TinyGPT’s connected tools. Choose what the assistant can access and review actions using your approval settings.</p>
+    <section className="connector-detail-section"><h2>Apps <span>1</span></h2><div className="connector-app-row"><span className="connector-catalog-logo"><ConnectorIcon kind={kind} /></span><div><strong>{info.name}</strong><p>{info.description}</p></div></div></section>
+    <section className="connector-detail-section"><h2>Connected accounts</h2><div className="connector-accounts">{entry?.status === 'connected' && <div className="connector-account"><span className="connector-account-avatar"><UserRound /></span><span><strong>{entry.account?.email ?? entry.account?.name ?? 'Connected account'}</strong><small>Connected on this device</small></span><ShieldCheck /></div>}<Button variant="muted" onClick={connect}><Plus />{entry?.status === 'connected' ? 'Manage account and access' : 'Connect an account'}</Button></div></section>
+    <section className="connector-detail-section"><h2>Information</h2><dl><dt>Capabilities</dt><dd>{info.access}</dd><dt>Developer</dt><dd>{kind === 'notion' ? 'Notion · official hosted MCP; TinyGPT client' : `TinyGPT · ${info.name} API integration`}</dd><dt>Category</dt><dd>{info.category}</dd><dt>Version</dt><dd>{entry?.manifest.version ?? '1.1.0'}</dd><dt>Connection</dt><dd>Direct from your computer</dd><dt>Account data</dt><dd>Stored locally when explicitly indexed into a Project</dd></dl></section>
+    {advanced && <section className="connector-detail-section" id="connector-advanced"><h2>Tools and settings</h2>{advanced}</section>}
+    <p className="connector-detail-note">Tool results may be sent to your selected inference provider to answer your request. Connecting does not override Project boundaries or action approvals. You can disconnect and remove indexed knowledge at any time.</p>
+  </div>;
+}

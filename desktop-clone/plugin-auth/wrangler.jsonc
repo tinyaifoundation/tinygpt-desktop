@@ -1,0 +1,12 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "tinygpt-plugins",
+  "main": "src/worker.ts",
+  "workers_dev": false,
+  "routes": [{ "pattern": "plugin.tinygpt.org", "custom_domain": true }],
+  "compatibility_date": "2026-11-02",
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": true },
+  "observability": { "enabled": false },
+  "vars": { "SLACK_CLIENT_ID": "12494025803699.12528692606208" },
+  "ratelimits": [{ "name": "TOKEN_LIMITER", "namespace_id": "1002", "simple": { "limit": 30, "period": 60 } }]
+}

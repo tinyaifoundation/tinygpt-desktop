@@ -1,0 +1,6 @@
+TinyGPT
+Copyright 2026 TinyGPT contributors
+
+Original TinyGPT code is licensed under Apache License 2.0.
+Third-party notices and license terms are retained in desktop-clone/THIRD_PARTY_NOTICES.md and desktop-clone/licenses/.
+Downloaded model weights and runtime binaries are separate distributions under their upstream terms.

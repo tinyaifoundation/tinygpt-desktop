@@ -1,0 +1,9 @@
+# Versioned pre-beta downloads
+
+The download Worker serves fixed release namespaces from the existing R2 release bucket. It retains the original `DOWNLOAD_PATH` and `OBJECT_KEY` configuration for the October build. `EXTRA_RELEASES` preserves explicitly configured older releases. New builds use `/releases/VERSION/FILENAME`, content-addressed model files use `/assets/sha256/HASH`, and the Windows pre-beta update feed is `/updates/prebeta/win-x64/prebeta.yml`. Version and filename validation restrict the accepted paths. Builds are listed on the publisher's `/downloads` website page. Keep the October unlisted path in ignored deployment configuration.
+
+Published pre-beta downloads are public. The older unlisted link is also a bearer link: anyone who receives it can download its file. Neither form is account-authenticated or time-limited. Unknown paths, object listing and writes are unavailable. The Worker supports HEAD, single byte-range GETs, attachment filenames and checksum headers. The app's updater reads the fixed feed and verifies the signed installer; hosting a feed alone does not enable updating in older clients.
+
+Attach the download Worker to `downloads.tinygpt.org` using a Cloudflare Worker custom domain. Preserve existing bindings and download paths when deploying. Verify the previous link, the new link, byte ranges, filenames and checksums after publishing.
+
+The signed-release pipeline uses bucket-scoped R2 S3 credentials for multipart uploads. It verifies release signatures, uploads immutable versioned files and shared model objects, checks uploaded content, and replaces the update feed last. See `scripts/publish-release.mjs` and the repository's release guide. Never ship upload credentials in the desktop app, download Worker source, or release notes. The older pre-beta uploader was temporary and is not part of this pipeline.

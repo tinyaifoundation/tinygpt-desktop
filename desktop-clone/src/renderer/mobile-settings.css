@@ -1,0 +1,45 @@
+.mobile-settings-sheet { min-height: 230px; }
+.mobile-settings-sheet .dialog-close:disabled { opacity:.35; cursor:wait; }
+.mobile-settings-toolbar { display:flex; align-items:center; justify-content:space-between; min-height:20px; margin:8px 0; }
+.mobile-settings-toolbar svg { width:16px; height:16px; }
+.mobile-settings-caption { color:var(--muted-foreground); font-size:13px; line-height:1.6; margin:12px 0; }
+.mobile-settings-menu { display:grid; margin-top:10px; }
+.mobile-settings-menu > button,.mobile-settings-chat { display:flex; justify-content:space-between; align-items:center; gap:16px; text-align:left; width:100%; min-height:52px; border-bottom:1px solid var(--border); font-size:16px; }
+.mobile-settings-menu > button > span { min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.mobile-settings-menu svg,.mobile-settings-chat svg { width:18px; height:18px; flex-shrink:0; color:var(--muted-foreground); }
+.mobile-settings-menu small { display:block; font-size:12px; color:var(--muted-foreground); margin:4px 0; }
+.mobile-settings-sheet h3 { font-size:13px; color:var(--muted-foreground); margin:24px 0 8px; }
+.mobile-settings-sheet .mobile-settings-row { margin-top:0; border-bottom:1px solid var(--border); min-height:56px; }
+.mobile-settings-sheet select { max-width:60%; padding:8px; min-height:42px; min-width:0; background:var(--background); color:var(--foreground); border:1px solid var(--border); border-radius:10px; font-size:15px; text-overflow:ellipsis; }
+.mobile-settings-sheet input,.mobile-settings-sheet textarea { display:block; min-width:0; width:100%; font-size:16px; color:var(--foreground); background:var(--background); border:1px solid var(--border); border-radius:12px; padding:10px 12px; margin:12px 0; }
+.mobile-settings-value { max-width:60%; text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--muted-foreground); font-size:13px; }
+.mobile-settings-list { display:grid; gap:12px; margin-top:16px; }
+.mobile-settings-list > article { padding:14px 0; border-bottom:1px solid var(--border); min-width:0; }
+.mobile-settings-list strong { display:block; font-size:16px; font-weight:500; overflow-wrap:anywhere; }
+.mobile-settings-list p { color:var(--muted-foreground); font-size:13px; line-height:1.5; margin:5px 0 12px; }
+.mobile-settings-actions { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; margin-top:12px; }
+.mobile-settings-actions button,.mobile-settings-list > button { min-height:42px; }
+.mobile-settings-form { display:grid; gap:8px; margin-top:14px; }
+.mobile-settings-form label { font-size:13px; color:var(--muted-foreground); }
+.mobile-settings-form > select { max-width:100%; width:100%; }
+.mobile-settings-form textarea { resize:vertical; max-height:30dvh; }
+.mobile-settings-confirm { border:1px solid var(--border); border-radius:16px; padding:16px; margin-top:20px; }
+.mobile-settings-confirm h3 { color:var(--foreground); margin-top:0; font-size:17px; }
+.mobile-settings-confirm p { font-size:14px; line-height:1.6; color:var(--muted-foreground); }
+.mobile-settings-error { font-size:14px; line-height:1.5; color:var(--destructive); margin-top:14px; }
+.permission-grant-heading > .connector-brand-icon { width:20px; height:20px; object-fit:contain; }
+.mobile-thread .thread-message,.mobile-thread .thread-message [data-slot="user-bubble"],.mobile-thread .chat-prose,.mobile-thread .work-response-activity [data-slot="work-prose"] .chat-prose { font-size:var(--mobile-text-size,18px); }
+/* Match the desktop staged-request tray with thumb-sized row controls. */
+.mobile-queue { margin:0 8px -18px; border:0; border-radius:18px 18px 0 0; overflow:visible; background:transparent; }
+.mobile-queue .request-queue { margin:0; border:1px solid var(--border); border-radius:18px 18px 0 0; padding:6px 6px 22px; background:color-mix(in srgb,var(--muted) 72%,var(--background)); }
+.mobile-queue .request-queue-list { max-height:180px; }
+.mobile-queue .request-queue-row { min-height:44px; gap:3px; padding:2px; }
+.mobile-queue .request-queue-row button { min-width:36px; min-height:38px; }
+.mobile-queue .request-queue-steer { gap:4px; padding-inline:6px; }
+.mobile-queue .request-queue-row > [aria-label^="Delete queued request"] { display:none; }
+.mobile-composer[data-running=true] { grid-template-columns:36px minmax(0,1fr) auto; }
+.mobile-composer[data-running=true] .work-composer-controls { grid-column:auto; display:contents; }
+.mobile-composer[data-running=true] .work-composer-right { grid-column:3; display:flex; }
+.mobile-thread .thread-composer-column { position:relative; }
+.mobile-composer-approval { position:absolute; inset:auto max(18px,env(safe-area-inset-right)) 0 max(18px,env(safe-area-inset-left)); z-index:50; border-radius:24px; background:var(--background); box-shadow:0 -8px 24px color-mix(in srgb,var(--background) 85%,transparent); max-height:70dvh; overflow-y:auto; }
+.mobile-composer-approval .permission-grant { margin:0; }

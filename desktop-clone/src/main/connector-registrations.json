@@ -1,0 +1,14 @@
+{
+  "google": {
+    "clientId": "594785781450-0pmg4j7fe604tm58iffnqflvo0a20t11.apps.googleusercontent.com",
+    "releaseStatus": "review"
+  },
+  "github": {
+    "clientId": "Ov23lisnWEk2oQH252Ie",
+    "releaseStatus": "production"
+  },
+  "slack": {
+    "clientId": "12494025803699.12528692606208",
+    "releaseStatus": "production"
+  }
+}

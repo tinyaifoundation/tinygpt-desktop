@@ -1,0 +1,10 @@
+const {buildSync} = require('esbuild');
+const {spawnSync} = require('node:child_process');
+const {mkdirSync,writeFileSync} = require('node:fs');
+const {resolve} = require('node:path');
+mkdirSync('.tmp',{recursive:true});
+buildSync({entryPoints:['src/shared/remote-crypto.ts'],outfile:'.tmp/remote-crypto-native.cjs',bundle:true,platform:'node',format:'cjs',packages:'external'});
+writeFileSync('.tmp/remote-crypto-electron-main.cjs', `const {app}=require('electron');const {RemoteCipher}=require('./remote-crypto-native.cjs');const {randomBytes,randomUUID}=require('node:crypto');const assert=require('node:assert/strict');app.setPath('userData',require('node:path').resolve('.test-profile/remote-crypto-native'));app.whenReady().then(()=>{const route={desktopId:'a'.repeat(64),deviceId:randomUUID(),grantId:randomUUID(),connectionId:randomUUID()},psk=randomBytes(32).toString('hex'),phone=new RemoteCipher(true,psk,route),desktop=new RemoteCipher(false,psk,route);phone.handshakeMessage(desktop.handshakeMessage(phone.start()));assert.deepEqual(desktop.open(phone.seal({text:'native runtime encrypted'})[0]),{text:'native runtime encrypted'});phone.destroy();desktop.destroy();console.log('Electron native Noise handshake and encrypted transport passed.');app.quit();}).catch(error=>{console.error(error);app.exit(1);});`);
+const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;
+const result=spawnSync(resolve('node_modules/electron/dist/electron.exe'),[resolve('.tmp/remote-crypto-electron-main.cjs')],{env,stdio:'inherit',windowsHide:true,timeout:30000});
+if(result.error)throw result.error;process.exitCode=result.status??1;

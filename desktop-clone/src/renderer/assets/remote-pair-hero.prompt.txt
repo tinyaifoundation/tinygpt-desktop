@@ -1,0 +1,8 @@
+Generated with the built-in image_gen tool on 2026-11-02.
+Asset: remote-pair-hero.png
+
+Use case: stylized-concept.
+Asset type: finished wide header illustration for a TinyGPT desktop app "Add a device" pairing modal, 3:2 landscape image.
+Primary request: a beautiful premium product illustration of a phone connecting to a computer. A single elegant silver and black smartphone front-on in the middle, upright with gently rounded corners, its lower half extending beyond the bottom edge of the image. The upper half of the phone screen shows a clean white UI with two extremely subtle pale gray chat bubbles, a small simple black outline desktop monitor glyph and no text. Surround the phone with luminous airy folded translucent glass/silk forms in soft cornflower blue, sky blue and periwinkle, like a refined device setup hero in a premium operating system. The phone is the clear central focal point, photographed straight on with a tiny perspective tilt, realistic machined silver edge and restrained soft studio light.
+Composition: full bleed blue/periwinkle backdrop, phone centered, occupies about 45% of canvas width; its top edge sits 12% below the top of the canvas, bottom naturally cropped. Leave upper corners clear for a real UI close button. Soft atmospheric depth, crisp device edges, quiet and welcoming, not busy.
+Text: none. No words, letters, watermarks, brand logos, QR codes, or extra UI chrome. This image is only the artwork above a separately coded real QR pairing interface. High quality, tasteful and simple.

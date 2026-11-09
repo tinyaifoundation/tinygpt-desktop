@@ -1,0 +1,7 @@
+{
+  "name": "tinygpt-tool-icon-auditor",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.cjs",
+  "description": "Local desktop toolchain icon review with durable replacement records"
+}

@@ -1,0 +1,32 @@
+.memory-settings-page { display: grid; gap: 18px; }
+.memory-settings-fields { display: grid; gap: 28px; border: 0; min-width: 0; padding: 0; }
+.memory-settings-fields .settings-content-group + .settings-content-group { margin-top: 0; }
+.memory-heading, .memory-entry-actions, .memory-confirm { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.memory-heading { margin-bottom: 12px; }
+.memory-heading h2 { margin: 0 auto 0 0; }
+.memory-entry { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px 18px; }
+.memory-entry + .memory-entry { border-top: 1px solid var(--border); }
+.memory-entry-text { min-width: 180px; flex: 1; }
+.memory-entry-text strong, .memory-search-result strong { font-size: 13px; font-weight: 500; }
+.memory-entry-text p { margin: 6px 0; color: var(--muted-foreground); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 96px; overflow: auto; }
+.memory-entry-text span { color: var(--muted-foreground); font-size: 11px; }
+.memory-entry-text .memory-index-message { font-size: 11px; }
+.memory-empty { padding: 18px; font-size: 12px; color: var(--muted-foreground); }
+.memory-search { display: flex; flex-wrap: wrap; gap: 8px; }
+.memory-search > input { flex: 1; min-width: 180px; }
+.memory-search-results { display: grid; gap: 8px; margin-top: 14px; }
+.memory-search-result { border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: left; background: var(--card); }
+.memory-search-result:hover { background: var(--accent); }
+.memory-search-result p { margin: 8px 0 0; font-size: 12px; line-height: 1.7; color: var(--muted-foreground); white-space: pre-wrap; }
+.memory-file-list { max-height: 280px; overflow: auto; margin-top: 14px; }
+.memory-file-list > div { display: flex; align-items: center; gap: 8px; padding: 6px; font-size: 12px; }
+.memory-file-list span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.memory-file-title { flex: 1; min-width: 0; text-align: left; overflow-wrap: anywhere; }
+.memory-file-title:hover { text-decoration: underline; }
+.memory-file-list svg { flex-shrink: 0; }
+.memory-editor { display: grid; gap: 16px; }
+.memory-editor label { display: grid; gap: 8px; font-size: 13px; }
+.memory-editor textarea { min-height: 160px; resize: vertical; padding: 10px; }
+.memory-editor > button { justify-self: end; }
+.memory-confirm { justify-content: flex-end; }
+.memory-evidence { white-space: pre-wrap; font-family: inherit; font-size: 13px; line-height: 1.7; max-height: 50vh; overflow: auto; }

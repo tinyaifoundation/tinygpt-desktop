@@ -1,0 +1,45 @@
+const { _electron } = require(process.env.TINYGPT_PLAYWRIGHT_PACKAGE || 'playwright');
+const { build } = require('esbuild');
+const { resolve } = require('node:path');
+const assert = require('node:assert/strict');
+(async () => {
+  const main = resolve('artifacts/workspace-design-smoke-main.cjs');
+  await build({ entryPoints: ['scripts/workspace-design-smoke-main.ts'], outfile: main, bundle: true, platform: 'node', format: 'cjs', external: ['electron', '../out/main/index.js'] });
+  const env = { ...process.env, TINYGPT_TOOLS_PROFILE: resolve('.tools-smoke-profile', `workspace-design-${Date.now()}`) }; delete env.ELECTRON_RUN_AS_NODE; delete env.ELECTRON_RENDERER_URL;
+  const app = await _electron.launch({ executablePath: resolve('node_modules/electron/dist/electron.exe'), args: [main], env });
+  const page = await app.firstWindow(); page.setDefaultTimeout(15000); const errors = []; page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    await app.evaluate(({BrowserWindow}) => { const w = BrowserWindow.getAllWindows()[0]; w.setSize(1500, 950); w.setPosition(-10000,-10000); w.setIgnoreMouseEvents(true); w.showInactive(); w.webContents.setBackgroundThrottling(false); });
+    await page.getByRole('button', {name:'Settings',exact:true}).click(); await page.getByRole('navigation',{name:'Settings sections'}).getByRole('button',{name:'Appearance',exact:true}).click(); await page.getByRole('button',{name:'Dark',exact:true}).click(); await page.getByRole('button',{name:'Back to TinyGPT',exact:true}).click();
+    await page.getByRole('button',{name:'Show workspace',exact:true}).click();
+    const workspace = page.getByRole('complementary', {name:'Workspace',exact:true});
+    await workspace.getByRole('button',{name:'Expand workspace',exact:true}).click();
+    await workspace.getByRole('tab',{name:'Changes',exact:true}).click();
+    await workspace.getByRole('button').filter({hasText:'src/example.ts'}).first().waitFor();
+    await workspace.getByRole('button').filter({hasText:'src/example.ts'}).first().click();
+    await workspace.getByRole('textbox',{name:'Diff for src/example.ts',exact:true}).waitFor();
+    await page.screenshot({path:resolve('artifacts/workspace-git-dark.png')});
+    await workspace.getByRole('button',{name:'Stage src/example.ts',exact:true}).evaluate(e=>e.click());
+    await workspace.getByRole('button',{name:'Unstage src/example.ts',exact:true}).waitFor();
+    await workspace.getByRole('button',{name:'Commit',exact:true}).click(); await page.getByRole('textbox',{name:'Commit message',exact:true}).fill('Fixture update'); await page.getByRole('dialog').getByRole('button',{name:'Commit',exact:true}).click(); await page.getByRole('dialog').waitFor({state:'hidden'});
+    await workspace.getByRole('button',{name:'Add workspace tab',exact:true}).click(); await page.getByRole('menuitem',{name:'Files',exact:true}).click();
+    await workspace.getByRole('treeitem',{name:'README.md',exact:true}).click();
+    await workspace.getByRole('heading',{name:'Workspace preview',exact:true}).waitFor(); await workspace.getByRole('region',{name:'Document properties',exact:true}).waitFor();
+    const positions = await workspace.evaluate(e => { const tree=e.querySelector('.workspace-file-tree').getBoundingClientRect(), content=e.querySelector('.workspace-file-viewer').getBoundingClientRect(); return {tree:tree.left,content:content.right}; }); assert.ok(positions.tree>=positions.content-1);
+    await page.screenshot({path:resolve('artifacts/workspace-markdown-dark.png')});
+    await workspace.getByRole('button',{name:'Source',exact:true}).click(); await workspace.getByRole('textbox',{name:'Edit README.md',exact:true}).waitFor(); await workspace.getByRole('button',{name:'Preview',exact:true}).click();
+    await workspace.getByRole('treeitem',{name:'src',exact:true}).click(); await workspace.getByRole('treeitem',{name:'example.ts',exact:true}).click();
+    await workspace.getByRole('textbox',{name:'Edit example.ts',exact:true}).waitFor(); await page.screenshot({path:resolve('artifacts/workspace-code-dark.png')});
+    await workspace.getByRole('button',{name:'Find in file',exact:true}).first().click(); await workspace.locator('.cm-search').waitFor();
+    await workspace.getByRole('button',{name:'Hide file tree',exact:true}).click(); assert.equal(await workspace.locator('.workspace-file-tree').count(),0); await workspace.getByRole('button',{name:'Show file tree',exact:true}).click();
+    await workspace.getByRole('button',{name:'New folder in Workspace fixture',exact:true}).evaluate(e=>e.click()); await page.getByRole('textbox',{name:'Name',exact:true}).fill('new-folder'); await page.getByRole('dialog').getByRole('button',{name:'Create folder',exact:true}).click(); await page.getByRole('dialog').waitFor({state:'hidden'});
+    await workspace.getByRole('treeitem',{name:'new-folder',exact:true}).waitFor(); await workspace.getByRole('button',{name:'New file in new-folder',exact:true}).evaluate(e=>e.click()); await page.getByRole('textbox',{name:'Name',exact:true}).fill('new.ts'); await page.getByRole('dialog').getByRole('button',{name:'Create file',exact:true}).click(); await workspace.getByRole('textbox',{name:'Edit new.ts',exact:true}).waitFor(); assert.equal(await workspace.locator('.cm-search').count(),0,'A find request belongs only to its original editor.');
+    await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows()[0].setSize(650,750)); assert.ok(await workspace.evaluate(e=>e.scrollWidth<=e.clientWidth+1)); await page.screenshot({path:resolve('artifacts/workspace-narrow.png')});
+    await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows()[0].setSize(1500,950));
+    await page.keyboard.press('Escape'); await page.mouse.move(0,0);
+    await workspace.getByRole('button',{name:'Close workspace',exact:true}).evaluate(e=>e.click()); await page.getByRole('button',{name:'Settings',exact:true}).click(); await page.getByRole('navigation',{name:'Settings sections'}).getByRole('button',{name:'Appearance',exact:true}).click(); await page.getByRole('button',{name:'Light',exact:true}).click(); await page.getByRole('button',{name:'Back to TinyGPT',exact:true}).click(); await page.getByRole('button',{name:'Show workspace',exact:true}).click();
+    await workspace.getByRole('treeitem',{name:'src',exact:true}).click(); await workspace.getByRole('treeitem',{name:'example.ts',exact:true}).click(); await workspace.getByRole('textbox',{name:'Edit example.ts',exact:true}).waitFor(); await page.screenshot({path:resolve('artifacts/workspace-code-light.png')});
+    assert.deepEqual(errors,[]); console.log('PASS: native Git diffs and staged commit, Markdown properties and Preview/Source, right-side tree, file search, tree toggle, file/folder creation, narrow layout, light/dark themes.');
+  } finally { await app.close(); }
+})().catch(error=>{console.error(error);process.exitCode=1;});

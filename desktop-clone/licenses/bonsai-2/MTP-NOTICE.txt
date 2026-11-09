@@ -1,0 +1,8 @@
+Optional Pro response acceleration uses Qwen3.8-27B's separate Q4_0 MTP prediction head.
+Base model: Qwen/Qwen3.8-27B, Alibaba Cloud / Qwen, Apache License 2.0.
+Conversion: ggml-org/Qwen3.8-27B-GGUF.
+Source: https://huggingface.co/ggml-org/Qwen3.8-27B-GGUF/tree/a316ea527fde32c12487be7574e2db5ac2ad2a7e
+File: mtp-Qwen3.8-27B-Q4_0.gguf
+SHA-256: c5be331f82fb61f5304adfa00ccd60c6743c8ce52255d66fa863446231d49ba4
+The Apache License 2.0 text is retained beside this notice in LICENSE.
+TinyGPT loads the prediction head separately; the pinned Bonsai target weights are unchanged.

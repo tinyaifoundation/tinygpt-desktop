@@ -1,0 +1,280 @@
+const { _electron } = require(process.env.TINYGPT_PLAYWRIGHT_PACKAGE || 'playwright');
+const { build } = require('esbuild');
+const { resolve } = require('node:path');
+const assert = require('node:assert/strict');
+
+(async () => {
+  const main = resolve('artifacts/work-response-smoke-main.cjs');
+  await build({ entryPoints: ['scripts/work-response-smoke-main.ts'], outfile: main, bundle: true, platform: 'node', format: 'cjs', external: ['electron', '../out/main/index.js'] });
+  const env = { ...process.env, TINYGPT_TOOLS_PROFILE: resolve('.tools-smoke-profile', `work-response-${Date.now()}`) };
+  env.TINYGPT_VOICE_PROFILE = env.TINYGPT_TOOLS_PROFILE;
+  delete env.ELECTRON_RUN_AS_NODE; delete env.ELECTRON_RENDERER_URL;
+  const app = await _electron.launch({ executablePath: resolve('node_modules/electron/dist/electron.exe'), args: [main], env });
+  let page = await app.firstWindow(); page.setDefaultTimeout(15000);
+  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  const step = name => app.evaluate((_electron, name) => globalThis.workResponseFixture[name](), name);
+  const paint = () => app.evaluate(({ BrowserWindow }) => { for (const window of BrowserWindow.getAllWindows()) { window.setIgnoreMouseEvents(true); window.setPosition(-10000, -10000); window.webContents.setBackgroundThrottling(false); window.showInactive(); } });
+  const response = () => page.locator('[data-slot="work-response"]').last();
+  try {
+    await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor(); await paint();
+    if (process.argv.includes('--questions-only')) {
+      const { createServer } = require('node:http');
+      const server = createServer((_request, response) => response.writeHead(200, { 'content-type': 'text/html' }).end('<!doctype html><title>Question browser fixture</title><style>body{height:4000px}</style><button id="action" onclick="this.textContent=\'Clicked \'+(++window.clicks)">Interactive</button><script>window.clicks=0</script>'));
+      await new Promise(done => server.listen(0, '127.0.0.1', done));
+      const origin = `http://127.0.0.1:${server.address().port}`;
+      try {
+        await step('question');
+        const card = page.locator('[data-slot=work-question]'); await card.waitFor();
+        assert.equal(await card.getByRole('region', { name: 'Work question' }).count(), 1);
+        assert.equal(await card.getByRole('dialog').count(), 0, 'An inline question must not occlude the native browser');
+        assert.equal(await card.locator('textarea').count(), 0);
+        const answerInput = page.getByRole('textbox', { name: 'Your answer', exact: true });
+        assert.equal(await answerInput.evaluate(node => node.tagName), 'INPUT');
+        assert.ok((await answerInput.boundingBox()).height <= 36);
+        assert.ok((await card.locator('.work-question-choice').first().boundingBox()).height <= 38);
+        await page.getByRole('radio', { name: 'Personal', exact: true }).focus();
+        await page.keyboard.press('ArrowRight'); assert.equal(await page.getByRole('radio', { name: 'Work', exact: true }).isChecked(), true);
+        await page.screenshot({ path: resolve('artifacts/work-question-minimal.png') });
+        await page.getByRole('button', { name: 'Show workspace', exact: true }).click();
+        await page.getByRole('button', { name: 'Add workspace tab', exact: true }).click();
+        await page.getByRole('menuitem', { name: 'Browser', exact: true }).click();
+        await page.getByRole('textbox', { name: 'Search or enter a URL', exact: true }).fill(origin);
+        await page.getByRole('textbox', { name: 'Search or enter a URL', exact: true }).press('Enter');
+        await page.getByRole('tab', { name: 'Question browser fixture', exact: true }).waitFor();
+        const nativeId = await app.evaluate(({ webContents }, origin) => webContents.getAllWebContents().find(contents => contents.getURL() === origin + '/').id, origin);
+        const attached = () => app.evaluate(({ BrowserWindow, webContents }, nativeId) => BrowserWindow.getAllWindows().some(window => window.contentView.children.some(frame => frame.getVisible() && frame.children.some(view => view.webContents === webContents.fromId(nativeId) && view.getVisible()))), nativeId);
+        const until = async predicate => { const deadline = Date.now() + 15000; while (Date.now() < deadline) { if (await predicate()) return; await page.waitForTimeout(100); } throw Error('Question browser state did not settle'); };
+        const clickNative = () => app.evaluate(async ({ webContents }, nativeId) => {
+          const contents = webContents.fromId(nativeId);
+          const point = await contents.executeJavaScript('(()=>{const r=document.getElementById("action").getBoundingClientRect();return{x:Math.round(r.x+r.width/2),y:Math.round(r.y+r.height/2)}})()');
+          for (const type of ['mouseDown', 'mouseUp']) contents.sendInputEvent({ type, ...point, button: 'left', clickCount: 1 });
+        }, nativeId);
+        await until(attached); assert.equal(await page.locator('.workspace-page-preview').count(), 0);
+        await clickNative(); await until(() => app.evaluate(({ webContents }, id) => webContents.fromId(id).executeJavaScript('window.clicks===1'), nativeId));
+        const separator = page.getByRole('separator', { name: 'Resize workspace', exact: true }); const hit = await separator.boundingBox();
+        await page.mouse.move(hit.x + hit.width / 2, hit.y + 100); await page.mouse.down(); await page.mouse.move(hit.x - 60, hit.y + 100, { steps: 8 }); await page.mouse.up();
+        await until(attached); await clickNative(); await until(() => app.evaluate(({ webContents }, id) => webContents.fromId(id).executeJavaScript('window.clicks===2'), nativeId));
+        // Genuine dialogs still cover native content, and closing them restores it.
+        await page.evaluate(() => { const dialog = document.createElement('div'); dialog.id = 'question-modal-fixture'; dialog.setAttribute('role', 'dialog'); dialog.setAttribute('aria-modal', 'true'); dialog.style.cssText = 'position:fixed;inset:100px;background:white;z-index:999'; document.body.append(dialog); });
+        await until(async () => !await attached());
+        await page.evaluate(() => document.getElementById('question-modal-fixture').remove()); await until(attached);
+        await clickNative(); await until(() => app.evaluate(({ webContents }, id) => webContents.fromId(id).executeJavaScript('window.clicks===3'), nativeId));
+        await page.screenshot({ path: resolve('artifacts/work-question-browser.png') });
+        // Reloading only the renderer keeps native tabs and the saved question.
+        // Check whether the frameless production window exposes a reload key.
+        let rendererReloads = 0; const reloaded = () => rendererReloads++;
+        page.on('domcontentloaded', reloaded);
+        await answerInput.focus(); await page.keyboard.press('Control+r'); await page.waitForTimeout(200);
+        const reloadShortcut = rendererReloads > 0;
+        if (!reloadShortcut) await page.reload();
+        page.removeListener('domcontentloaded', reloaded);
+        console.log('Renderer reload shortcut available:', reloadShortcut);
+        await card.waitFor();
+        await page.getByRole('button', { name: 'Show workspace', exact: true }).click();
+        await page.getByRole('tab', { name: 'Question browser fixture', exact: true }).click(); await until(attached);
+        assert.equal(await page.getByRole('radio', { name: 'Work', exact: true }).isChecked(), false, 'Reload must not submit an answer');
+        const longAnswer = 'A detailed answer can stay on one line. '.repeat(70);
+        await answerInput.fill(longAnswer); assert.ok((await answerInput.boundingBox()).height <= 36);
+        assert.equal(await page.getByRole('radio', { name: 'Work', exact: true }).isChecked(), false);
+        await answerInput.press('Enter'); await response().getByText('Continuing with: ' + longAnswer.trim(), { exact: true }).waitFor();
+        await step('question'); await page.getByRole('radio', { name: 'Work', exact: true }).check();
+        await page.getByRole('button', { name: 'Submit answer', exact: true }).click(); await response().getByText('Continuing with: Work', { exact: true }).waitFor();
+        await app.evaluate(() => globalThis.workResponseFixture.question(true)); await answerInput.waitFor();
+        assert.equal(await page.getByRole('radiogroup').count(), 0);
+        await answerInput.fill('A custom answer'); await answerInput.press('Enter'); await response().getByText('Continuing with: A custom answer', { exact: true }).waitFor();
+        assert.deepEqual(errors, []);
+        console.log('PASS: compact question rows, native radio keyboard controls, single-line long answers, choice/free-text continuation, live browser clicks during a pending question and after resize, modal recovery, and renderer reload preservation.');
+      } finally { server.closeAllConnections(); await new Promise(done => server.close(done)); }
+      return;
+    }
+    if (process.argv.includes('--stop-only')) {
+      const stoppedReply = () => response().locator('xpath=ancestor::*[@data-message-id][1]');
+      for (const action of ['stop', 'interrupt']) {
+        await step('begin'); await step('progress'); await step(action);
+        await stoppedReply().getByText(action === 'stop' ? 'Reply stopped' : 'Reply interrupted', { exact: true }).waitFor();
+        await stoppedReply().getByRole('button', { name: 'Continue', exact: true }).waitFor();
+        assert.equal(await response().locator('[data-slot=work-outcome-card]').count(), 0);
+        assert.equal(await stoppedReply().locator('[data-slot=error-state][data-tone=muted]').count(), 1);
+        assert.equal(await stoppedReply().getByRole('button', { name: 'Discard', exact: true }).count(), 1);
+        assert.equal(await response().locator('.work-tool-chain > summary .shimmer').count(), 0);
+        assert.doesNotMatch(await response().innerText(), /Stopped by the user|Work stopped|Work paused/);
+      }
+      await page.reload(); await paint();
+      await stoppedReply().getByRole('button', { name: 'Continue', exact: true }).waitFor();
+      assert.equal(await response().locator('[data-slot=work-outcome-card]').count(), 0);
+      assert.equal(await stoppedReply().locator('[data-slot=error-state][data-tone=muted]').count(), 1);
+      assert.deepEqual(errors, []);
+      console.log('PASS: stopped and interrupted Work retain one Continue/Discard notice with no duplicate outcome card, including saved history.');
+      return;
+    }
+    if (process.argv.includes('--browser-language')) {
+      await step('begin'); await step('browserLanguage');
+      const chain = response().locator('.work-tool-chain');
+      await chain.locator(':scope > summary').getByText('Reading the page', { exact: true }).waitFor();
+      await chain.locator(':scope > summary').click();
+      const rows = chain.locator('li[data-tool-name="code_devtools"]');
+      await rows.first().waitFor();
+      assert.equal(await rows.count(), 3);
+      for (const [index, label] of ['Navigated to a page', 'Checked browser messages', 'Reading the page'].entries()) {
+        assert.equal(await rows.nth(index).getByText(label, { exact: true }).isVisible(), true);
+        assert.equal(await rows.nth(index).locator('svg.solar-globe-linear').count(), 1);
+      }
+      assert.doesNotMatch(await response().innerText(), /Browser developer tools|navigate_page|list_console_messages|take_snapshot/);
+      for (const name of await rows.getByRole('button').evaluateAll(buttons => buttons.map(button => button.getAttribute('aria-label')))) assert.doesNotMatch(name, /navigate_page|list_console_messages|take_snapshot/);
+      await page.screenshot({ path: resolve('artifacts/browser-friendly-language.png') });
+      assert.deepEqual(errors, []);
+      console.log('PASS: saved native browser actions use human labels, accessible result labels, and the Settings globe, even with raw stored display metadata.');
+      return;
+    }
+    if (process.argv.includes('--coding-agent')) {
+      await step('begin'); await step('coding');
+      const agent = response().locator('[data-slot="coding-agent"]');
+      await agent.locator(':scope > summary').getByText('Coding agent', { exact: true }).waitFor();
+      assert.equal(await agent.getAttribute('open'), '');
+      assert.equal(await agent.locator(':scope > summary .shimmer').count(), 0, 'The agent header does not compete with the visible current action');
+      assert.equal(await agent.locator('.shimmer').count(), 1);
+      assert.deepEqual(await agent.locator('.work-coding-agent-activity').evaluate(element => [...element.children].map(child => child.getAttribute('data-slot') || child.className)), ['work-prose', 'work-tool-chain', 'work-prose', 'work-tool-chain', 'work-prose', 'work-tool-chain']);
+      await agent.locator(':scope > summary').getByText('Checking browser messages', { exact: true }).waitFor();
+      assert.doesNotMatch(await response().innerText(), /OpenCode|delegate/i);
+      await page.screenshot({ path: resolve('artifacts/coding-agent-running.png') });
+      await agent.locator(':scope > summary').click();
+      assert.equal(await agent.locator('.work-coding-agent-activity').count(), 0);
+      assert.equal(await agent.locator(':scope > summary .shimmer').count(), 1);
+      await agent.locator(':scope > summary').click();
+      assert.equal(await agent.locator('.work-coding-agent-activity').count(), 1);
+      assert.equal(await agent.locator(':scope > summary .shimmer').count(), 0);
+      await step('codingDone');
+      await agent.locator(':scope > summary').getByText('Updated files', { exact: true }).waitFor();
+      assert.equal(await agent.getAttribute('open'), null, 'Only the completed coding section collapses');
+      assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'true');
+      assert.equal(await agent.locator('.shimmer').count(), 0);
+      await agent.locator(':scope > summary').click();
+      await agent.getByText('The browser interaction passed.', { exact: true }).waitFor();
+      assert.equal(await response().getByText('I’m reviewing the result.', { exact: true }).isVisible(), true);
+      await page.reload(); await paint();
+      await response().locator('[data-slot="coding-agent"] > summary').getByText('Coding agent', { exact: true }).waitFor();
+      assert.doesNotMatch(await response().innerText(), /OpenCode|delegate/i);
+      assert.deepEqual(errors, []);
+      await step('begin'); await step('coding'); await step('codingFail');
+      await page.getByRole('button', { name: 'Resume saved work' }).waitFor();
+      await response().locator('[data-slot="coding-agent"] > summary').getByText('Needs attention', { exact: true }).waitFor();
+      assert.equal(await response().locator('.shimmer').count(), 0);
+      assert.equal(await response().locator('[data-slot=work-outcome-card]').count(), 0);
+      assert.equal(await page.locator('[data-slot=error-state][data-tone=error]').count(), 1);
+      assert.deepEqual(errors, []);
+      console.log('PASS: inline Coding agent preserves icon, ordered prose and toolchains, current activity, collapse, and saved history without runtime branding.');
+      return;
+    }
+    if (process.argv.includes('--error-only')) {
+      await step('begin'); await step('progress'); await step('fail');
+      await page.getByRole('button', { name: 'Resume saved work' }).waitFor();
+      assert.equal(await response().locator('[data-slot=work-outcome-card]').count(), 0);
+      assert.equal(await page.locator('[data-slot=error-state][data-tone=error]').count(), 1);
+      assert.deepEqual(errors, []);
+      console.log('PASS: failed Work has one actionable red alert, no duplicate gray outcome, and a Resume work action.');
+      return;
+    }
+    await page.getByRole('button', { name: 'Settings', exact: true }).click();
+    await page.getByRole('navigation', { name: 'Settings sections' }).getByRole('button', { name: 'Appearance', exact: true }).click();
+    await page.getByRole('button', { name: 'Dark', exact: true }).click();
+    await page.getByRole('button', { name: 'Back to TinyGPT', exact: true }).click();
+    await step('begin'); await response().getByText(/^Working for /).waitFor();
+    assert.equal(await response().getByText('Working', { exact: true }).count(), 0);
+    assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'true');
+    await step('progress'); await response().getByText('The last check is underway.', { exact: true }).waitFor();
+    assert.deepEqual(await response().locator('.work-response-activity').evaluate(e => [...e.children].map(child => child.getAttribute('data-slot') || child.className)), ['work-prose', 'work-tool-chain', 'work-prose', 'work-tool-chain', 'work-prose']);
+    assert.equal(await response().locator('.work-tool-chain').count(), 2);
+    assert.equal(await response().locator('[data-slot="answer-text"]').count(), 0);
+    await response().locator('.work-response-heading').evaluate(element => {
+      window.workHeadingTransitions = [];
+      new MutationObserver(records => { for (const record of records) window.workHeadingTransitions.push(record.target.getAttribute('aria-expanded')); }).observe(element, { attributes: true, attributeFilter: ['aria-expanded'] });
+    });
+    for (let i = 0; i < 3; i++) {
+      await step('moreProse');
+      assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'true', 'Progress prose must not collapse the working chain');
+    }
+    assert.deepEqual(await page.evaluate(() => window.workHeadingTransitions), []);
+    const mixedChain = response().locator('.work-tool-chain').nth(1);
+    const headerShimmer = mixedChain.locator(':scope > summary .shimmer'); await headerShimmer.waitFor();
+    assert.equal(await response().locator('.work-tool-chain').first().locator(':scope > summary .shimmer').count(), 0, 'Completed chains stay static during a running reply.');
+    const animation = await headerShimmer.evaluate(e => { const style = getComputedStyle(e); return { name: style.animationName, position: style.backgroundPosition, clip: style.backgroundClip }; });
+    assert.equal(animation.name, 'shimmer'); assert.equal(animation.clip, 'text');
+    await page.waitForFunction(position => getComputedStyle(document.querySelector('.work-tool-chain > summary .shimmer')).backgroundPosition !== position, animation.position);
+    assert.equal(await mixedChain.locator('[data-slot="thinking"]').count(), 0, 'Collapsed chains do not mount their hidden reasoning.');
+    await mixedChain.locator('summary').first().click();
+    assert.deepEqual(await mixedChain.locator('ol[aria-label="Work steps"]').evaluate(e => [...e.children].map(child => child.getAttribute('data-tool-name') || 'thinking')), ['code_read', 'thinking', 'code_edit', 'thinking', 'code_bash']);
+    assert.equal(await mixedChain.locator('[data-slot="thinking"]').first().isVisible(), true);
+    await mixedChain.locator('summary').first().click();
+    await response().locator('.work-tool-chain > summary').first().click();
+    assert.equal(await response().locator('.work-tool-chain').first().locator('[data-radix-scroll-area-viewport]').count(), 1);
+    await page.screenshot({ path: resolve('artifacts/work-response-running.png') });
+    await step('pendingLiveTool'); await headerShimmer.waitFor();
+    await step('finishLiveTool'); await headerShimmer.waitFor({ state: 'detached' });
+    assert.equal(await response().locator('.work-tool-chain > summary .shimmer').count(), 0, 'Tool completion stops header shimmer before the reply completes.');
+    await step('approval'); await page.locator('[data-slot="browser-handoff"]').waitFor();
+    assert.equal(await page.getByRole('textbox', { name: 'Message', exact: true }).count(), 0);
+    await step('clearApproval'); await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    await step('long'); await response().getByText(/^Progress detail 35\./).waitFor();
+    await step('confirmFinal'); await response().locator('[data-slot="answer-text"]').getByText('Implementation verified.', { exact: true }).waitFor();
+    assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'false');
+    await step('finish'); await response().getByText(/^Worked for /).waitFor(); await response().getByText('End of final answer.', { exact: true }).waitFor();
+    assert.deepEqual(await page.evaluate(() => window.workHeadingTransitions), ['false'], 'The chain collapses once on final confirmation, not again on completion');
+    assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'false');
+    assert.equal(await response().locator('.work-response-history').isVisible(), false);
+    const viewport = page.locator('.thread-viewport'); await viewport.evaluate(e => { e.scrollTop = 0; });
+    await page.getByRole('button', { name: 'Scroll to latest message', exact: true }).click();
+    await page.getByRole('button', { name: 'Scroll to latest message', exact: true }).waitFor({ state: 'hidden' });
+    const dock = await page.evaluate(() => { const footer = document.querySelector('.composer-footer').getBoundingClientRect(), last = [...document.querySelectorAll('[data-message-id]')].at(-1).getBoundingClientRect(), viewport = document.querySelector('.thread-viewport').getBoundingClientRect(); return { last: last.bottom, footer: footer.top, bottom: footer.bottom, viewport: viewport.bottom }; });
+    assert.ok(dock.last <= dock.footer + 2); assert.ok(Math.abs(dock.bottom - dock.viewport) <= 2);
+    await page.screenshot({ path: resolve('artifacts/work-response-complete.png') });
+    await viewport.evaluate(e => { e.scrollTop = 0; });
+    await response().locator('.work-response-heading').click();
+    assert.equal(await response().locator('.work-response-history').isVisible(), true);
+    assert.equal(await response().getByText('I’ll inspect the app, then check its response rendering.', { exact: true }).count(), 1);
+    await page.reload(); await paint(); await response().getByText(/^Worked for /).waitFor();
+    assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'false');
+    await response().locator('.work-response-heading').click();
+    assert.equal(await response().locator('.work-tool-chain').count(), 2);
+    await step('begin'); await step('progress'); await step('interrupt'); await page.locator('[data-slot=error-state][data-tone=muted]').waitFor();
+    assert.equal(await response().locator('[data-slot=work-outcome-card]').count(), 0);
+    await page.locator('[data-slot="error-state"][data-tone="muted"]').waitFor();
+    assert.equal(await response().locator('.work-tool-chain > summary .shimmer').count(), 0, 'Interrupted replies do not shimmer even with a stale running tool.');
+    assert.equal(await response().locator('.work-response-heading').getAttribute('aria-expanded'), 'true');
+    assert.equal(await page.getByRole('button', { name: 'Continue', exact: true }).count(), 1);
+    assert.equal(await page.getByRole('button', { name: 'Discard', exact: true }).count(), 1);
+    await page.screenshot({ path: resolve('artifacts/work-response-interrupted.png') });
+    await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(620, 700));
+    assert.ok(await response().evaluate(e => e.scrollWidth <= e.clientWidth + 1));
+    const popupReady = app.waitForEvent('window');
+    const popped = await page.evaluate(async () => { const library = (await window.tinygpt.library()).value; return window.tinygpt.popOutChat(library.conversations.find(chat => chat.title === 'Work response fixture').id); });
+    assert.equal(popped.ok, true); page = await popupReady; page.setDefaultTimeout(15000); page.on('pageerror', error => errors.push(error.message));
+    await paint(); await response().getByText(/^Worked for /).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'Continue', exact: true }).count(), 1);
+    assert.ok(await response().evaluate(e => e.scrollWidth <= e.clientWidth + 1));
+    await page.screenshot({ path: resolve('artifacts/work-response-popout.png') });
+    await step('blocked'); await response().locator('[data-work-status=blocked]').waitFor();
+    await response().getByText('The result is saved. A required input is unavailable.', { exact: true }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'Resume work', exact: true }).count(), 0);
+    assert.equal(await page.locator('[data-slot=work-outcome-card]').count(), 1);
+    assert.equal(await page.getByText('Reply interrupted', { exact: true }).count(), 0);
+    assert.equal(await page.getByRole('button', { name: 'Continue', exact: true }).count(), 0);
+    await page.screenshot({ path: resolve('artifacts/work-response-blocked.png') });
+    await step('question'); await page.locator('[data-slot=work-question]').waitFor();
+    assert.equal(await page.getByRole('textbox', { name: 'Message', exact: true }).count(), 0);
+    await page.getByRole('radio', { name: /Work/ }).click();
+    await page.screenshot({ path: resolve('artifacts/work-question-options.png') });
+    await page.getByRole('button', { name: 'Submit answer', exact: true }).click();
+    await response().getByText('Continuing with: Work', { exact: true }).waitFor();
+    await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    await step('question'); await page.getByRole('textbox', { name: 'Your answer', exact: true }).fill('Shared team account');
+    await page.getByRole('button', { name: 'Submit answer', exact: true }).click();
+    await response().getByText('Continuing with: Shared team account', { exact: true }).waitFor();
+    assert.equal(await page.getByText('Reply interrupted', { exact: true }).count(), 0);
+    await step('begin'); await step('progress'); await step('fail');
+    await page.getByRole('button', { name: 'Resume saved work' }).waitFor();
+    assert.equal(await response().locator('[data-slot=work-outcome-card]').count(), 0, 'Errors must have one actionable alert instead of a duplicate gray outcome card');
+    assert.equal(await page.locator('[data-slot=error-state][data-tone=error]').count(), 1);
+    assert.deepEqual(errors, []);
+    console.log('PASS: dedicated Work header, chronological prose/tools/reasoning, parallel grouping, ShadCN scrolling, approval replaces composer, completion collapse, saved history reopen, scroll-to-latest, interruption actions, dark theme, narrow width, pop-out Work chat.');
+  } finally { await app.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

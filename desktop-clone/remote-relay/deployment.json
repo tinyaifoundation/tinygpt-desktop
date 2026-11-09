@@ -1,0 +1,9 @@
+{
+  "worker": "tinygpt-remote",
+  "url": "https://mobile.tinygpt.org",
+  "versionId": "f2a76b44-4115-4bbc-9686-ea8776b98f32",
+  "deployedOn": "2026-11-04",
+  "protocol": "tinygpt.remote.v2",
+  "encryption": "Noise_NNpsk0_25519_ChaChaPoly_BLAKE2b",
+  "legacyUrl": "https://tinygpt-remote.taylor-d-jack.workers.dev"
+}

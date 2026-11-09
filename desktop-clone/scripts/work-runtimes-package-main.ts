@@ -1,0 +1,32 @@
+import {app} from 'electron';
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {workRuntimes} from '../src/main/work-runtimes';
+import {codeShellEnvironment} from '../src/main/code-shell';
+import pins from '../src/shared/work-runtimes.json';
+
+app.setPath('userData',process.env.TINYGPT_RUNTIME_TEST_PROFILE!);
+app.whenReady().then(async()=>{
+  assert.equal(app.isPackaged,true);
+  const root=app.getPath('userData'),runtime=await workRuntimes(),cwd=join(root,'project with spaces');
+  await mkdir(cwd,{recursive:true});
+  const env={...process.env,...await codeShellEnvironment(join(root,'state')),NPM_CONFIG_OFFLINE:'true',npm_config_offline:'true',NPM_CONFIG_REGISTRY:'http://127.0.0.1:9',npm_config_registry:'http://127.0.0.1:9'};delete env.Path;
+  const run=(command:string,args:string[])=>execFileSync(command,args,{cwd,env,windowsHide:true,encoding:'utf8',timeout:60000}).trim();
+  const node=JSON.parse(run(runtime.node,['-e','console.log(JSON.stringify({version:process.versions.node,path:process.execPath,electron:process.versions.electron??null}))']));
+  assert.deepEqual(node,{version:pins.node.version,path:runtime.node,electron:null});
+  assert.ok(run(runtime.python,['-c','import sys,ssl,sqlite3,venv,pip; print(sys.version.split()[0])']).includes(pins.python.version));
+  run(runtime.python,['-m','venv','--copies','.venv']);
+  const python=join(cwd,'.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python');
+  assert.ok(run(python,['-m','pip','--version']).includes('pip'));
+  await writeFile(join(cwd,'package.json'),JSON.stringify({name:'packaged-runtime-proof',version:'1.0.0',scripts:{probe:'node -p process.execPath'}}));
+  const shell=process.platform==='win32'?join(process.env.SystemRoot!,'System32/WindowsPowerShell/v1.0/powershell.exe'):'/bin/sh';
+  const shellRun=(command:string)=>run(shell,process.platform==='win32'?['-NoProfile','-NonInteractive','-ExecutionPolicy','Restricted','-Command',command]:['-c',command]);
+  assert.equal(shellRun('npm --version'),pins.node.npm);assert.equal(shellRun('npx --version'),pins.node.npm);
+  assert.equal(shellRun('npm run --silent probe'),runtime.node);
+  assert.equal(shellRun('npx --offline --no-install -c "node --version"'),'v'+pins.node.version);
+  assert.ok(shellRun('python3 --version').includes(pins.python.version));
+  await writeFile(join(root,'proof.json'),JSON.stringify({packaged:true,passed:true,versions:{node:pins.node.version,python:pins.python.version,npm:pins.node.npm},resourceRoot:runtime.root,checks:['OS-only PATH','packaged resource discovery','standalone Node','Python standard library and venv pip','npm child process','offline npx','Restricted PowerShell policy']},null,2));
+  console.log('Packaged runtime execution proof passed.');
+}).then(()=>app.exit(0)).catch(error=>{console.error(error);app.exit(1);});

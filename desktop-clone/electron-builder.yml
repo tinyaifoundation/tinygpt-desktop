@@ -1,0 +1,145 @@
+appId: com.tinygpt.voice.clone
+productName: TinyGPT
+protocols:
+  - name: TinyGPT
+    schemes: [tinygpt]
+directories:
+  output: release
+files:
+  - out/**/*
+  - package.json
+  - THIRD_PARTY_NOTICES.md
+  - licenses/**/*
+  - '!**/Satoshi-FFL.txt'
+asar: true
+afterPack: scripts/check-work-runtime-package.cjs
+extraResources:
+  - from: build/model-assets.json
+    to: model-assets.json
+  - from: runtimes/work-runtimes
+    to: work-runtimes
+    filter:
+      - node/**/*
+      - python/**/*
+      - prepared.json
+  - from: runtimes/passwords
+    to: passwords
+    filter:
+      - tinygpt-passwords.dll
+      - libtinygpt-passwords.dylib
+      - prepared.json
+  - from: runtimes/work-tools
+    to: work-tools
+    filter:
+      - prepared.json
+      - rg.exe
+      - fd.exe
+      - rg
+      - fd
+      - licenses/**/*
+  - from: scripts/windows-image-ocr.ps1
+    to: vision/windows-image-ocr.ps1
+  - from: runtimes/vision
+    to: vision
+    filter:
+      - manifest.json
+  - from: runtimes/computer
+    to: computer-runtime
+    filter:
+      - cua-driver.exe
+      - cua-driver
+      - prepared.json
+      - sdk/package.json
+      - sdk/package-lock.json
+      - sdk/node_modules/**/*
+  - from: runtimes/rag
+    to: rag
+    filter:
+      - manifest.json
+      - embedding/**/*
+      - reranker/**/*
+      - '!**/*.onnx'
+      - '!**/*.safetensors'
+  - from: runtimes/voice
+    to: voice-runtime
+    filter:
+      - '**/*'
+      - '!kokoro/**/*'
+      - '!pocket-tts/cloning.*'
+      - '!**/*.gguf'
+      - '!**/*.onnx'
+      - '!**/*.ort'
+      - '!**/*.safetensors'
+      - '!**/*.bin'
+asarUnpack:
+  - node_modules/tesseract.js/**/*
+  - node_modules/tesseract.js-core/**/*
+  - node_modules/{bmp-js,is-url,regenerator-runtime,wasm-feature-detect}/**/*
+  - node_modules/@tesseract.js-data/**/*
+  - node_modules/@napi-rs/canvas*/**/*
+  - node_modules/chrome-devtools-mcp/**/*
+  - node_modules/sqlite-vec-*/**/*
+  - node_modules/onnxruntime-node/bin/**/*
+  - node_modules/opencode-*/bin/**/*
+win:
+  icon: src/main/assets/tinygpt.ico
+  target:
+    - target: nsis-web
+      arch: [x64]
+  artifactName: TinyGPT-Setup-${version}-${arch}.${ext}
+mac:
+  icon: src/main/assets/dock-icons/tinygpt-ios-default.png
+  artifactName: TinyGPT-${version}-${arch}.${ext}
+  category: public.app-category.productivity
+  minimumSystemVersion: '15.0'
+  # Sign the runtime's Mach-O code, while Python bytecode and package data are
+  # sealed as resources by the surrounding app signature.
+  signIgnore:
+    - 'Contents/Resources/work-runtimes/(?!node/bin/node$|python/bin/python(?:3(?:\.13)?)?$|.*\.(?:so|dylib)$)'
+  binaries:
+    - Contents/Resources/work-runtimes/node/bin/node
+    - Contents/Resources/work-runtimes/python/bin/python3.13
+    - Contents/Resources/work-runtimes/python/lib/libpython3.13.dylib
+    - Contents/Resources/passwords/libtinygpt-passwords.dylib
+    - Contents/Resources/voice-runtime/pocket-tts/pocket-tts
+    - Contents/Resources/computer-runtime/cua-driver
+    - Contents/Resources/computer-runtime/sdk/node_modules/@trycua/cua-driver-darwin-arm64/libcua_driver_sdk.dylib
+    - Contents/Resources/computer-runtime/sdk/node_modules/@trycua/cua-driver-darwin-arm64/cua_driver_node_runtime.node
+  extendInfo:
+    NSMicrophoneUsageDescription: TinyGPT uses your microphone for local dictation and recording your custom read-aloud voice.
+  target:
+    - target: dmg
+      arch: [arm64]
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  installerIcon: src/main/assets/tinygpt.ico
+  uninstallerIcon: src/main/assets/tinygpt.ico
+  installerSidebar: build/installer-sidebar.bmp
+  uninstallerSidebar: build/installer-sidebar.bmp
+  installerHeader: build/installer-header.bmp
+  shortcutName: TinyGPT
+  uninstallDisplayName: TinyGPT
+  runAfterFinish: true
+  include: build/installer.nsh
+nsisWeb:
+  artifactName: TinyGPT-Setup-${version}-${arch}.${ext}
+  differentialPackage: store-asar
+publish:
+  - provider: generic
+    url: https://downloads.tinygpt.org/releases/0.1.0-prebeta.3
+dmg:
+  title: TinyGPT
+  background: build/dmg-background.png
+  window:
+    width: 660
+    height: 440
+  iconSize: 88
+  contents:
+    - x: 180
+      y: 245
+      type: file
+    - x: 480
+      y: 245
+      type: link
+      path: /Applications

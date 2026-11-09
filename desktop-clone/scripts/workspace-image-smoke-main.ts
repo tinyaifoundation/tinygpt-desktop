@@ -1,0 +1,18 @@
+import { app, nativeImage } from 'electron';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { HistoryStore } from '../src/main/history';
+const profile = process.env.TINYGPT_TOOLS_PROFILE!;
+mkdirSync(profile, { recursive: true }); app.setPath('userData', profile); app.setAppPath(resolve(__dirname, '..'));
+const root = join(profile, 'fixture-project'); mkdirSync(join(root, 'src'), { recursive: true });
+writeFileSync(join(root, 'README.md'), '---\nversion: 1.0.0\ntitle: Workspace fixture\n---\n\n# Workspace preview\n\n- Clean previews\n- Right-side file tree\n');
+writeFileSync(join(root, 'src', 'example.ts'), 'export function greet(name: string) {\n  return "Hello " + name;\n}\n');
+for (let i = 0; i < 32; i++) writeFileSync(join(root, `document-${i}.md`), `# Document ${i}\n`);
+const git = (...args: string[]) => execFileSync('git', ['-C', root, ...args], { windowsHide: true });
+git('init'); git('config', 'user.name', 'Fixture'); git('config', 'user.email', 'fixture@example.test'); git('config', 'core.autocrlf', 'false'); git('add', '.'); git('commit', '-m', 'Initial');
+writeFileSync(join(root, 'src', 'example.ts'), 'export function greet(name: string) {\n  const message = "Hello " + name;\n  return message;\n}\n');
+writeFileSync(join(root, 'created.txt'), 'New output\n');
+const history = new HistoryStore(join(profile, 'library.sqlite')); const project = history.createProject('Workspace fixture', '', false, root); const chat = history.createConversation(project.id, 'code'); history.renameConversation(chat.id, 'Workspace design fixture'); history.selectConversation(chat.id); const image=nativeImage.createFromBitmap(Buffer.alloc(4096*3072*4,180),{width:4096,height:3072}); history.sources.add(chat.id,{kind:'generated-image',title:'Workspace image fixture',url:'tinygpt-image-asset:fixture',text:'{}',image:image.toDataURL(),mime:'image/png',size:image.toPNG().length}); history.close();
+app.on('browser-window-created',(_event,window)=>window.hide());
+require('../out/main/index.js');

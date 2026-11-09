@@ -1,0 +1,74 @@
+const { _electron } = require(process.env.TINYGPT_PLAYWRIGHT_PACKAGE || 'playwright');
+const { build } = require('esbuild');
+const { resolve } = require('node:path');
+const assert = require('node:assert/strict');
+(async () => {
+  const main = resolve('artifacts/workspace-popout-smoke-main.cjs');
+  await build({ entryPoints: ['scripts/workspace-image-smoke-main.ts'], outfile: main, bundle: true, platform: 'node', format: 'cjs', external: ['electron', '../out/main/index.js'] });
+  const env = { ...process.env, TINYGPT_TOOLS_PROFILE: resolve('.tools-smoke-profile', 'workspace-popout-' + Date.now()) };
+  delete env.ELECTRON_RUN_AS_NODE; delete env.ELECTRON_RENDERER_URL;
+  const app = await _electron.launch({ executablePath: resolve('node_modules/electron/dist/electron.exe'), args: [main], env });
+  const page = await app.firstWindow(), errors = [];
+  const watch = target => { target.setDefaultTimeout(15000); target.on('pageerror', error => errors.push(error.message)); return target; };
+  watch(page);
+  let floating;
+  const stillFloating = async id => {
+    assert.equal(floating.isClosed(), false, 'Workspace actions must not close the floating chat');
+    assert.equal(await floating.evaluate(async () => (await window.tinygpt.chatWindow()).value.conversationId), id);
+    assert.equal(await floating.getByRole('textbox', { name: 'Message', exact: true }).isVisible(), true);
+  };
+  try {
+    await page.getByRole('button', { name: 'Library', exact: true }).waitFor();
+    await app.evaluate(({ BrowserWindow }) => { const w = BrowserWindow.getAllWindows()[0]; w.setBounds({ x: -10000, y: -10000, width: 1450, height: 1000 }); w.showInactive(); w.webContents.setBackgroundThrottling(false); });
+    await page.getByRole('button', { name: 'Library', exact: true }).click();
+    await page.getByRole('button', { name: 'Open recent Workspace image fixture', exact: true }).click();
+    const workspace = page.getByRole('complementary', { name: 'Workspace', exact: true });
+    await workspace.getByLabel('Image workspace', { exact: true }).waitFor();
+    assert.equal(await page.evaluate(() => !!(document.querySelector('[aria-label="Pop out chat"]').compareDocumentPosition(document.querySelector('[aria-label="Show workspace"]')) & Node.DOCUMENT_POSITION_FOLLOWING)), true, 'Pop out precedes workspace');
+    await workspace.evaluate(element => { element.dataset.fixtureIdentity = 'retained'; });
+    await workspace.getByRole('tab', { name: 'Changes', exact: true }).click();
+    await workspace.getByRole('button', { name: 'Expand workspace', exact: true }).click();
+    let opened = app.waitForEvent('window');
+    await page.getByRole('button', { name: 'Pop out chat', exact: true }).click(); floating = watch(await opened);
+    await floating.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    const id = await floating.evaluate(async () => (await window.tinygpt.chatWindow()).value.conversationId);
+    await stillFloating(id);
+    assert.equal(await workspace.getAttribute('data-fixture-identity'), 'retained', 'Popping out must retain the workspace instance');
+    assert.equal(await workspace.getByRole('button', { name: 'Restore workspace', exact: true }).isVisible(), true, 'Popping out preserves expanded workspace');
+    assert.equal(await workspace.getByRole('tab', { name: 'Changes', exact: true }).getAttribute('aria-selected'), 'true');
+    assert.equal(await page.getByRole('textbox', { name: 'Message', exact: true }).count(), 0, 'The main window must not duplicate the composer');
+    await floating.getByRole('textbox', { name: 'Message', exact: true }).fill('Draft from the floating work chat');
+    await workspace.getByRole('button', { name: 'Restore workspace', exact: true }).click();
+    await page.getByText('This chat is in its own window.', { exact: true }).waitFor();
+    await workspace.getByRole('tab', { name: 'Workspace image fixture', exact: true }).click();
+    await workspace.getByLabel('Image workspace', { exact: true }).waitFor();
+    await workspace.getByRole('button', { name: 'Expand workspace', exact: true }).click();
+    await stillFloating(id);
+    await workspace.getByRole('button', { name: 'Close workspace', exact: true }).click();
+    await page.getByRole('button', { name: 'Show workspace', exact: true }).click();
+    await workspace.getByRole('button', { name: 'Restore workspace', exact: true }).waitFor();
+    await workspace.getByLabel('Image workspace', { exact: true }).waitFor();
+    await stillFloating(id);
+    await floating.getByRole('button', { name: 'Return chat to TinyGPT', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    assert.equal(await page.getByRole('textbox', { name: 'Message', exact: true }).inputValue(), 'Draft from the floating work chat');
+    // Reverse order on a Chat: pop out first, then open and expand its workspace.
+    await page.getByRole('button', { name: 'New chat', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Message', exact: true }).fill('Chat draft before pop-out');
+    opened = app.waitForEvent('window'); await page.getByRole('button', { name: 'Pop out chat', exact: true }).click(); floating = watch(await opened);
+    await floating.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    const chatId = await floating.evaluate(async () => (await window.tinygpt.chatWindow()).value.conversationId);
+    assert.equal(await floating.getByRole('textbox', { name: 'Message', exact: true }).inputValue(), 'Chat draft before pop-out');
+    await page.getByRole('button', { name: 'Show workspace', exact: true }).click();
+    await workspace.getByRole('button', { name: 'Expand workspace', exact: true }).click();
+    await stillFloating(chatId);
+    await floating.getByRole('textbox', { name: 'Message', exact: true }).fill('Chat draft edited in the pop-out');
+    await workspace.getByRole('button', { name: 'Restore workspace', exact: true }).click();
+    await page.getByRole('button', { name: 'Return chat here', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Message', exact: true }).waitFor();
+    assert.equal(await page.getByRole('textbox', { name: 'Message', exact: true }).inputValue(), 'Chat draft edited in the pop-out');
+    assert.deepEqual(errors, []);
+    console.log(JSON.stringify({ checks: ['Header icon order', 'Expanded workspace survives pop-out', 'Workspace instance and selected tab retained', 'One composer per conversation', 'Image and Changes usable with floating chat', 'Close/reopen workspace keeps pop-out', 'Pop-out then expand workspace in Chat', 'Chat and Work drafts survive return'], errors }));
+  } catch (error) { await page.screenshot({ path: resolve('artifacts/workspace-popout-failure.png') }).catch(() => {}); throw error; }
+  finally { await app.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

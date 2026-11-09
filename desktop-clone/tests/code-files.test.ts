@@ -1,0 +1,253 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { mkdtemp, readFile, realpath, writeFile, stat, symlink } from 'node:fs/promises';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { randomUUID } from 'node:crypto';
+import { HistoryStore } from '../src/main/history';
+import { ProjectFiles } from '../src/main/files';
+import { CodeFiles } from '../src/main/code-files';
+import { ToolBroker } from '../src/main/tool-broker';
+import { defaultSettings } from '../src/shared/config';
+import { ChatService } from '../src/main/chat-service';
+import type { BrowserController } from '../src/main/browser';
+let root: string; let history: HistoryStore; let files: CodeFiles; let id: string; let projectId: string;
+const signal = () => new AbortController().signal;
+beforeEach(async () => { root = await realpath(await mkdtemp(join(tmpdir(),'tinygpt-code-'))); history = new HistoryStore(':memory:', join(root, 'generated-files')); projectId = history.createProject('Code','',false,root).id; id = history.createConversation(projectId,'code').id; files = new CodeFiles(history,new ProjectFiles(history.sources)); });
+afterEach(() => { history.close(); vi.restoreAllMocks(); });
+describe('Code file boundaries, undo and recovery', () => {
+  it.each([false, true])('writes standalone Chat files in managed storage (hasProject=%s)', async hasProject => {
+    const project = hasProject ? history.createProject('No folder', '') : null;
+    const chatId = history.createConversation(project?.id ?? null).id;
+    const settings = { ...defaultSettings, toolPermissions: { ...defaultSettings.toolPermissions, write: 'allow' as const, read: 'allow' as const } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {}, partition() { return 'fixture'; } } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const context = { conversationId: chatId, runId: randomUUID(), signal: signal() };
+    const execute = async (name: 'write_project_file' | 'read_project_file' | 'list_project_files', input: unknown) => JSON.parse(await broker.execute(context, { id: randomUUID(), name, input }));
+    const result = await execute('write_project_file', { path: 'docs/overview.md', content: '# Overview' });
+    expect(result.error).toBeUndefined(); expect(result.artifact).toEqual({ kind: 'generated-file', conversationId: chatId, path: 'docs/overview.md' });
+    expect(await readFile(join(history.generatedFilesRoot, chatId, 'docs/overview.md'), 'utf8')).toBe('# Overview');
+    expect((await execute('list_project_files', { path: 'docs' })).entries).toContainEqual(expect.objectContaining({ name: 'overview.md' }));
+    expect((await execute('read_project_file', { path: 'docs/overview.md' })).text).toContain('# Overview');
+    expect(history.codeChanges(chatId)[0]).toMatchObject({ projectId: null, state: 'applied' });
+    const unchanged = await execute('write_project_file', { path: 'docs/overview.md', content: '# Overview' });
+    expect(unchanged).toMatchObject({ unchanged: true, artifact: { kind: 'generated-file', conversationId: chatId } });
+    await execute('write_project_file', { path: 'docs/overview.md', content: '# Updated' });
+    const savedFile = history.sources.list(chatId).find(source => source.kind === 'project-file')!;
+    expect(history.sources.detail(chatId, savedFile.id).text).toBe('# Updated');
+    expect(history.sources.search(chatId, 'Overview')).toEqual([]);
+    await broker.code.undoRuns(chatId, new Set([context.runId]));
+    await expect(stat(join(history.generatedFilesRoot, chatId, 'docs/overview.md'))).rejects.toMatchObject({ code: 'ENOENT' });
+    await broker.shutdown();
+  });
+  it('shows the actual managed destination for approval without writing before acceptance', async () => {
+    const chatId = history.createConversation(null).id;
+    const settings = { ...defaultSettings, toolPermissions: { ...defaultSettings.toolPermissions, write: 'ask' as const } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {}, partition() { return 'fixture'; } } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const pending = broker.execute({ conversationId: chatId, runId: randomUUID(), signal: signal() }, { id: randomUUID(), name: 'write_project_file', input: { path: 'note.md', content: 'Approved note' } });
+    await vi.waitFor(() => expect(broker.approvals()).toHaveLength(1));
+    expect(broker.approvals()[0].summary).toContain('Generated files');
+    expect(broker.approvals()[0].details).toContain(join(history.generatedFilesRoot, chatId));
+    await expect(stat(join(history.generatedFilesRoot, chatId))).rejects.toMatchObject({ code: 'ENOENT' });
+    broker.respond(broker.approvals()[0].id, 'allow-once');
+    expect(JSON.parse(await pending).artifact.kind).toBe('generated-file');
+    expect(await readFile(join(history.generatedFilesRoot, chatId, 'note.md'), 'utf8')).toBe('Approved note');
+    await broker.shutdown();
+  });
+  it('honors a denied write preference even when the Project folder is missing', async () => {
+    const chatId = history.createConversation(null).id;
+    const settings = { ...defaultSettings, toolPermissions: { ...defaultSettings.toolPermissions, write: 'deny' as const } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {} } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const result = JSON.parse(await broker.execute({ conversationId: chatId, runId: randomUUID(), signal: signal() }, { id: randomUUID(), name: 'write_project_file', input: { path: 'overview.md', content: 'Overview' } }));
+    expect(result.error).toContain('blocked by the user'); expect(history.conversation(chatId).tools[0].status).toBe('denied');
+    expect(broker.approvals()).toEqual([]); await broker.shutdown();
+  });
+  it('uses managed storage for Work without a Project and preserves guarded edits', async () => {
+    const chatId = history.createConversation(null, 'code').id;
+    const result = await files.edit(chatId, randomUUID(), 'overview.md', null, 'Overview', signal());
+    expect(result.artifact).toMatchObject({ kind: 'generated-file', conversationId: chatId });
+    expect(await readFile(join(history.generatedFilesRoot, chatId, 'overview.md'), 'utf8')).toBe('Overview');
+    await expect(files.edit(chatId, randomUUID(), 'overview.md', null, 'Overwrite', signal())).rejects.toThrow();
+  });
+  it('isolates matching filenames and restores managed files after the chat moves to a Project', async () => {
+    const first = history.createConversation(null).id, second = history.createConversation(null).id;
+    const original = randomUUID(), replacement = randomUUID();
+    await files.write(first, original, 'overview.md', 'First', signal());
+    await files.write(second, randomUUID(), 'overview.md', 'Second', signal());
+    await files.write(first, replacement, 'overview.md', 'Replacement', signal());
+    history.organizeConversation({ id: first, action: 'move', projectId });
+    await files.undoRuns(first, new Set([replacement]));
+    expect(await readFile(join(history.generatedFilesRoot, first, 'overview.md'), 'utf8')).toBe('First');
+    expect(await readFile(join(history.generatedFilesRoot, second, 'overview.md'), 'utf8')).toBe('Second');
+    await files.write(first, randomUUID(), 'overview.md', 'Project file', signal());
+    expect(await readFile(join(root, 'overview.md'), 'utf8')).toBe('Project file');
+    await expect(files.write(second, randomUUID(), '../escape.md', 'Escape', signal())).rejects.toThrow('outside');
+    await expect(files.write(second, randomUUID(), '.git/config', 'Sensitive', signal())).rejects.toThrow('Sensitive');
+  });
+  it('creates an actual Markdown file in a Chat Project and preserves undo', async () => {
+    const chatId = history.createConversation(projectId).id;
+    const settings = { ...defaultSettings, toolPermissions: { ...defaultSettings.toolPermissions, write: 'allow' as const } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {}, partition() { return 'fixture'; } } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const runId = randomUUID();
+    const result = JSON.parse(await broker.execute({ conversationId: chatId, runId, signal: signal() }, { id: randomUUID(), name: 'write_project_file', input: { path: 'overview.md', content: '# Overview\nVoice orchestration.' } }));
+    expect(result.error).toBeUndefined(); expect(result.artifact).toMatchObject({ kind: 'project-file', projectId, path: 'overview.md' });
+    expect(await readFile(join(root, 'overview.md'), 'utf8')).toBe('# Overview\nVoice orchestration.');
+    await broker.code.undoRuns(chatId, new Set([runId])); await expect(stat(join(root, 'overview.md'))).rejects.toMatchObject({ code: 'ENOENT' });
+    await broker.shutdown();
+  });
+  it('journals ordinary Chat file writes so editing a Chat prompt can restore them too', async () => {
+    const chatId = history.createConversation(projectId).id;
+    const settings = { ...defaultSettings, toolPermissions: { ...defaultSettings.toolPermissions, write: 'allow' as const } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {}, partition() { return 'fixture'; } } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const runId = randomUUID();
+    await writeFile(join(root, 'chat.md'), 'original note');
+    const result = JSON.parse(await broker.execute({ conversationId: chatId, runId, signal: signal() }, { id: randomUUID(), name: 'write_project_file', input: { path: 'chat.md', content: 'replaced note' } }));
+    expect(result.error).toBeUndefined(); expect(result.changeId).toBeTruthy();
+    await broker.code.undoRuns(chatId, new Set([runId]));
+    expect(await readFile(join(root, 'chat.md'), 'utf8')).toBe('original note');
+    await broker.shutdown();
+  });
+  it('restores a complete turn chain in reverse, preserving pre-existing edits and removing created files', async () => {
+    const first = randomUUID(), later = randomUUID();
+    await writeFile(join(root, 'edited.ts'), 'pre-existing work\r\n');
+    await files.edit(id, first, 'edited.ts', 'pre-existing work\r\n', 'first', signal());
+    await files.edit(id, first, 'created.ts', null, 'created', signal());
+    await files.edit(id, later, 'edited.ts', 'first', 'later', signal());
+    await files.edit(id, later, 'created.ts', 'created', 'later created', signal());
+    await files.undoRuns(id, new Set([first, later]));
+    expect(await readFile(join(root, 'edited.ts'), 'utf8')).toBe('pre-existing work\r\n');
+    await expect(readFile(join(root, 'created.ts'))).rejects.toMatchObject({ code: 'ENOENT' });
+    expect(history.codeChanges(id).every(change => change.state === 'reverted')).toBe(true);
+    await files.undoRuns(id, new Set([first, later]));
+  });
+  it('preflights every file before undoing any changes and protects later independent work', async () => {
+    const run = randomUUID();
+    await files.edit(id, run, 'conflict.ts', null, 'turn change', signal());
+    await files.edit(id, run, 'safe.ts', null, 'safe change', signal());
+    await writeFile(join(root, 'conflict.ts'), 'independent work');
+    await expect(files.undoRuns(id, new Set([run]))).rejects.toThrow('changed independently');
+    expect(await readFile(join(root, 'safe.ts'), 'utf8')).toBe('safe change');
+    expect(await readFile(join(root, 'conflict.ts'), 'utf8')).toBe('independent work');
+    expect(history.codeChanges(id).every(change => change.state === 'applied')).toBe(true);
+  });
+  it('undoes only the selected branch after an edited prompt before starting its replacement', async () => {
+    const settings = { ...defaultSettings, mode: 'code' as const, local: { ...defaultSettings.local, model: 'fixture', tools: true } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {}, handoffs() { return []; }, tasks() { return []; } } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const original = history.startTurn(id, 'Original', 'local'); history.saveReply(original.assistantId, 'Original reply', 'complete');
+    const userId = history.conversation(id).messages[0].id;
+    await broker.code.edit(id, original.runId, 'edit.ts', null, 'original work', signal());
+    const later = history.startTurn(id, 'Follow up', 'local'); history.saveReply(later.assistantId, 'Later reply', 'complete');
+    await broker.code.edit(id, later.runId, 'edit.ts', 'original work', 'later work', signal());
+    // Another saved branch must not be included just because its records are newer.
+    const sibling = history.startTurn(id, 'Sibling', 'local', [], { type: 'edit', messageId: userId }); history.saveReply(sibling.assistantId, 'Sibling reply', 'complete');
+    await broker.code.edit(id, sibling.runId, 'sibling.ts', null, 'other branch', signal());
+    history.selectBranch(id, later.assistantId);
+    let restoredBeforeRun = false;
+    const execution = { async run(_input: unknown, _signal: AbortSignal, delta: (text: string) => void) { await expect(readFile(join(root, 'edit.ts'))).rejects.toMatchObject({ code: 'ENOENT' }); restoredBeforeRun = true; delta('Replacement reply'); } };
+    const chat = new ChatService(history, () => settings, () => undefined, execution, () => {}, broker, undefined, undefined, undefined, execution);
+    await chat.edit(id, userId, 'Revised');
+    while (chat.isActive(id)) await new Promise(resolve => setTimeout(resolve, 1));
+    await chat.shutdown();
+    expect(restoredBeforeRun).toBe(true);
+    expect(await readFile(join(root, 'sibling.ts'), 'utf8')).toBe('other branch');
+    expect(history.conversation(id).messages[0].text).toBe('Revised');
+    expect(history.conversation(id).allMessages!.find(message => message.id === userId)?.text).toBe('Original');
+    await broker.shutdown();
+  });
+  it('keeps the original conversation and never starts a replacement when rollback conflicts', async () => {
+    const settings = { ...defaultSettings, mode: 'code' as const, local: { ...defaultSettings.local, model: 'fixture', tools: true } };
+    const broker = new ToolBroker(history, () => settings, { shutdown() {}, handoffs() { return []; } } as unknown as BrowserController, new ProjectFiles(history.sources), () => {});
+    const turn = history.startTurn(id, 'Original', 'local'); history.saveReply(turn.assistantId, 'Original reply', 'complete');
+    await broker.code.edit(id, turn.runId, 'conflict.ts', null, 'turn change', signal());
+    await writeFile(join(root, 'conflict.ts'), 'independent work');
+    const run = vi.fn(async () => {});
+    const chat = new ChatService(history, () => settings, () => undefined, { run }, () => {}, broker, undefined, undefined, undefined, { run });
+    await expect(chat.edit(id, history.conversation(id).messages[0].id, 'Revised')).rejects.toThrow('changed independently');
+    expect(run).not.toHaveBeenCalled();
+    expect(history.conversation(id).headId).toBe(turn.assistantId);
+    expect(await readFile(join(root, 'conflict.ts'), 'utf8')).toBe('independent work');
+    expect(() => chat.assertIdle()).not.toThrow();
+    await broker.shutdown();
+  });
+  it('creates nested folders but rejects protected components and escaping links', async () => {
+    const native = new ProjectFiles(history.sources);
+    await native.createDirectory(root,'src/components',signal()); expect((await stat(join(root,'src/components'))).isDirectory()).toBe(true);
+    await expect(native.createDirectory(root,'new/.git/config',signal())).rejects.toThrow('Sensitive'); await expect(stat(join(root,'new'))).rejects.toMatchObject({code:'ENOENT'});
+    await expect(native.createDirectory(root,'src/../../escape',signal())).rejects.toThrow('outside');
+    const outside = await realpath(await mkdtemp(join(tmpdir(),'tinygpt-outside-'))); await symlink(outside,join(root,'linked'),process.platform === 'win32' ? 'junction' : 'dir');
+    await expect(native.createDirectory(root,'linked/escape',signal())).rejects.toThrow('outside'); await expect(stat(join(outside,'escape'))).rejects.toMatchObject({code:'ENOENT'});
+  });
+  it('edits with the returned version hash without reconstructing whitespace', async () => {
+    await writeFile(join(root,'space.js'),'const x = 1;\r\n\r\n'); const native = new ProjectFiles(history.sources);
+    const read = await native.read(id,root,'space.js',signal()); expect(read.truncated).toBe(false);
+    await expect(files.edit(id,randomUUID(),'space.js',undefined,'const x = 2;\n',signal(),'0'.repeat(64))).rejects.toThrow('changed on disk');
+    await files.edit(id,randomUUID(),'space.js',undefined,'const x = 2;\n',signal(),read.sha256); expect(await readFile(join(root,'space.js'),'utf8')).toBe('const x = 2;\n');
+  });
+  it('preserves manual changes and refuses stale edits or stale undo', async () => {
+    await writeFile(join(root,'math.js'),'manual change');
+    await expect(files.edit(id,randomUUID(),'math.js','old','new',signal())).rejects.toThrow('changed on disk');
+    expect(history.codeChanges(id)).toEqual([]); expect(await readFile(join(root,'math.js'),'utf8')).toBe('manual change');
+    const edited = await files.edit(id,randomUUID(),'math.js','manual change','new',signal());
+    await writeFile(join(root,'math.js'),'newer manual work'); await expect(files.undo(id,edited.changeId!)).rejects.toThrow('changed on disk');
+    expect(await readFile(join(root,'math.js'),'utf8')).toBe('newer manual work');
+  });
+  it('creates files only if absent and removes a created file on guarded undo', async () => {
+    const result = await files.edit(id,randomUUID(),'new.js',null,'console.log(1);',signal());
+    expect(history.codeChanges(id)[0]).toMatchObject({before:null,state:'applied'});
+    await expect(files.edit(id,randomUUID(),'new.js',null,'replace',signal())).rejects.toThrow('changed on disk');
+    await files.undo(id,result.changeId!); await expect(readFile(join(root,'new.js'))).rejects.toMatchObject({code:'ENOENT'}); expect(history.codeChanges(id)[0].state).toBe('reverted');
+  });
+  it('creates nested dashboard files when guards are omitted without overwriting existing work', async () => {
+    const content = '{"models":[{"name":"Demo","context":"128K"}]}\n';
+    const result = await files.edit(id,randomUUID(),'dashboard/data/comparison.json',undefined,content,signal());
+    expect(await readFile(join(root,'dashboard/data/comparison.json'),'utf8')).toBe(content);
+    expect(history.codeChanges(id)).toHaveLength(1);
+    await expect(files.edit(id,randomUUID(),'dashboard/data/comparison.json',undefined,'overwrite',signal())).rejects.toThrow('already exists');
+    expect(await readFile(join(root,'dashboard/data/comparison.json'),'utf8')).toBe(content);
+    expect(history.codeChanges(id)).toHaveLength(1);
+    await files.undo(id,result.changeId!);
+    await expect(readFile(join(root,'dashboard/data/comparison.json'))).rejects.toMatchObject({code:'ENOENT'});
+  });
+  it('creates parents for explicit create-only edits but never follows escaping links', async () => {
+    await files.edit(id,randomUUID(),'dashboard/assets/index.html',undefined,'<!doctype html><h1>Demo</h1>',signal(),null);
+    expect(await readFile(join(root,'dashboard/assets/index.html'),'utf8')).toContain('<h1>Demo</h1>');
+    const outside = await realpath(await mkdtemp(join(tmpdir(),'tinygpt-create-outside-')));
+    await symlink(outside,join(root,'linked'),process.platform === 'win32' ? 'junction' : 'dir');
+    await expect(files.edit(id,randomUUID(),'linked/nested/escape.js',undefined,'escape',signal())).rejects.toThrow('outside');
+    await expect(stat(join(outside,'nested'))).rejects.toMatchObject({code:'ENOENT'});
+    await expect(files.edit(id,randomUUID(),'nested/.git/config',undefined,'secret',signal())).rejects.toThrow('Sensitive');
+    await expect(stat(join(root,'nested'))).rejects.toMatchObject({code:'ENOENT'});
+  });
+  it('returns actionable missing-path and existing-file errors through the broker', async () => {
+    const settings = { ...defaultSettings, toolPermissions: { ...defaultSettings.toolPermissions, write:'allow' as const, read:'allow' as const } };
+    const broker = new ToolBroker(history,()=>settings,{shutdown(){},partition(){return 'fixture';}} as unknown as BrowserController,new ProjectFiles(history.sources),()=>{});
+    const context = {conversationId:id,runId:randomUUID(),signal:signal()};
+    const call = async (name:'read_project_file'|'edit_project_file',input:unknown)=>JSON.parse(await broker.execute(context,{id:randomUUID(),name,input}));
+    expect((await call('read_project_file',{path:'dashboard/missing.html'})).error).toContain('does not exist');
+    expect(await call('edit_project_file',{path:'dashboard/missing.html',content:'<h1>Created</h1>'})).toMatchObject({path:'dashboard/missing.html'});
+    expect((await call('edit_project_file',{path:'dashboard/missing.html',content:'overwrite'})).error).toContain('read_project_file');
+    expect(await readFile(join(root,'dashboard/missing.html'),'utf8')).toBe('<h1>Created</h1>');
+    await broker.shutdown();
+  });
+  it('refuses traversal, protected files and a moved Project during undo', async () => {
+    await expect(files.edit(id,randomUUID(),'../outside.js',null,'bad',signal())).rejects.toThrow('outside');
+    await expect(files.edit(id,randomUUID(),'.env',null,'secret',signal())).rejects.toThrow('Sensitive');
+    const result = await files.edit(id,randomUUID(),'inside.js',null,'safe',signal());
+    history.setProjectFolder(projectId,await realpath(await mkdtemp(join(tmpdir(),'tinygpt-code-moved-'))));
+    await expect(files.undo(id,result.changeId!)).rejects.toThrow('Project folder changed'); expect(await readFile(join(root,'inside.js'),'utf8')).toBe('safe');
+  });
+  it('reconciles interrupted journal records without writing files', async () => {
+    const applied = history.saveCodeChange(id,randomUUID(),projectId,root,'applied.js',null,'written'); await writeFile(join(root,'applied.js'),'written');
+    const missing = history.saveCodeChange(id,randomUUID(),projectId,root,'missing.js',null,'not written');
+    const conflict = history.saveCodeChange(id,randomUUID(),projectId,root,'conflict.js','old','new'); await writeFile(join(root,'conflict.js'),'manual');
+    await files.recover(); expect(history.codeChanges(id).map(change=>[change.id,change.state])).toEqual([[applied,'applied'],[missing,'failed'],[conflict,'conflict']]);expect(await readFile(join(root,'conflict.js'),'utf8')).toBe('manual');
+  });
+  it('does not execute denied or cancelled commands', async () => {
+    let settings = structuredClone(defaultSettings); settings.toolPermissions.execute='deny'; const native = new ProjectFiles(history.sources); const broker = new ToolBroker(history,()=>settings,{ shutdown() {} } as BrowserController,native,()=>{});const command = vi.spyOn(broker.code,'command');
+    const request = { id:randomUUID(),name:'run_project_command' as const,input:{executable:'node',args:['-e','throw new Error("must not run")'],cwd:'.',timeoutSeconds:1} };
+    const context = {conversationId:id,runId:randomUUID(),signal:signal()};expect(JSON.parse(await broker.execute(context,request)).error).toContain('blocked');expect(command).not.toHaveBeenCalled();
+    settings.toolPermissions.execute='ask';const controller=new AbortController();const pending=broker.execute({...context,runId:randomUUID(),signal:controller.signal},{...request,id:randomUUID()});while(!broker.approvals().length)await new Promise(resolve=>setTimeout(resolve,1));controller.abort();await expect(pending).rejects.toThrow();expect(command).not.toHaveBeenCalled();await broker.shutdown();
+  });
+  it('isolates Chat from Code-only tools', async () => {
+    const chat=history.createConversation(projectId);const settings=structuredClone(defaultSettings);settings.toolPermissions.write='allow';const broker=new ToolBroker(history,()=>settings,{ shutdown() {} } as BrowserController,new ProjectFiles(history.sources),()=>{});
+    const result=JSON.parse(await broker.execute({conversationId:chat.id,runId:randomUUID(),signal:signal()},{id:randomUUID(),name:'edit_project_file',input:{path:'chat.js',expectedContent:null,content:'not allowed'}}));expect(result.error).toContain('only in Work');await expect(readFile(join(root,'chat.js'))).rejects.toMatchObject({code:'ENOENT'});await broker.shutdown();
+  });
+});

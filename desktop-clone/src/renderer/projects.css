@@ -1,0 +1,44 @@
+.project-dialog { width:min(600px,calc(100vw - 32px)); padding:24px; border-radius:22px; overflow:hidden; }
+.project-dialog-body-viewport { max-height:calc(100dvh - 164px); }
+.project-dialog .dialog-title { margin-bottom:28px; font-size:23px; line-height:1.25; font-weight:500; }
+.project-dialog .dialog-close { top:20px; right:20px; }
+.project-dialog-name { display:flex; flex-direction:column; gap:10px; font-size:14px; }
+.project-dialog-name-field { display:flex; align-items:center; gap:12px; min-width:0; height:44px; padding:0 12px; border:1px solid var(--border); border-radius:12px; }
+.project-dialog-name-field:focus-within { border-color:var(--user-accent); box-shadow:0 0 0 1px color-mix(in srgb,var(--user-accent) 15%,transparent); }
+.project-dialog-name-field > svg.solar { width:20px; height:20px; color:var(--foreground); }
+.project-dialog-name-field input { flex:1; min-width:0; height:100%; padding:0; background:transparent; border:0; border-radius:0; outline:none; box-shadow:none; font-size:15px!important; }
+.project-dialog-name-field input:focus-visible { outline:none; box-shadow:none; }
+.project-dialog-folders { margin-top:18px; }
+.project-dialog-folders-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.project-dialog-folders h2 { margin:0; font-size:14px; font-weight:600; }
+.project-dialog-folders-heading .project-dialog-options-trigger { height:20px; padding:0 3px; gap:4px; font-size:11px; color:var(--muted-foreground); }
+.project-dialog-folders-heading .project-dialog-options-trigger > svg.solar { width:11px; height:11px; }
+.project-dialog-folder-box { overflow:hidden; border:1px solid var(--border); border-radius:12px; }
+.project-dialog-folder-viewport { max-height:150px; }
+.project-dialog-folder-row { display:flex; align-items:center; gap:12px; min-width:0; padding:16px; }
+.project-dialog-folder-row > svg.solar, .project-dialog-folder-add > svg.solar { width:20px; height:20px; color:var(--muted-foreground); }
+.project-dialog-folder-row > span { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; }
+.project-dialog-folder-row > button { display:grid; place-items:center; width:24px; height:24px; border-radius:6px; color:var(--muted-foreground); }
+.project-dialog-folder-row > button:hover { background:var(--accent); color:var(--foreground); }
+.project-dialog-folder-add { display:flex; align-items:center; gap:12px; width:100%; padding:16px; border-top:1px solid var(--border); font-size:14px; text-align:left; }
+.project-dialog-folder-add:hover { background:color-mix(in srgb,var(--foreground) 4%,transparent); }
+.project-dialog-folder-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; min-height:118px; padding:20px; }
+.project-dialog-folder-empty p { margin:0; color:var(--muted-foreground); font-size:14px; }
+.project-dialog-folder-empty button { height:28px; padding:0 12px; border-radius:999px; background:var(--accent); font-size:13px; gap:6px; }
+.project-dialog-tip { display:flex; align-items:center; gap:14px; margin-top:18px; padding:14px 16px; border-radius:14px; background:var(--accent); color:var(--muted-foreground); }
+.project-dialog-tip > svg.solar { width:24px; height:24px; }
+.project-dialog-tip p { margin:0; font-size:13px; line-height:1.5; }
+.project-dialog-actions { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:22px; }
+.project-dialog-actions > div { display:flex; align-items:center; gap:10px; margin-left:auto; }
+.project-dialog-actions button { height:36px; padding:0 16px; font-size:14px; }
+.project-dialog-actions .project-dialog-options-trigger { gap:6px; padding:0 8px; font-size:13px; }
+.project-dialog-actions .project-dialog-remove { color:var(--destructive); background:color-mix(in srgb,var(--destructive) 13%,transparent); border-radius:12px; }
+.project-dialog-actions .project-dialog-remove:hover { background:color-mix(in srgb,var(--destructive) 20%,transparent); }
+.project-dialog-error { margin:14px 0 0; font-size:13px; color:var(--destructive); }
+.project-dialog-options { z-index:160; width:min(340px,calc(100vw - 32px)); padding:16px; font-size:13px; }
+.project-dialog-options label { display:flex; flex-direction:column; gap:8px; }
+.project-dialog-options textarea { width:100%; resize:none; padding:10px; border:1px solid var(--border); border-radius:8px; background:transparent; }
+.project-dialog-options .project-dialog-isolation { flex-direction:row; align-items:center; margin-top:14px; }
+.sidebar-project-row > .sidebar-hover-action[data-state="open"] { opacity:1; pointer-events:auto; }
+.sidebar-project-toggle > svg.sidebar-project-favorite { width:10px; height:10px; margin-left:auto; color:var(--muted-foreground); }
+@media(max-width:520px) { .project-dialog { padding:20px; } .project-dialog-actions { flex-wrap:wrap; } .project-dialog-actions button { padding:0 12px; } }

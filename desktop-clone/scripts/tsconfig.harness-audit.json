@@ -1,0 +1,4 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["harness-audit-main.ts", "harness-audit-cases.ts", "../src/core/harness-audit.ts", "../src/**/*.d.ts"]
+}

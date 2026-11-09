@@ -1,0 +1,13 @@
+import { build } from 'esbuild';
+import { readFile, mkdir } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
+import { spawn } from 'node:child_process';
+const require = createRequire(import.meta.url);
+const kind = process.argv[2]; if (!['slack','gmail','gdrive','gcalendar','github','notion','higgsfield','linear'].includes(kind)) throw Error('Choose a supported connector.');
+await mkdir('.tmp', { recursive: true });
+const outputFile = `.tmp/connector-live-${kind}.cjs`;
+await build({ entryPoints: ['scripts/connector-live-main.ts'], outfile: outputFile, bundle: true, platform: 'node', format: 'cjs', target: 'node24', packages: 'external', plugins: [{ name: 'inline-references', setup(builder) { builder.onResolve({ filter: /\?inline$/ }, args => ({ path: args.path.replace(/\?inline$/, ''), namespace: 'inline', pluginData: { directory: args.resolveDir } })); builder.onLoad({ filter: /.*/, namespace: 'inline' }, async args => { const file = args.path.startsWith('.') ? resolve(args.pluginData.directory, args.path) : require.resolve(args.path); const mime = file.endsWith('.png') ? 'image/png' : file.endsWith('.webp') ? 'image/webp' : 'font/woff2'; return { contents: `module.exports=${JSON.stringify(`data:${mime};base64,${(await readFile(file)).toString('base64')}`)}`, loader: 'js' }; }); } }] });
+const env = { ...process.env }; delete env.ELECTRON_RUN_AS_NODE;
+const child = spawn(resolve('node_modules/electron/dist/electron.exe'), [resolve(outputFile), kind], { env, stdio: 'inherit', windowsHide: true });
+child.on('exit', code => { process.exitCode = code ?? 1; });

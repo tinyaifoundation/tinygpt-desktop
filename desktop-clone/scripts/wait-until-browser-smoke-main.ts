@@ -1,0 +1,43 @@
+import { app, BrowserWindow } from 'electron';
+import { createServer } from 'node:http';
+import { mkdirSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+import assert from 'node:assert/strict';
+import { BrowserController } from '../src/main/browser';
+import { snapshotEvidence, waitForObservation } from '../src/core/wait-until';
+import { waitUntilSchema, browserWaitUntilSchema } from '../src/shared/wait-until';
+mkdirSync(process.env.TINYGPT_TOOLS_PROFILE!, { recursive: true });
+app.setPath('userData', process.env.TINYGPT_TOOLS_PROFILE!);
+app.whenReady().then(async () => {
+  const main = new BrowserWindow({ show: false, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false } });
+  const browser = new BrowserController(() => {}, () => main, () => {}, () => {});
+  const server = createServer((_request, response) => response.writeHead(200, { 'Content-Type': 'text/html' }).end(`<title>Wait fixture</title><main>${Array.from({length: 600}, (_, i) => `<p>Fixture paragraph ${i}</p>`).join('')}<p role="status" id="status">Saving</p><button>Continue</button></main>`));
+  try {
+    await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
+    const address = server.address(); if (!address || typeof address === 'string') throw Error('Fixture unavailable');
+    const conversation = randomUUID(), signal = new AbortController().signal;
+    const page = await browser.page(conversation, 'persist:wait-fixture', `http://127.0.0.1:${address.port}/`, signal, randomUUID());
+    const contents = browser.contents(conversation, page.tabId);
+    await contents.executeJavaScript(`window.fixtureMarker='preserved';true`);
+    assert.equal((await browser.navigateAgent(conversation, page.tabId, page.url, signal)).navigation.performed, false);
+    assert.equal(await contents.executeJavaScript(`window.fixtureMarker`), 'preserved');
+    assert.equal((await browser.navigateAgent(conversation, page.tabId, page.url, signal, true)).navigation.performed, true);
+    assert.equal(await contents.executeJavaScript(`window.fixtureMarker`), undefined);
+    await contents.executeJavaScript(`setTimeout(()=>history.replaceState(null,'','/receipt/123'),1200);true`);
+    const receipt = await waitForObservation(browserWaitUntilSchema.parse({ url: '/receipt/', match: 'contains', timeoutMs: 10000 }), signal, next => browser.snapshot(conversation, page.tabId, next), snapshotEvidence);
+    assert.equal(receipt.wait.matched, true); assert.ok(receipt.wait.polls > 1); assert.ok(receipt.observation.url.includes('/receipt/123'));
+    await contents.executeJavaScript(`setTimeout(()=>document.getElementById('status').textContent='Saved',1200);true`);
+    const observed = await waitForObservation(waitUntilSchema.parse({ text: 'Saved', timeoutMs: 10000 }), signal, next => browser.snapshot(conversation, page.tabId, next), snapshotEvidence);
+    assert.equal(observed.wait.matched, true); assert.ok(observed.wait.polls > 1); assert.equal(observed.wait.evidence, 'Saved');
+    assert.ok(observed.observation!.elements.some(element => element.label === 'Continue'));
+    await contents.executeJavaScript(`document.getElementById('status').textContent='Loading';setTimeout(()=>document.getElementById('status').textContent='Finished',1200);true`);
+    const absent = await waitForObservation(waitUntilSchema.parse({ text: 'Loading', state: 'absent', timeoutMs: 10000 }), signal, next => browser.snapshot(conversation, page.tabId, next), snapshotEvidence);
+    assert.equal(absent.wait.matched, true); assert.equal(absent.wait.observationComplete, true);
+    const timedOut = await waitForObservation(waitUntilSchema.parse({ text: 'Never appears', timeoutMs: 1000 }), signal, next => browser.snapshot(conversation, page.tabId, next), snapshotEvidence);
+    assert.equal(timedOut.wait.timedOut, true); assert.equal(timedOut.wait.matched, false);
+    const cancelled = new AbortController(); setTimeout(() => cancelled.abort(Error('Fixture stopped')), 100);
+    await assert.rejects(waitForObservation(waitUntilSchema.parse({ text: 'Never appears' }), cancelled.signal, next => browser.snapshot(conversation, page.tabId, next), snapshotEvidence), /Fixture stopped/);
+    await assert.rejects(browser.snapshot(randomUUID(), page.tabId, signal), /not available/);
+    console.log(JSON.stringify({ browserWait: 'passed', sameUrlPreservesPage: true, explicitReload: true, present: true, absent: true, timeout: true, cancellation: true, conversationScope: true, polls: observed.wait.polls }));
+  } finally { browser.shutdown(); server.close(); main.destroy(); }
+}).then(() => app.quit(), error => { console.error(error); app.exit(1); });

@@ -1,0 +1,14 @@
+{
+  "version": "0.38.0",
+  "sourceCommit": "85e2b1318bd77ccf3cfa88ccdf875a4bb7eaed19",
+  "targets": {
+    "win32-x64": {
+      "archive": "cua-driver-rs-0.38.0-windows-x86_64-binary.zip",
+      "sha256": "5edaa74d0afa1b55a9668dbc4f32736507bd2bd4d75b18ca1dc8881bb12402b5"
+    },
+    "darwin-arm64": {
+      "archive": "cua-driver-rs-0.38.0-darwin-arm64.tar.gz",
+      "sha256": "5f71191c082ca07c9dfc13b7c9a6eec60a82818c245a93534cc0eb7911471d72"
+    }
+  }
+}

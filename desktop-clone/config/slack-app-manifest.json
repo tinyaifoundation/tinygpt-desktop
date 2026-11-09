@@ -1,0 +1,19 @@
+{
+  "display_information": {
+    "name": "TinyGPT",
+    "description": "Search Slack, catch up on channels, and send updates with your approval.",
+    "background_color": "#91b6fa"
+  },
+  "oauth_config": {
+    "redirect_urls": ["https://plugin.tinygpt.org/oauth/slack/callback"],
+    "scopes": {
+      "user": ["search:read", "channels:read", "channels:history", "groups:read", "groups:history", "chat:write"]
+    },
+    "pkce_enabled": true
+  },
+  "settings": {
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": true
+  }
+}

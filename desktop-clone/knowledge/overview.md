@@ -1,0 +1,35 @@
+# Getting started and navigating TinyGPT
+
+TinyGPT is a desktop assistant with Chat, Work, a personal Bot, Projects, a Library and Scheduled tasks. Its capabilities depend on the selected model, installed runtimes, connected plugins and your permissions. An answer about a capability is not evidence that an action has happened.
+
+## Welcome and first launch
+
+New installations open a four-step **Welcome to TinyGPT** experience: **Your private AI companion for every idea**, **Ask anything, anytime.**, **Tailored to you**, and **More than just text**. Minimal generated artwork with vibrant gradients sits beside a white setup panel on desktop. Artwork uses sample TinyGPT interface details; pictured prompts and memories are illustrations, not imported files, saved personal data or results of an action. There is no step count, brand dot or promotional footer note; progress dots remain beside the navigation. Progress is saved on this computer and resumes after a restart. **Set up later** closes the welcome; reopen it through **Settings → General → Welcome to TinyGPT → Open welcome**. Existing profiles are not forced through setup. Reopening welcome preserves existing connections and permissions until you explicitly change a setting.
+
+**Ask anything, anytime.** describes the included **On this device** model as **free forever**, with no account or subscription required. This applies to included on-device inference, not charges from optional external model providers. It works offline in a complete installation. Its status comes from the running model service; a selected model is not necessarily running. Select its card to start it. **Optional: connect OpenRouter** opens browser sign-in to your own account; provider usage may cost extra. Model selection and further connection controls remain in Configuration. You can continue setup if a model needs attention, then resolve it in Configuration.
+
+**Tailored to you** offers **Your first name (optional)**. Continuing with a new nonblank name saves it to the local profile and an explicit **Your name** personal memory, preserving any existing last name and other profile fields. Leaving it blank skips this choice and does not erase an existing name. Back and Set up later do not save an edited name. A failed name save keeps setup on the same screen. On a new profile, providing your name opts into using personal memories; an existing memory-sharing choice, including an opt-out, is preserved. Manage the name in Profile and sharing, saved memories, Pause and Forget in Personalization. Other personal conversations are not automatically learned as memories.
+
+**100% local storage** means your profile name and saved memories are stored on this computer. Relevant memory excerpts may still be sent with a request if you select a cloud model. This is a storage statement, not a claim that cloud inference is local or that memory is encrypted.
+
+**More than just text** introduces Work, coding, documents and voice. **Read replies aloud** changes the existing voice preference only after a successful save. Welcome does not request microphone access, enable computer control, connect plugins, or enable Remote Control. Permission prompts remain part of using those features. Conversations are saved locally, but cloud models receive the context sent to them. On the final screen, choosing a starter fills a new conversation draft when you select **Open TinyGPT**. It does not send a message automatically.
+
+The public app and installer name is **TinyGPT**. Windows packaging targets x64 with a branded web setup wizard. New installer builds download the app package during setup and prepare separately stored included model data on first launch; matching installed models can be reused. Once model setup completes, included local AI and voice work offline. Signed Windows release builds support user-controlled updates through an indicator above the sidebar profile and **Settings → General → Updates**. Existing 0.1.0-prebeta.2 users need a manual installer upgrade once. See **Updating TinyGPT and keeping local models** for download, restart, storage and availability limits. Mac packaging targets Apple Silicon on macOS 15 or newer, but a Mac pre-beta download and updater are not currently offered. Signing, notarization and clean-machine acceptance are separate checks. Changing the public name preserves the existing app identity and local profile directory.
+
+## Start a conversation
+
+Open a new chat, choose Chat or Work in the composer, select an available model and send your request. Chat suits questions, research and everyday tool tasks. Work carries a task through file changes, commands and verification. Use Stop to interrupt an active reply. Retry or regenerate when appropriate; earlier tool actions may already have happened, so check their results before repeating them.
+
+Use the sidebar to reopen conversations, find Projects, open your Bot, browse the Library or manage Scheduled tasks. Conversations and preferences are saved on this computer. Search chats to find older work. Archiving hides a conversation from the sidebar; Settings → Archived chats restores it. Deletion and archiving are different actions.
+
+## Find a setting
+
+Open Settings and type a label or related word in Search settings. Select a result to open its section and locate the control. Settings contains General, Configuration, Notifications, Profile, Appearance, Voice, Personalization, Computer use, Remote Control, Plugins, Browser, Work settings, Bot, Keyboard shortcuts, Archived chats and Diagnostics. A control may open another configuration panel.
+
+On Windows use Ctrl; on macOS use Command. The shortcuts are modifier+J for New chat, modifier+B to toggle the sidebar, modifier+F to find in a conversation and modifier+K to search chats.
+
+## Understand availability
+
+TinyGPT supplies a small application-identity note and a snapshot of the computer's local date, time and timezone at the start of each reply or worker request chain. This helps Chat, Work, Bot and delegated coding interpret TinyGPT as their host app and phrases such as today or this week. The snapshot stays unchanged during tool follow-ups and retries, preserving a reusable prompt prefix. A new reply, resumed run or independent worker gets a fresh snapshot. It is labeled as reply-start time, not a live clock, so a long task may need to check the current time separately. It uses the desktop computer's clock and timezone; if a paired device is in another timezone, specify that timezone in your request. This context does not grant access or replace the Bot's name/personality, and it does not make the model's stored knowledge current news.
+
+Choosing a more capable model does not grant file, browser or account access. A connected account still needs selection and authorization in the conversation. Device compatibility and available memory affect local models. If something is missing, check Configuration, the relevant plugin/runtime and General tool permissions. TinyGPT should report missing access instead of guessing or claiming success.
