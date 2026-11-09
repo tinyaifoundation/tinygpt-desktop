@@ -15,7 +15,8 @@ async function fixture() {
   const index = new RagIndex(history.databasePath, join(root, 'vectors.sqlite')); cleanup.push(() => index.close());
   return { root, history, index };
 }
-describe('worker-owned native retrieval index', () => {
+// Native-worker startup and SQLite I/O need a bounded integration-test budget on hosted Windows runners.
+describe('worker-owned native retrieval index', { timeout: 30_000 }, () => {
   it('keeps more than two chunks from a long source available to the reranker', async () => {
     const { history, index } = await fixture(); const chat = history.createConversation(null);
     const text = Array.from({ length: 8 }, (_, i) => `SHIPMENT ${i} ${String(i).repeat(1000)}`).join('\n');
