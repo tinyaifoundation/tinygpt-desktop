@@ -4,7 +4,7 @@ Windows x64 release builds can check the TinyGPT pre-beta update channel. Pre-be
 
 ## Check, download and restart
 
-Open **Settings → General → Updates → Check for updates**. A supported build also checks on startup and every four hours while running, refreshing a pending notification if a newer build becomes available. Checks pause while downloading or while a verified update is ready to install. When a newer version is found, **Update available** appears above the sidebar profile. Open it to read plain-text release notes and choose **Download update**. Downloads are not started merely because an update is available. Progress appears in the sidebar and update panel. You can keep using the app during a download.
+Open **Settings → General → Updates → Check for updates**. A supported build also checks on startup and every fifteen minutes while running, refreshing a pending notification if a newer build becomes available. Checks pause while downloading or while a verified update is ready to install. When a newer version is found, **Update available** appears above the sidebar profile. Open it to read plain-text release notes and choose **Download update**. Downloads are not started merely because an update is available. Progress appears in the sidebar and update panel. You can keep using the app during a download.
 
 After a verified download, choose **Restart to update**. The app refuses to restart through this control while Chat, Work, Bot or Scheduled work is active or a workspace terminal is still open. Finish the work and close terminals, then try again. Updates do not install automatically just because you quit the app. Download/check failures provide a retry through checking again; a failed check is not proof that you have the latest version.
 

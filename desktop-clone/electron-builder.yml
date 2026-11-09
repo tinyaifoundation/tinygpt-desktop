@@ -127,7 +127,7 @@ nsisWeb:
   differentialPackage: store-asar
 publish:
   - provider: generic
-    url: https://downloads.tinygpt.org/releases/0.1.0-prebeta.3
+    url: https://downloads.tinygpt.org/releases/${version}
 dmg:
   title: TinyGPT
   background: build/dmg-background.png

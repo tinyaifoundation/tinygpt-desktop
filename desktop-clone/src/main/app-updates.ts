@@ -44,7 +44,7 @@ export class AppUpdates {
   snapshot(): UpdateState { return { ...this.state }; }
   private set(value: Partial<UpdateState>) { if (!this.closed) { this.state = { ...this.state, ...value }; this.publish(this.snapshot()); } }
   private fail() { this.set({ phase: 'error', percent: undefined, message: 'The update could not finish. Check your connection and try again.' }); }
-  start(interval = 4 * 60 * 60 * 1000) {
+  start(interval = 15 * 60 * 1000) {
     if (!this.engine || this.closed || this.timer) return;
     void this.action('check');
     this.timer = setInterval(() => { if (['idle', 'available', 'error'].includes(this.state.phase)) void this.action('check'); }, interval);
