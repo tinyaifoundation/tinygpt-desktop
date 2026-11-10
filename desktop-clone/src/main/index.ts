@@ -1,6 +1,7 @@
 import { connectorToolIconKeys } from '../shared/connector-tool-icon-keys';
 import { OnboardingStore } from './onboarding';
 import { AppUpdates } from './app-updates';
+import { AppShutdown } from './app-shutdown';
 import { releaseUpdateEngine } from './update-engine';
 import { prepareModelAssets } from './model-setup';
 import { updateActionSchema } from '../shared/updates';
@@ -137,6 +138,8 @@ let browserProfiles: BrowserProfiles | undefined;
 let diagnostics: ReplyDiagnostics;
 let terminals: WorkspaceTerminals;
 let quitting = false;
+const shutdown = new AppShutdown();
+let stopBuiltInModels = async () => {};
 let updates: AppUpdates | undefined;
 const projectFolderChoices = new Map<string, { path: string; expires: number }>();
 let restoredBounds: Electron.Rectangle | null = null;
@@ -289,7 +292,7 @@ else {
     const managedLocal = new ManagedLocalModel(join(app.getPath('userData'), 'local-models', 'minicpm5-2b'),voiceRoot, 'included', undefined, runtimeMetric);
     const managedPro = new ManagedLocalModel(join(app.getPath('userData'), 'local-models', 'pro'), undefined, 'pro', join(app.getPath('userData'), 'local-models', 'minicpm5-2b'), runtimeMetric);
     const builtIns = { included: managedLocal, pro: managedPro };
-    app.once('before-quit', () => { void Promise.all([managedLocal.stop(), managedPro.stop()]); });
+    stopBuiltInModels = async () => { await Promise.all([managedLocal.shutdown(), managedPro.shutdown()]); };
     if (process.platform === 'win32') app.setAppUserModelId('com.tinygpt.voice.clone');
     const dictation = new DictationService(voiceRoot, () => store.getSettings().voice.dictation, () => !!store.getSettings().modelResidency?.keepLoaded);
     app.once('before-quit', () => dictation.close());
@@ -644,11 +647,12 @@ else {
       return inferenceChanged();
     };
     const startBuiltIn = async (id: BuiltInModelId, speculative = id === 'pro' && store.getSettings().builtIn.proMtp, authorized = () => {}) => {
+      if (quitting) throw new Error('TinyGPT is closing.');
       if (startingBuiltIn) throw new Error('Finish the current built-in setup first.');
       chat.assertIdle();
       startingBuiltIn = id;
       const generation = ++builtInGeneration;
-      const ensureCurrent = () => { authorized(); if (generation !== builtInGeneration) throw new Error('Setup canceled.'); };
+      const ensureCurrent = () => { authorized(); if (quitting || generation !== builtInGeneration) throw new Error('Setup canceled.'); };
       try {
         if (id === 'pro' && !(await scanBuiltInHardware()).proCompatible) throw new Error('Pro compatibility could not be confirmed on this device.');
         ensureCurrent();
@@ -663,6 +667,7 @@ else {
       } finally { startingBuiltIn = undefined; }
     };
     const warmModel = async (requestedId?: BuiltInModelId) => {
+      if (quitting) throw new Error('TinyGPT is closing.');
       memory?.warm();
       const settings = store.getSettings(), id = requestedId ?? (settings.route === 'local' ? builtInModelId(settings.local.model) : undefined);
       if (!id) return;
@@ -671,6 +676,7 @@ else {
       let task = warmingModels.get(id);
       if (!task) {
         task = modelWarmQueue.catch(() => {}).then(async () => {
+          if (quitting) throw new Error('TinyGPT is closing.');
           if (!(await builtIns[id].installedStatus()).installed) throw Error('Set up this built-in model in Configuration first.');
           const other = id === 'pro' ? 'included' : 'pro';
           if (builtIns[other].status().phase === 'running' && (chat.usesOwnedModel(other) || localOperations.get(other))) throw Error('Wait for the current local conversation before loading another model.');
@@ -1069,13 +1075,23 @@ else {
 // handoff must not be mistaken for the user quitting the application.
 app.on('window-all-closed', () => { if (process.platform !== 'darwin' && !startingUp) app.quit(); });
 app.on('before-quit', event => {
-  if (quitting || !chat) return;
-  event.preventDefault(); quitting = true;
-  updates?.close();
-  remote?.close();
-  notifications?.close(); notificationDesktop?.close();
-  broker.cancelManual();
-  void Promise.resolve().then(() => scheduled?.shutdown()).then(() => chat.shutdown()).then(() => botService.shutdown()).then(() => broker.shutdown()).then(() => terminals.shutdown()).then(() => plugins.shutdown()).then(() => indexer.shutdown()).then(() => memory.shutdown()).then(() => browserProfiles?.flush()).finally(() => { closeChatRuntime(); diagnostics?.close(); history.close(); app.quit(); });
+  if (!chat) return;
+  quitting = true;
+  void shutdown.request(event, async () => {
+    const modelsStopped = stopBuiltInModels();
+    // Attach rejection handling immediately while the other services drain.
+    const modelResult = modelsStopped.then(() => ({ error: undefined as unknown }), error => ({ error }));
+    updates?.close(); remote?.close();
+    notifications?.close(); notificationDesktop?.close(); broker.cancelManual();
+    for (const close of [() => scheduled?.shutdown(), () => chat.shutdown(), () => botService.shutdown(),
+      () => broker.shutdown(), () => terminals.shutdown(), () => plugins.shutdown(),
+      () => indexer.shutdown(), () => memory.shutdown(), () => browserProfiles?.flush()]) {
+      try { await close(); } catch (error) { console.error('TinyGPT service cleanup:', error); }
+    }
+    const { error } = await modelResult;
+    if (error) throw error;
+    closeChatRuntime(); diagnostics?.close(); history.close();
+  }, () => app.quit()).catch(error => console.error('TinyGPT shutdown could not finish:', error));
 });
 
 

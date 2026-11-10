@@ -63,6 +63,9 @@
         "src/renderer/components/ConfigurationSettings.tsx",
         "src/shared/config.ts",
         "src/main/managed-local.ts",
+        "src/main/owned-process.ts",
+        "src/main/app-shutdown.ts",
+        "src/main/index.ts",
         "src/shared/managed-local.ts",
         "src/main/managed-performance.ts"
       ]

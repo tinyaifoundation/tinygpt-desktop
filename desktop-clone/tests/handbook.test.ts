@@ -39,6 +39,8 @@ it.each([
   ['Does 100% local memory storage mean cloud models never receive relevant memories?', 'overview'],
   ['Does free forever include paid OpenRouter usage or only the included on-device model?', 'overview'],
   ['Does first launch download local model data once, verify its SHA-256, and keep those models across app updates?', 'updates'],
+  ['When I close and reopen TinyGPT on Windows, does shutdown stop only its owned built-in model processes and cancel queued model starts?', 'models'],
+  ['Why does the included model use more graphics memory than its downloaded file? Does the 65536-token context buffer also use memory?', 'models'],
   ['How do I Stop installation in the frameless Installing TinyGPT window, and will reopening resume downloaded parts?', 'updates'],
   ['Does the welcome starter send a message automatically or enable microphone and computer access?', 'overview'],
   ['Does the current Mac pre-beta offer automatic updating?', 'updates'],

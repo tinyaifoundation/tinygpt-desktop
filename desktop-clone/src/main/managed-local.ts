@@ -14,6 +14,7 @@ import { VisionFailure, type VisionObservation } from './local-vision';
 import { promptCacheMiB, proRequiredFreeBytes, managedPerformanceEnv, type ManagedPerformance } from './managed-performance';
 import { nativePerformanceObserver } from '../core/native-performance';
 import type { NativePerformance } from '../shared/diagnostics';
+import { terminateOwnedProcess } from './owned-process';
 
 const exec = promisify(execFile);
 const release = 'https://github.com/ggml-org/llama.cpp/releases/download/b11960/';
@@ -52,6 +53,9 @@ export class ManagedLocalModel {
   private controller?: AbortController;
   private task?: Promise<{ endpoint: string; key: string }>;
   private child?: ChildProcess;
+  private stopping?: Promise<void>;
+  private killing?: Promise<void>;
+  private closed = false;
   private key = '';
   private logs = '';
   private imageCache = new Map<string, VisionObservation>();
@@ -94,6 +98,8 @@ export class ManagedLocalModel {
     this.state = { backend: this.state.backend, speculative: this.state.speculative, phase, message, ...extra };
   }
   start(speculative = false): Promise<{ endpoint: string; key: string }> {
+    if (this.closed) return Promise.reject(new Error('TinyGPT is closing. The local model cannot start.'));
+    if (this.stopping) return this.stopping.then(() => this.start(speculative));
     if (this.task) return this.task;
     if (this.state.phase === 'running' && this.child && this.state.endpoint) {
       if (this.state.speculative !== speculative) return Promise.reject(new Error('Stop the built-in model before changing its acceleration settings.'));
@@ -110,20 +116,31 @@ export class ManagedLocalModel {
     }).finally(() => { this.task = undefined; });
     return this.task;
   }
-  async stop() {
+  shutdown(): Promise<void> { this.closed = true; return this.stop(); }
+  stop(): Promise<void> {
+    if (this.stopping) return this.stopping;
     this.imageCache.clear();
     this.controller?.abort(); this.set('stopping', 'Stopping the built-in model…');
-    await this.kill(); await this.task?.catch(() => {});
-    this.set('idle', 'Stopped. Downloaded files are kept for next time.');
+    const pending = (async () => {
+      await this.kill(); await this.task?.catch(() => {});
+      // Account for a preparation operation that was already awaiting I/O.
+      await this.kill();
+      this.set('idle', 'Stopped. Downloaded files are kept for next time.');
+    })().finally(() => { if (this.stopping === pending) this.stopping = undefined; });
+    this.stopping = pending;
+    return pending;
   }
-  private async kill() {
-    const child = this.child; this.child = undefined;
-    if (child && child.exitCode === null && child.signalCode === null) {
-      const exited = new Promise<void>(done => child.once('exit', () => done()));
-      child.kill(); await Promise.race([exited, new Promise<void>(done => setTimeout(done, 5000))]);
-      if (child.exitCode === null && child.signalCode === null) child.kill('SIGKILL');
-    }
-    await this.logFile?.close().catch(() => {}); this.logFile = undefined;
+  private kill(): Promise<void> {
+    if (this.killing) return this.killing;
+    const child = this.child;
+    const pending = (async () => {
+      if (child) await terminateOwnedProcess(child);
+      if (this.child === child) this.child = undefined;
+      const log = this.logFile; this.logFile = undefined;
+      await log?.close().catch(() => {});
+    })().finally(() => { if (this.killing === pending) this.killing = undefined; });
+    this.killing = pending;
+    return pending;
   }
   private async digest(file: string, signal: AbortSignal) {
     const hash = createHash('sha256'); for await (const chunk of createReadStream(file)) { signal.throwIfAborted(); hash.update(chunk); } return hash.digest('hex');
@@ -153,6 +170,7 @@ export class ManagedLocalModel {
     await rename(partial, destination);
   }
   private async prepare(signal: AbortSignal) {
+    signal.throwIfAborted();
     let device: string | undefined, gpuIndex: number | undefined;
     if (this.modelId === 'pro') {
       const hardware = await scanBuiltInHardware();
@@ -198,17 +216,21 @@ export class ManagedLocalModel {
       } finally { await rm(staging, { recursive: true, force: true }); }
       signal.throwIfAborted();
     }
+    signal.throwIfAborted();
     this.state.backend = backend;
     if (this.modelId === 'pro') {
       const hardware = await scanBuiltInHardware();
       if (!hardware.proCompatible || !hardware.device || hardware.device.uuid !== device || hardware.device.freeBytes < proRequiredFreeBytes(!!this.state.speculative) || freemem() < 4 * 2 ** 30) throw new Error('Device memory changed during setup. Free device memory or turn off Response acceleration and try again; the download is saved.');
     }
     const port = await new Promise<number>((resolve, reject) => { const server = createServer(); server.once('error', reject); server.listen(0, '127.0.0.1', () => { const address = server.address(); const p = typeof address === 'object' && address ? address.port : 0; server.close(() => p ? resolve(p) : reject(new Error('No local port available.'))); }); });
+    signal.throwIfAborted();
     this.key = randomBytes(32).toString('hex'); const keyFile = join(this.root, 'server.key'); await writeFile(keyFile, this.key, { mode: 0o600 });
+    signal.throwIfAborted();
     const endpoint = `http://127.0.0.1:${port}/v1`;
     // If GPU initialization fails, offer the real error instead of silently shrinking context or falling back to a slow CPU run.
     this.set('starting', 'Starting your built-in model…'); this.logs = '';
     this.logFile = await open(join(this.root, 'server.log'), 'w');
+    signal.throwIfAborted();
     const projector = this.modelId === 'pro' ? join(this.root, new URL(managedLocalPins.proVision.url).pathname.split('/').at(-1)!) : undefined;
     const performance: ManagedPerformance = { cacheMiB: this.modelId === 'pro' ? promptCacheMiB() : 512, ...(this.modelId === 'pro' && this.state.speculative ? { mtpModel: join(this.root, new URL(managedLocalPins.proMtp.url).pathname.split('/').at(-1)!) } : {}) };
     const observe = nativePerformanceObserver(this.modelId, metric => { try { this.performanceSink?.(metric); } catch { /* Numeric diagnostics are optional. */ } });
